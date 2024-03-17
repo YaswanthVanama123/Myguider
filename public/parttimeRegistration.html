@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="myguider.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+        <script src="/myguider.js"></script>
+        <script src="myguider.js"></script>
+    </head>
+    <body>
+
+        <!-- section12 registration for parttimes -->
+        <div class="center-container" id="section12">
+            <div class="container9">
+                <header class="reg">Registration</header>
+                <form action="#" id="formRegCityAllParttime">
+                    <div class="form first" id="firstFormAll">
+                        <div class="details personal">
+                            <span class="title">Personal Detail</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="PartTime1">Email</label>
+                                    <input type="text" placeholder="Enter your email" required id="PartTime1" />
+                                </div>
+
+                                <div class="input-field">
+                                    <label for="PartTime3">Shopname or Companyname</label>
+                                    <input type="text" placeholder="Enter your full name" required id="PartTime3" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime4">Type</label>
+                                    <select class="regSelect" id="PartTime4">
+                                        <option value="Part Time">Part Time</option>
+                                        <option value="Full Time">Full Time</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime5">Phone number</label>
+                                    <input type="tel" placeholder="Enter your phone number" required id="PartTime5" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime6">No of Vacancies</label>
+                                    <input type="number" placeholder="Enter vacancies" required id="PartTime6" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details ID">
+                            <button class="backRegistration btn bg-primary" id="backRegistration3">Back to Home</button>
+                            <button class="nextBtnParttime buttonRegistration" id="nextBtnParttime">
+                                <span class="btnText">
+                                    Next
+                                    <i class="fa-solid fa-forward"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form second">
+                        <div class="details address">
+                            <span class="title">Profession Details</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="citySearchParttime">City</label>
+                                    <input type="text" placeholder="Enter your city" required id="citySearchParttime" />
+                                    <div>
+                                        <ul id="citySuggestionsListPartTime"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="roadSearchInputParttime">Area</label>
+                                    <input type="address" placeholder="Enter pin code" required id="roadSearchInputParttime" />
+                                    <div>
+                                        <ul id="roadSearchSuggestionsListParttime"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime9">Pin Code</label>
+                                    <input type="number" placeholder="Enter your occupation" required id="PartTime9" />
+                                </div>
+
+
+                                <div class="input-field">
+                                    <label for="searchInputOccupationRegParttime">Education</label>
+                                    <select class="regSelect" id="searchInputOccupationRegParttime">
+                                        <option value="Any One">Any One</option>
+                                        <option value="Above 10th">Above 10th</option>
+                                        <option value="PG">PG</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field">
+                                    <label for="PartTime11">Expected Salary</label>
+                                    <input type="number" placeholder="Enter expected Salary" required id="PartTime11" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime2">Job For</label>
+                                    <select class="regSelect" id="PartTime2">
+                                        <option value="Any One">Any One</option>
+                                        <option value="Only for mens">Only for mens</option>
+                                        <option value="Only for women">Only for women</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="details family">
+                                <div class="buttons">
+                                    <div class="backBtnParttime" id="backBtnParttime">
+                                        <a href="#" class="btnText">
+                                            <i class="fa-solid fa-forward"></i>
+                                        </a>
+                                    </div>
+                                    <button class="nextBtnParttime btn buttonRegistration" type="button">
+                                        <span class="btnText" id="submitButtonParttime">
+                                            Submit
+                                            <i class="fa-solid fa-forward"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+
+            let valuePartTime1 = document.getElementById("PartTime1");
+            let valuePartTime2 = document.getElementById("PartTime2");
+            let valuePartTime3 = document.getElementById("PartTime3");
+            let valuePartTime4 = document.getElementById("PartTime4");
+            let valuePartTime5 = document.getElementById("PartTime5");
+            let valuePartTime6 = document.getElementById("PartTime6");
+            let valuePartTime7 = document.getElementById("citySearchParttime");
+            let valuePartTime8 = document.getElementById("roadSearchInputParttime");
+            let valuePartTime9 = document.getElementById("PartTime9");
+            let valuePartTime10 = document.getElementById("searchInputOccupationRegParttime");
+            let valuePartTime11 = document.getElementById("PartTime11");
+
+
+
+            const formRegCityAllParttime = document.getElementById("formRegCityAllParttime");
+            const nextBtnParttime = document.getElementById("nextBtnParttime");
+            const backBtnParttime = document.getElementById("backBtnParttime");
+            const allInputPartTime = formRegCityAllParttime.querySelectorAll(".first input");
+        
+            // Function to handle next button click event
+            nextBtnParttime.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+        
+                let allInputPartTimesFilled = true;
+                allInputPartTime.forEach((input) => {
+                    if (input.value === "") {
+                        allInputPartTimesFilled = false;
+                    }
+                });
+        
+                if (allInputPartTimesFilled) {
+                    formRegCityAllParttime.classList.add("secActive");
+                } else {
+                    formRegCityAllParttime.classList.remove("secActive");
+                }
+            });
+        
+            // Function to handle back button click event
+            backBtnParttime.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+                formRegCityAllParttime.classList.remove("secActive");
+            });
+
+
+            // city search 
+
+const citySearchParttime = document.getElementById('citySearchParttime');
+const citySuggestionsListPartTime = document.getElementById('citySuggestionsListPartTime');
+
+let currentPlacePartTime = {};
+
+function handleCitySuggestionClickParttime(place) {
+    console.log('Selected City:', place);
+
+    let cityParttime = place.address.city || place.address.name;
+
+    citySearchParttime.value = cityParttime;
+
+    currentPlacePartTime = {
+        name: place.display_name,
+        pincode: place.address.postcode
+    };
+
+    let areaParttime = place.display_place;
+    let streetParttime = place.address.road;
+    let pincodeParttime = place.address.postcode;
+
+    console.log(cityParttime);
+    console.log(areaParttime);
+    console.log(streetParttime);
+    console.log(pincodeParttime);
+
+    citySuggestionsListPartTime.innerHTML = '';
+}
+
+function debounceCityParttime(func, delay) {
+    let timeoutIdParttime;
+    return function() {
+        clearTimeout(timeoutIdParttime);
+        timeoutIdParttime = setTimeout(func, delay);
+    };
+}
+
+function handleCityInputParttime() {
+    const searchTermParttime = citySearchParttime.value.trim();
+    if (searchTermParttime.length >= 2) {
+
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermParttime}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+                citySuggestionsListPartTime.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleCitySuggestionClickParttime(place));
+                    citySuggestionsListPartTime.appendChild(li);
+                });
+
+                citySuggestionsListPartTime.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting city suggestions:', error));
+    } else {
+        citySuggestionsListPartTime.style.display = 'none';
+    }
+}
+
+citySuggestionsListPartTime.style.display = 'none';
+
+citySearchParttime.addEventListener('input', debounceCityParttime(handleCityInputParttime, 300));
+
+document.addEventListener('click', (event) => {
+    if (event.target !== citySearchParttime && event.target !== citySuggestionsListPartTime) {
+        citySuggestionsListPartTime.style.display = 'none';
+    }
+});
+
+// Road search
+
+const roadSearchInputParttime = document.getElementById('roadSearchInputParttime');
+const roadSearchSuggestionsListParttime = document.getElementById('roadSearchSuggestionsListParttime');
+
+let currentPlacePartTime1 = {};
+
+function handleRoadSuggestionClickParttime(place) {
+    console.log('Selected Road:', place);
+
+    let areaParttime = place.display_place;
+
+    roadSearchInputParttime.value = areaParttime;
+
+    currentPlacePartTime1 = {
+        name: place.display_name,
+        pincodeS: place.address.postcode
+    };
+
+    let cityParttime = place.address.city || place.address.name;
+    let streetParttime = place.address.road;
+    let pincodeParttime = place.address.postcode;
+
+    console.log(cityParttime);
+    console.log(areaParttime);
+    console.log(streetParttime);
+    console.log(pincodeParttime);
+
+    roadSearchSuggestionsListParttime.innerHTML = '';
+}
+
+function debounceRoadParttime(func, delay) {
+    let timeoutIdParttime;
+    return function() {
+        clearTimeout(timeoutIdParttime);
+        timeoutIdParttime = setTimeout(func, delay);
+    };
+}
+
+function handleRoadInputParttime() {
+    const searchTermParttime = roadSearchInputParttime.value.trim();
+    if (searchTermParttime.length >= 2) {
+
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermParttime}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+                roadSearchSuggestionsListParttime.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleRoadSuggestionClickParttime(place));
+                    roadSearchSuggestionsListParttime.appendChild(li);
+                });
+
+                roadSearchSuggestionsListParttime.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting road suggestions:', error));
+    } else {
+        roadSearchSuggestionsListParttime.style.display = 'none';
+    }
+}
+
+roadSearchSuggestionsListParttime.style.display = 'none';
+
+roadSearchInputParttime.addEventListener('input', debounceRoadParttime(handleRoadInputParttime, 300));
+
+document.addEventListener('click', (event) => {
+    if (event.target !== roadSearchInputParttime && event.target !== roadSearchSuggestionsListParttime) {
+        roadSearchSuggestionsListParttime.style.display = 'none';
+    }
+});
+
+
+
+
+
+
+            const submitButtonParttime = document.getElementById("submitButtonParttime");
+            const parttimeForm = document.getElementById("formRegCityAllParttime");
+        
+            
+        
+            function handleSubmitParttime(event) {
+                event.preventDefault();
+            
+                // Construct form data object
+                const formValues = {
+                    email: document.getElementById('PartTime1').value,
+                    shop_name: document.getElementById('PartTime3').value,
+                    work_type: document.getElementById('PartTime4').value,
+                    phonenumber: document.getElementById('PartTime5').value,
+                    no_of_vacancies: document.getElementById('PartTime6').value,
+                    city: document.getElementById('citySearchParttime').value,
+                    area: document.getElementById('roadSearchInputParttime').value,
+                    pincode: document.getElementById('PartTime9').value,
+                    education: document.getElementById('searchInputOccupationRegParttime').value,
+                    expected_salary: document.getElementById('PartTime11').value,
+                    job_for: document.getElementById('PartTime2').value
+                    // Add more fields if needed
+                };
+            
+                // Make a POST request to the backend with form data
+                fetch('/parttime/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formValues)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    alert(data.message);
+                    // Handle success, e.g., redirect to another page
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors, e.g., display error message to the user
+                });
+            }
+
+            submitButtonParttime.addEventListener("click", handleSubmitParttime);
+
+
+
+
+
+        </script>
+
+    <script src="myguider.js"></script>
+    </body>
+</html>

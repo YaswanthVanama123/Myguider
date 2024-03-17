@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+    
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+        <script src="myguider.js"></script>
+    </head>
+    <body>
+        <!-- section 1 Main Page -->
+        <div id="section1" class="">
+            <div class="containerMainPage d-md-none">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light navBackground fixed-top">
+                    <a class="navbar-brand" href="#"><i class="fab fa-glide brand-icon fontMainPage"></i><span class="headingMainPage">My Guider</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto fontFamilyMainPage">
+                            <a class="nav-link active" href="#section1">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link " href="#" onclick="display2(); nullEntered()">
+                                Login
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link" href="#section01">contact us</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="containerMainPage d-flex flex-column justify-content-center d-md-none text-center">
+    
+                    <h1 class="welcomeHeadingMainPage">Welcome</h1>
+                    <p class="paraMainPage">Are you ready for great experience</p>
+                    <div>
+                        <a href="#section00" class="bn5 btn-primary">Get started</a>
+    
+    
+    
+    
+                        <!--        <button class="btn btn-secondary" onclick="display3()">    
+                            <i class="fa-solid fa-briefcase"></i> 
+                            Business Login</button>   -->
+                    </div>
+                </div>
+            </div>
+            <div class=" d-md-none Background2MainPage" id="section00">
+                <div class="GetPaddingMainPage1 mb-2">
+                    <h1 class="BusiHeadMainPage">User Login</h1>
+                    <p class="paraMainPage1">Log in to access your personalized account and explore our services</p>
+                    <div class="">
+                        <div class="mb-2 text-center">
+                            <button class="BusinessLoginMainPage1" onclick="display2(); nullEntered()">Log In</button>
+                        </div>
+                        <div class="text-center">
+                            <button class="BusinessSignUpMainPage1 btn" onclick="display4(); nullEntered()">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="GetPaddingMainPage1">
+                    <h1 class="BusiHeadMainPage">Business Login</h1>
+                    <p class="paraMainPage1">Log in to manage your business accounts and access exclusive tools</p>
+                    <div class="mb-2 text-center">
+                        <button class="BusinessLoginMainPage1" onclick="display3(); nullEntered()">Log In</button>
+                    </div>
+                    <div class="text-center">
+                        <button class="BusinessSignUpMainPage1 btn" onclick="display5(); nullEntered()">Sign Up</button>
+                    </div>
+                </div>
+    
+    
+                <!-- services provider -->
+    
+                <div class="seriveProvideDiv" id="">
+                    <!-- how section -->
+                    <section class="how_section layout_padding">
+                        <div class="heading_container">
+                            <h2 class="tett">
+                                Services Provided
+                            </h2>
+                        </div>
+                        <div class="how_container">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/j5PL6Zqf/7379004.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Skilled Workers
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Such as Electrician,Plumber,Driver,Mechanics maons,daily-wage workers
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/YCGS6MxV/2098439.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Rent or Sale your houses or shops
+    
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Here you can rent or lease or sold your house or shops or property
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/RV5VQc21/3159856.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Pin your Shops or business places location
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Here you can place your location of shops or business places customers easy know your shop address or business places
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/wTyL3cLh/6214032.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Search for best employee worker for your buisness
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Here you can post for employees or workers or part-times for your business
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- end how section -->
+                </div>
+            </div>
+            <div class=" d-md-none" id="section01">
+                <div class="greenMainpage d-flex flex-row justify-content-center remo">
+                    <div>
+                        <p class="resoucesMainpage">About</p>
+                        <p>Jobs</p>
+                        <p>Features</p>
+                        <p>Partners</p>
+                    </div>
+    
+                    <div>
+                        <p class="resoucesMainpage">contact Us</p>
+                        <p>userguider@gmail.com</p>
+                        <p>123-456-789</p>
+                        <div class="social">
+                            <a href="#"><i class="bi bi-github"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!--Medium section    -->
+    
+            <div class="d-none d-md-block">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light navBackground fixed-top">
+                    <a class="navbar-brand" href="#"><i class="fab fa-glide brand-icon fontMainPage"></i><span class="headingMainPage">My Guider</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto fontFamilyMainPage">
+                            <a class="nav-link " href="#section1">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link " href="#" onclick="display2()">
+                                Login
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link" href="#section001">Contact Us</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="containerMainPage padMediumMainPage">
+                    <div class="my-container d-none d-md-block GetMarginMainPage">
+                        <div class="d-flex flex-row justify-content-center m-auto">
+                            <div class="GetPaddingMainPage text-center">
+                                <h1 class="welcomeHeadingMainPage marginTopMainPage">Welcome</h1>
+                                <p class="paraMainPage">Are you ready for great experience</p>
+                                <div class=" mb-5">
+    
+    
+                                    <a href="#section0" class="bn5 btn-primary">Get started</a>
+    
+                                </div>
+                            </div>
+                            <div class="">
+                                <img src="https://i.postimg.cc/nV5dfn6n/1699864430848-removebg-preview.png" />
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="MediumPage2MainPage d-none d-md-block Background2MainPage" id="section0">
+                    <div class="d-flex flex-row justify-content-center Card1MainPage mt-5 mb-5">
+                        <div class="GetPaddingMainPage1">
+                            <h1 class="BusiHeadMainPage">Business Login</h1>
+                            <p class="paraMainPage1">Log in to manage your business accounts and access exclusive tools</p>
+                            <button class="BusinessLoginMainPage" onclick="display3(); nullEntered()">Log In</button>
+    
+                            <button class="BusinessSignUpMainPage btn" onclick="display5(); nullEntered()">Sign Up</button>
+                        </div>
+                        <div class="ml-5">
+                            <img src="https://i.postimg.cc/SNwS3jvV/Whats-App-Image-2023-12-03-at-15-05-45-d9d06275.jpg" class="image1MainPage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-center Card1MainPage mt-5 mb-5">
+                    <div class="mr-5">
+                        <img src="https://i.postimg.cc/MT47jRHW/1699869412576.jpg" class="image1MainPage" />
+                    </div>
+                    <div class="GetPaddingMainPage1">
+                        <h1 class="BusiHeadMainPage">User Login</h1>
+                        <p class="paraMainPage1">Log in to access your personalized account and explore our services</p>
+                        <button class="BusinessLoginMainPage" onclick="display2(); nullEntered()">Log In</button>
+    
+                        <button class="BusinessSignUpMainPage btn" onclick="display4(); nullEntered()">Sign Up</button>
+                 </div>    
+                </div>
+    
+    
+                <!--   services provider medium devices -->
+    
+    
+    
+    
+                <div class="seriveProvideDiv" id="mediumServiceProvider">
+                    <!-- how section -->
+                    <section class="how_section layout_padding">
+                        <div class="heading_container">
+                            <h2 class="tett">
+                                Services Provided
+                            </h2>
+                        </div>
+                        <div class="how_container">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/j5PL6Zqf/7379004.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Skilled Workers
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Such as Electrician,Plumber,Driver,Mechanics maons,daily-wage workers
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/YCGS6MxV/2098439.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Rent or Sale your houses or shops
+    
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Here you can rent or lease or sold your house or shops or property
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/RV5VQc21/3159856.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Pin your Shops or business places location
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Here you can place your location of shops or business places customers easy know your shop address or business places
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img class="remo1234" src="https://i.postimg.cc/wTyL3cLh/6214032.png" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        Search for best employee worker for your buisness
+                                    </h5>
+                                    <p class="paraServiceProvider">
+                                        Here you can post for employees or workers or part-times for your business
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- end how section -->
+                </div>
+            </div>
+    
+    
+    
+    
+    
+            <div class=" d-none d-md-block" id="section001">
+                <div class="greenMainpage d-flex flex-row remo">
+                    <div>
+                        <p class="brandMainpage">Brand</p>
+                        <p class="userplusMainpage">User Plus</p>
+                    </div>
+    
+                    <div>
+                        <p class="resoucesMainpage">Resources</p>
+                        <p>FAQ</p>
+                        <p>Contact</p>
+                        <p>Privacy</p>
+                        <p>Terms</p>
+                    </div>
+    
+                    <div>
+                        <p class="resoucesMainpage">Support</p>
+                        <p>© 2023 My Guider</p>
+                        <p>All rights reserved</p>
+                        <p>My Guider</p>
+                        <p>Vijayawada</p>
+                        <p>9392365494</p>
+                    </div>
+    
+                    <div>
+                        <p class="resoucesMainpage">About</p>
+                        <p>Jobs</p>
+                        <p>Features</p>
+                        <p>Partners</p>
+                    </div>
+    
+                    <div>
+                        <p class="resoucesMainpage">Contact Us</p>
+                        <p>yourguider@gmail.com</p>
+                        <p>123-456-789</p>
+                        <div class="social">
+                            <a href="#"><i class="bi bi-github"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+
+
+    
+
+
+        <script src="myguider.js"></script>
+    </body>
+</html>

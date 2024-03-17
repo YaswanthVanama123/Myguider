@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/myguider.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+    </head>
+    <body>
+            
+        <!-- section 18 Buisness home page for Part Time  -->
+
+        <div class="" id="section18">
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light navBackground fixed-top">
+                    <a class="navbar-brand" href="#"><i class="fab fa-glide brand-icon fontMainPage"></i><span class="headingMainPage">My Guider</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto fontFamilyMainPage">
+                            <a class="nav-link active" href="#section1">
+
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link " href="#" onclick="display2(); nullEntered()">
+
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link" href="#"></a>
+                            <a class="nav-link " href="#" onclick="display6()">LogOut <span class="sr-only">(current)</span></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="businessSkilledHomePageContainer mt-5">
+                <div class="d-flex flex-row justify-content-center">
+                    <div class="skilledStatusCard shadow pt-3">
+                        <h1 class="skilledStatusHead text-center">Your Current Status <span id="currentStatusPresent3"></span></h1>
+                        <div class="text-center mt-5">
+                            <button class="btn buttonSkillHelp" id="buttonPartTimeHelp">Ready to Help</button>
+                            <button class="btn buttonSkillUnHelp" id="buttonPartTimeUnHelp">Unable to Help</button>
+                            <p class="pt-5 skilledStatuspara1" id="buttonPartTimeHelpPara">Great to hear now you are online your deatils will display to the user</p>
+                            <p class="skilledStatuspara2 d-none pt-5" id="buttonPartTimeUnHelpPara">Now you are offline please come as soon as possible click green button to online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailsSkilledBuisness mt-4 m-3 mb-3 shadow">
+                    <h1 class="text-center skilledStatusHead1">Your Details</h1>
+                    <div class="d-flex flex-row justify-content-center mt-5">
+                        <div class="mr-3">
+                            <h1 class="skilledStatuspara2">Email :</h1>
+                            <h1 class="skilledStatuspara2">Job for :</h1>
+                            <h1 class="skilledStatuspara2">Company or Shop name : </h1>
+                            <h1 class="skilledStatuspara2">Type :</h1>
+                            <h1 class="skilledStatuspara2">Phoneno :</h1>
+                            <h1 class="skilledStatuspara2">Vacancies :</h1>
+                            <h1 class="skilledStatuspara2">City :</h1>
+                            <h1 class="skilledStatuspara2">Area :</h1>
+                            <h1 class="skilledStatuspara2">Pincode :</h1>
+                            <h1 class="skilledStatuspara2">Education :</h1>
+                            <h1 class="skilledStatuspara2">Salary :</h1>
+
+                        </div>
+                        <div id="skilledDetails1 ml-5">
+                            <h1 class="skilledStatuspara2" id="PT1"></h1>
+                            <h1 class="skilledStatuspara2" id="PT2"></h1>
+                            <h1 class="skilledStatuspara2" id="PT3"></h1>
+                            <h1 class="skilledStatuspara2" id="PT4"></h1>
+                            <h1 class="skilledStatuspara2" id="PT5"></h1>
+                            <h1 class="skilledStatuspara2" id="PT6"></h1>
+                            <h1 class="skilledStatuspara2" id="PT7"></h1>
+                            <h1 class="skilledStatuspara2" id="PT8"></h1>
+                            <h1 class="skilledStatuspara2" id="PT9"></h1>
+                            <h1 class="skilledStatuspara2" id="PT10"></h1>
+                            <h1 class="skilledStatuspara2" id="PT11"></h1>
+
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn bg-primary editBtn" onclick="prePartTime()">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Function to fetch part time details and populate the page
+            async function fetchPartTimeDetails() {
+                try {
+                    const response = await fetch('/parttime/details', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        // Populate the DOM elements with the fetched data
+                        document.getElementById('PT1').textContent = data.email || 'Not Available';
+                        document.getElementById('PT2').textContent = data.shop_name || 'Not Available';
+                        document.getElementById('PT3').textContent = data.work_type || 'Not Available';
+                        document.getElementById('PT4').textContent = data.phonenumber || 'Not Available';
+                        document.getElementById('PT5').textContent = data.no_of_vacancies || 'Not Available';
+                        document.getElementById('PT6').textContent = data.city || 'Not Available';
+                        document.getElementById('PT7').textContent = data.area || 'Not Available';
+                        document.getElementById('PT8').textContent = data.pincode || 'Not Available';
+                        document.getElementById('PT9').textContent = data.education || 'Not Available';
+                        document.getElementById('PT10').textContent = data.expected_salary || 'Not Available';
+                        document.getElementById('PT11').textContent = data.job_for || 'Not Available';
+                        document.getElementById('currentStatusPresent3').textContent = data.parttime_status ? ': Online' : ': Offline';
+                        document.getElementById('currentStatusPresent3').style.color = data.parttime_status ? 'green' : 'red';
+                        if (data.parttime_status) {
+                            document.getElementById('buttonPartTimeHelpPara').classList.remove('d-none');
+                            document.getElementById('buttonPartTimeUnHelpPara').classList.add('d-none');
+                        } else {
+                            document.getElementById('buttonPartTimeHelpPara').classList.add('d-none');
+                            document.getElementById('buttonPartTimeUnHelpPara').classList.remove('d-none');
+                        }
+                    } else {
+                        console.error('Error fetching part time details:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error fetching part time details:', error.message);
+                }
+            }
+            
+            // Function to toggle part time status and update the UI
+            async function togglePartTimeStatus(status) {
+                try {
+                    const response = await fetch('/parttime/status', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status })
+                    });
+                    if (!response.ok) {
+                        console.error('Error updating part time status:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error updating part time status:', error.message);
+                }
+            }
+            
+            // Function to initialize the page
+            async function init() {
+                // Fetch part time details and populate the page
+                await fetchPartTimeDetails();
+            
+                // Add event listeners to the helpful buttons
+                document.getElementById('buttonPartTimeHelp').addEventListener('click', async () => {
+                    await togglePartTimeStatus(true);
+                    // Update UI if necessary
+                    document.getElementById('currentStatusPresent3').textContent = ': Online';
+                    document.getElementById('currentStatusPresent3').style.color = 'green';
+                    document.getElementById('buttonPartTimeHelpPara').classList.remove('d-none');
+                    document.getElementById('buttonPartTimeUnHelpPara').classList.add('d-none');
+                });
+            
+                document.getElementById('buttonPartTimeUnHelp').addEventListener('click', async () => {
+                    await togglePartTimeStatus(false);
+                    // Update UI if necessary
+                    document.getElementById('currentStatusPresent3').textContent = ': Offline';
+                    document.getElementById('currentStatusPresent3').style.color = 'red';
+                    document.getElementById('buttonPartTimeHelpPara').classList.add('d-none');
+                    document.getElementById('buttonPartTimeUnHelpPara').classList.remove('d-none');
+                });
+            }
+            
+            // Call the init function when the DOM content is loaded
+            document.addEventListener('DOMContentLoaded', init);
+
+            function prePartTime(){
+                window.location.href = '/business/parttime/editdetails';
+            }
+            </script>
+            
+
+
+    </body>
+</html>
