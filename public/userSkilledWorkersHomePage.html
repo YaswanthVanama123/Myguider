@@ -173,271 +173,328 @@ function updateAverageRating(worker, selectedRating) {
     }
 }
 
+function showDetailsInMessageBox(worker) {
+    // Get the details card element
+    const detailsCard = document.getElementById('detailsCard');
 
-    function showDetailsInMessageBox(worker) {
-        // Get the details card element
-        const detailsCard = document.getElementById('detailsCard');
-    
-        // Clear existing content
-        detailsCard.innerHTML = '';
-    
-        // Create and append details content
-        const detailsContent = document.createElement('div');
-        detailsContent.classList.add('card-details-content', 'text-center');
-    
-        const ionIcon = document.createElement("ion-icon");
-        ionIcon.setAttribute('name', 'person-circle-outline');
-        ionIcon.classList.add("image", "icon-container");
-        ionIcon.classList.add("m-auto")
-    
-        const span1 = document.createElement('h1');
-        const span2 = document.createElement('h1');
-        const span3 = document.createElement('h1');
-        const span4 = document.createElement('h1');
-        const span5 = document.createElement('h1');
-        const span6 = document.createElement('h1');
-        const span7 = document.createElement('h1');
-        const span8 = document.createElement('h1');
-        const span9 = document.createElement('h1');
-    
-        span1.classList.add('detailsCardHead');
-    
-        span1.textContent = `Name: ${worker.name}`;
-        span2.textContent = `Email: ${worker.email}`;
-        span3.textContent = `Age: ${worker.age}`;
-        span4.textContent = `Gender: ${worker.gender}`;
-        span5.textContent = `Phone no: ${worker.phonenumber}`;
-        span6.textContent = `State: ${worker.state}`;
-        span7.textContent = `City: ${worker.city}`;
-        span8.textContent = `Area: ${worker.area}`;
-        span9.textContent = `Occupation: ${worker.occupation}`;
-    
-        span1.classList.add("span1head");
-        span2.classList.add("span1head");
-        span3.classList.add("span1head");
-        span4.classList.add("span1head");
-        span5.classList.add("span1head");
-        span6.classList.add("span1head");
-        span7.classList.add("span1head");
-        span8.classList.add("span1head");
-        span9.classList.add("span1head");
-    
-        detailsContent.appendChild(ionIcon);
-        detailsContent.appendChild(span1);
-        detailsContent.appendChild(span3);
-        detailsContent.appendChild(span4);
-        detailsContent.appendChild(span9);
-        detailsContent.appendChild(span5);
-        detailsContent.appendChild(span6);
-        detailsContent.appendChild(span7);
-        detailsContent.appendChild(span8);
-    
-        // Create a container for buttons
-        const buttonsContainer = document.createElement('div');
-        buttonsContainer.classList.add('buttons-container');
-    
-        // Create the "Directions" button
-        let directionsButton = document.createElement('button');
-        let ion1 = document.createElement("ion-icon");
-        ion1.setAttribute("name", "locate-outline");
-        directionsButton.appendChild(ion1);
-        directionsButton.classList.add('directions-button', 'directions-button:hover');
-        directionsButton.addEventListener("click", function() {
-            handleDirections(worker);
-        });
-    
-        // Create the "Call" button with the phone number
-        let callButton = document.createElement('button');
-        let ion2 = document.createElement("ion-icon");
-        ion2.setAttribute("name", "call-outline");
-        callButton.appendChild(ion2)
-        callButton.classList.add('directions-button', 'directions-button:hover');
-        callButton.addEventListener("click", function() {
-            handlePhoneCall(worker.phonenumber);
-        });
-    
-        // Create the rating box
-        const ratingBox = document.createElement('div');
-        ratingBox.classList.add('rating-box', "mt-5");
-    
-        const ratingHeader = document.createElement('header');
-        ratingHeader.textContent = 'Give us a rating';
-    
-        const ratingStars = document.createElement('div');
-        ratingStars.classList.add('stars');
-    
-        // Add stars to the ratingStars div
-        for (let i = 1; i <= 5; i++) {
-            const star = document.createElement('i');
-            star.classList.add('fa-solid', 'fa-star');
-            star.dataset.rating = i;
-            ratingStars.appendChild(star);
+    // Clear existing content
+    detailsCard.innerHTML = '';
+
+    // Create and append details content
+    const detailsContent = document.createElement('div');
+    detailsContent.classList.add('card-details-content', 'text-center');
+
+    const ionIcon = document.createElement("ion-icon");
+    ionIcon.setAttribute('name', 'person-circle-outline');
+    ionIcon.classList.add("image", "icon-container");
+    ionIcon.classList.add("m-auto")
+
+    const span1 = document.createElement('h1');
+    const span2 = document.createElement('h1');
+    const span3 = document.createElement('h1');
+    const span4 = document.createElement('h1');
+    const span5 = document.createElement('h1');
+    const span6 = document.createElement('h1');
+    const span7 = document.createElement('h1');
+    const span8 = document.createElement('h1');
+    const span9 = document.createElement('h1');
+
+    span1.classList.add('detailsCardHead');
+
+    span1.textContent = `Name: ${worker.name}`;
+    span2.textContent = `Email: ${worker.email}`;
+    span3.textContent = `Age: ${worker.age}`;
+    span4.textContent = `Gender: ${worker.gender}`;
+    span5.textContent = `Phone no: ${worker.phonenumber}`;
+    span6.textContent = `State: ${worker.state}`;
+    span7.textContent = `City: ${worker.city}`;
+    span8.textContent = `Area: ${worker.area}`;
+    span9.textContent = `Occupation: ${worker.occupation}`;
+
+    span1.classList.add("span1head");
+    span2.classList.add("span1head");
+    span3.classList.add("span1head");
+    span4.classList.add("span1head");
+    span5.classList.add("span1head");
+    span6.classList.add("span1head");
+    span7.classList.add("span1head");
+    span8.classList.add("span1head");
+    span9.classList.add("span1head");
+
+    detailsContent.appendChild(ionIcon);
+    detailsContent.appendChild(span1);
+    detailsContent.appendChild(span3);
+    detailsContent.appendChild(span4);
+    detailsContent.appendChild(span9);
+    detailsContent.appendChild(span5);
+    detailsContent.appendChild(span6);
+    detailsContent.appendChild(span7);
+    detailsContent.appendChild(span8);
+
+    // Create a container for buttons
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.classList.add('buttons-container');
+
+    // Create the "Directions" button
+    let directionsButton = document.createElement('button');
+    let ion1 = document.createElement("ion-icon");
+    ion1.setAttribute("name", "locate-outline");
+    directionsButton.appendChild(ion1);
+    directionsButton.classList.add('directions-button', 'directions-button:hover');
+    directionsButton.addEventListener("click", function () {
+        handleDirections(worker);
+    });
+
+    // Create the "Call" button with the phone number
+    let callButton = document.createElement('button');
+    let ion2 = document.createElement("ion-icon");
+    ion2.setAttribute("name", "call-outline");
+    callButton.appendChild(ion2)
+    callButton.classList.add('directions-button', 'directions-button:hover');
+    callButton.addEventListener("click", function () {
+        handlePhoneCall(worker.phonenumber);
+    });
+
+    // Create the rating box
+    const ratingBox = document.createElement('div');
+    ratingBox.classList.add('rating-box', "mt-5");
+
+    const ratingHeader = document.createElement('header');
+    ratingHeader.textContent = 'Give us a rating';
+
+    const ratingStars = document.createElement('div');
+    ratingStars.classList.add('stars');
+
+    // Add stars to the ratingStars div
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.classList.add('fa-solid', 'fa-star');
+        star.dataset.rating = i;
+        ratingStars.appendChild(star);
+    }
+
+    // Add an event listener to the rating stars
+    ratingStars.addEventListener('click', (event) => {
+        const clickedStar = event.target;
+
+        // Check if the clicked element is a star (i tag)
+        if (clickedStar.tagName === 'I') {
+            const selectedRating = clickedStar.dataset.rating;
+
+            // Remove 'active' class from all stars
+            ratingStars.querySelectorAll('i').forEach(star => star.classList.remove('active'));
+
+            // Add 'active' class to the clicked star and stars with a lower index
+            ratingStars.querySelectorAll('i').forEach(star => {
+                if (star.dataset.rating <= selectedRating) {
+                    star.classList.add('active');
+                }
+            });
+
+            // Save the rating to local storage or perform any other action
+            console.log(`User gave a rating of ${selectedRating} to ${worker.name}`);
+            updateAverageRating(worker, selectedRating);
         }
-    
-        // Add an event listener to the rating stars
-        ratingStars.addEventListener('click', (event) => {
-            const clickedStar = event.target;
-    
-            // Check if the clicked element is a star (i tag)
-            if (clickedStar.tagName === 'I') {
-                const selectedRating = clickedStar.dataset.rating;
-    
-                // Remove 'active' class from all stars
-                ratingStars.querySelectorAll('i').forEach(star => star.classList.remove('active'));
-    
-                // Add 'active' class to the clicked star and stars with a lower index
-                ratingStars.querySelectorAll('i').forEach(star => {
-                    if (star.dataset.rating <= selectedRating) {
-                        star.classList.add('active');
-                    }
-                });
-    
-                // Save the rating to local storage or perform any other action
-                console.log(`User gave a rating of ${selectedRating} to ${worker.name}`);
-                updateAverageRating(worker, selectedRating);
-            }
-        });
-    
-        // Append everything to the detailsContent
-        ratingBox.appendChild(ratingHeader);
-        ratingBox.appendChild(ratingStars);
-    
-        // Append both buttons to the container
-        buttonsContainer.appendChild(directionsButton);
-        buttonsContainer.appendChild(callButton);
-    
-        // Append the buttons container and rating box to the detailsContent
-        detailsContent.appendChild(buttonsContainer);
-        detailsContent.appendChild(ratingBox);
-    
-        detailsCard.appendChild(detailsContent);
+    });
+
+    // Append everything to the detailsContent
+    ratingBox.appendChild(ratingHeader);
+    ratingBox.appendChild(ratingStars);
+
+    // Append both buttons to the container
+    buttonsContainer.appendChild(directionsButton);
+    buttonsContainer.appendChild(callButton);
+
+    // Append the buttons container and rating box to the detailsContent
+    detailsContent.appendChild(buttonsContainer);
+    detailsContent.appendChild(ratingBox);
+
+    detailsCard.appendChild(detailsContent);
 
     let textareadiv = document.createElement("div");
     textareadiv.classList.add("reviewcontent");
     detailsContent.appendChild(textareadiv);
-    
+
     let reviewinput = document.getElementById("reviewinput");
     let reviewsend = document.getElementById("reviewsend");
-    
-// Function to fetch reviews by business_email
-function fetchReviewsByBusinessEmail(businessEmail) {
-    fetch(`/reviews?business_email=${encodeURIComponent(businessEmail)}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(reviews => {
-        reviews.forEach(review => {
-            createReviewCard(review.content); // Pass the content of each review to createReviewCard function
+
+
+    // Function to fetch reviews by worker email from the backend
+function fetchReviewsByWorkerEmail(workerEmail) {
+    console.log(`fetchReviewsByWorkerEmail called ${workerEmail}`);
+    fetch(`/reviews?workerEmail=${encodeURIComponent(workerEmail)}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(reviews => {
+            reviews.forEach(review => {
+                createReviewCard(review.content); // Pass the content of each review to createReviewCard function
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
 }
 
-// Function to create a new card for each review and display the review content
-function createReviewCard(content) {
-    let card = document.createElement('div');
-    card.classList.add("contentcard", "mb-3");
-    textareadiv.appendChild(card);
+    // Call fetchReviewsByBusinessEmail function to retrieve and display reviews when the page loads
+    
+        fetchReviewsByWorkerEmail(worker.email); 
 
-    let reviewcontent = document.createElement("span");
-    reviewcontent.textContent = content;
-    card.appendChild(reviewcontent);
 
-    let thumbdiv = document.createElement('div');
-    thumbdiv.classList.add("text-right", "mr-4");
-    card.appendChild(thumbdiv);
+    // Review input handling function
+    function reviewfunction() {
+        let content = reviewinput.value;
+        let card = document.createElement('div');
+        card.classList.add("contentcard", "mb-3");
+        textareadiv.appendChild(card);
 
-    let spandiv = document.createElement("span");
-    let spandiv1 = document.createElement("span");
-    thumbdiv.appendChild(spandiv);
-    thumbdiv.appendChild(spandiv1);
+        let reviewcontent = document.createElement("span");
+        reviewcontent.textContent = content;
+        card.appendChild(reviewcontent);
 
-    let likeicon = document.createElement("i");
-    let likeiconfill = document.createElement("i");
+        let thumbdiv = document.createElement('div');
+        thumbdiv.classList.add("text-right", "mr-4");
+        card.appendChild(thumbdiv);
 
-    let unlikeicon = document.createElement("i");
-    let unlikeiconfill = document.createElement("i");
+        let spandiv = document.createElement("span");
+        let spandiv1 = document.createElement("span");
+        thumbdiv.appendChild(spandiv);
+        thumbdiv.appendChild(spandiv1);
 
-    likeicon.classList.add("bi", "bi-hand-thumbs-up", "mr-3");
-    likeiconfill.classList.add("bi", "bi-hand-thumbs-up-fill", "d-none", "mr-3");
+        let likeicon = document.createElement("i");
+        let likeiconfill = document.createElement("i");
 
-    unlikeicon.classList.add("bi", "bi-hand-thumbs-down", "mr-3");
-    unlikeiconfill.classList.add("bi", "bi-hand-thumbs-down-fill", "d-none", "mr-3");
+        let unlikeicon = document.createElement("i");
+        let unlikeiconfill = document.createElement("i");
 
-    spandiv.appendChild(likeicon);
-    spandiv.appendChild(likeiconfill);
+        likeicon.classList.add("bi", "bi-hand-thumbs-up", "mr-3");
+        likeiconfill.classList.add("bi", "bi-hand-thumbs-up-fill", "d-none", "mr-3");
 
-    spandiv1.appendChild(unlikeicon);
-    spandiv1.appendChild(unlikeiconfill);
+        unlikeicon.classList.add("bi", "bi-hand-thumbs-down", "mr-3");
+        unlikeiconfill.classList.add("bi", "bi-hand-thumbs-down-fill", "d-none", "mr-3");
 
-    spandiv.addEventListener("click", () => {
-        likeicon.classList.toggle("d-none");
-        likeiconfill.classList.toggle("d-none");
-        unlikeiconfill.classList.add("d-none");
-        unlikeicon.classList.remove("d-none");
-    });
+        spandiv.appendChild(likeicon);
+        spandiv.appendChild(likeiconfill);
 
-    spandiv1.addEventListener("click", () => {
-        unlikeicon.classList.toggle("d-none");
-        unlikeiconfill.classList.toggle("d-none");
-        likeicon.classList.remove("d-none");
-        likeiconfill.classList.add("d-none");
-    });
-}
+        spandiv1.appendChild(unlikeicon);
+        spandiv1.appendChild(unlikeiconfill);
 
-// Review input handling function
-function reviewfunction() {
-    let value = reviewinput.value;
-    let reviewData = {
-        business_email: worker.email, // Use worker email as business_email
-        review_time: new Date().toISOString(), // Assuming current time as review time
-        content: value, // The review content
-        likecount: null, // Initial like count (will be updated based on user interaction)
-        unlikecount: null, // Initial unlike count (will be updated based on user interaction),
-        uniqueId: generateUniqueId() // Generate a unique identifier for the review
-    };
+        spandiv.addEventListener("click", () => {
+            likeicon.classList.toggle("d-none");
+            likeiconfill.classList.toggle("d-none");
+            unlikeiconfill.classList.add("d-none");
+            unlikeicon.classList.remove("d-none");
+        });
 
-    fetch('/review', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reviewData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Review added successfully with ID:', data.review_id);
-        reviewData.uniqueId = data.review_id; // Update uniqueId with the review ID obtained from the backend
-        createReviewCard(reviewData.content); // Add the newly created review to the UI
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        spandiv1.addEventListener("click", () => {
+            unlikeicon.classList.toggle("d-none");
+            unlikeiconfill.classList.toggle("d-none");
+            likeicon.classList.remove("d-none");
+            likeiconfill.classList.add("d-none");
+        });
+        let value = reviewinput.value;
+        let reviewData = {
+            business_email: worker.email, // Use worker email as business_email
+            review_time: new Date().toISOString(), // Assuming current time as review time
+            content: value, // The review content
+            likecount: null, // Initial like count (will be updated based on user interaction)
+            unlikecount: null, // Initial unlike count (will be updated based on user interaction),
+            uniqueId: generateUniqueId() // Generate a unique identifier for the review
+        };
 
-    reviewinput.value = "";
-}
+        fetch('/review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reviewData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Review added successfully with ID:', data.review_id);
+            reviewData.uniqueId = data.review_id; // Update uniqueId with the review ID obtained from the backend
+            createReviewCard(reviewData.content); // Add the newly created review to the UI
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
-// Call fetchReviewsByBusinessEmail function to retrieve and display reviews when the page loads
-window.onload = function() {
-    fetchReviewsByBusinessEmail(worker.email); // Assuming 'worker.email' is the business_email
-};
+        reviewinput.value = "";
+    }
 
+    reviewsend.addEventListener("click", reviewfunction);
 
     // Function to generate a unique identifier
     function generateUniqueId() {
         return Math.random().toString(36).substr(2, 9);
     }
-    
+
+
+
+    // Function to create a new card for each review and display the review content
+    function createReviewCard(content) {
+        let card = document.createElement('div');
+        card.classList.add("contentcard", "mb-3");
+        textareadiv.appendChild(card);
+
+        let reviewcontent = document.createElement("span");
+        reviewcontent.textContent = content;
+        card.appendChild(reviewcontent);
+
+        let thumbdiv = document.createElement('div');
+        thumbdiv.classList.add("text-right", "mr-4");
+        card.appendChild(thumbdiv);
+
+        let spandiv = document.createElement("span");
+        let spandiv1 = document.createElement("span");
+        thumbdiv.appendChild(spandiv);
+        thumbdiv.appendChild(spandiv1);
+
+        let likeicon = document.createElement("i");
+        let likeiconfill = document.createElement("i");
+
+        let unlikeicon = document.createElement("i");
+        let unlikeiconfill = document.createElement("i");
+
+        likeicon.classList.add("bi", "bi-hand-thumbs-up", "mr-3");
+        likeiconfill.classList.add("bi", "bi-hand-thumbs-up-fill", "d-none", "mr-3");
+
+        unlikeicon.classList.add("bi", "bi-hand-thumbs-down", "mr-3");
+        unlikeiconfill.classList.add("bi", "bi-hand-thumbs-down-fill", "d-none", "mr-3");
+
+        spandiv.appendChild(likeicon);
+        spandiv.appendChild(likeiconfill);
+
+        spandiv1.appendChild(unlikeicon);
+        spandiv1.appendChild(unlikeiconfill);
+
+        spandiv.addEventListener("click", () => {
+            likeicon.classList.toggle("d-none");
+            likeiconfill.classList.toggle("d-none");
+            unlikeiconfill.classList.add("d-none");
+            unlikeicon.classList.remove("d-none");
+        });
+
+        spandiv1.addEventListener("click", () => {
+            unlikeicon.classList.toggle("d-none");
+            unlikeiconfill.classList.toggle("d-none");
+            likeicon.classList.remove("d-none");
+            likeiconfill.classList.add("d-none");
+        });
+    }
+
+// Assuming 'worker.email' is the business_email
+
+
+    // Function to update a review in the database
     function updateReviewInDatabase(reviewId, likecount, unlikecount) {
         // Send an HTTP request to the backend to update the review in the database
         fetch(`/update_review/${reviewId}`, {
@@ -464,30 +521,9 @@ window.onload = function() {
             console.error('Error:', error);
         });
     }
-     
-    // Function to generate a unique identifier
-    function generateUniqueId() {
-        return Math.random().toString(36).substr(2, 9);
-    }
-    
 
-    reviewsend.addEventListener("click",reviewfunction);
-    /*
-    
-        
-        
-        let textarea = document.createElement("input");
-        
-        textarea.setAttribute("type","text");
-
-        textareadiv.appendChild(textarea); */
-    
-    
-    
-        // Show the message box
-        document.getElementById("messageBox").style.display = "block";
-    }
-    
+    document.getElementById("messageBox").style.display = "block";
+}
 
 
 // Function to Create skilledCards
@@ -881,6 +917,15 @@ locationButton.addEventListener("click", () => {
             console.error('Error fetching skilled workers data:', error);
           });
       }
+      
+
+
+
+
+
+
+
+
       
       // Call the function to fetch and display skilled workers data
       fetchSkilledWorkers();

@@ -69,6 +69,7 @@ app.get("/user/signin",(req,res) =>{
 
 
 
+
 app.get("/business/skilledworkers/registration",(req,res) =>{
     const userEmail = req.session.email;
     if (userEmail) {
@@ -1124,6 +1125,22 @@ app.get("/user/service", (req, res) => {
     }
 });
 
+// Endpoint to retrieve all details from property table
+app.get('/propertyalldetails', async (req, res) => {
+    console.log("fetched");
+    try {
+        const db = await connectDb(); // Connect to the SQLite database
+
+        // Query the skilledworkers table to fetch all user details
+        const property = await db.all('SELECT * FROM property');
+
+        res.json(property); // Send skilledWorkers data as JSON response
+    } catch (error) {
+        console.error('Error fetching skilled worker details:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 // Endpoint to retrieve all details from skilledworkers table
 app.get('/skilledworkers', async (req, res) => {
@@ -1177,19 +1194,57 @@ app.post('/skilledworkers/updateRating', async (req, res) => {
     }
 });
 
-// Endpoint to retrieve reviews for a specific business_email from the review table
+// Define route handler to update worker rating
+app.post('/property/updateRating', async (req, res) => {
+    try {
+
+        // Extract updated rating details from request body
+        const { averageRating, totalRating, totalUsers, propertyEmail } = req.body;
+
+        // Update the skilled worker's rating in the database
+        const db = await connectDb();
+        const updateQuery = `
+            UPDATE property
+            SET averagerating = $averageRating,
+                rating = $totalRating,
+                totalusers = $totalUsers
+            WHERE email = $propertyEmail
+        `;
+        db.run(updateQuery, {
+            $averageRating: averageRating,
+            $totalRating: totalRating,
+            $totalUsers: totalUsers,
+            $propertyEmail: propertyEmail
+        }, (error) => {
+            if (error) {
+                throw error;
+            }
+            console.log(`Rating updated for worker with email ${propertyEmail}`);
+            res.json({ success: true, message: `Rating updated for worker with email ${propertyEmail}` });
+        });
+
+        // Close the database connection
+        db.close();
+    } catch (error) {
+        console.error('Error updating worker rating:', error.message);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+});
+
+
+// Endpoint to retrieve reviews for a specific workerEmail from the review table
 app.get('/reviews', async (req, res) => {
-    const { business_email } = req.query;
+    const { workerEmail } = req.query; // Assuming worker email is sent as workerEmail parameter
 
     try {
         const db = await connectDb(); // Connect to the SQLite database
 
-        // Query the review table to fetch reviews for the specified business_email
-        const reviews = await db.all('SELECT * FROM review WHERE business_email = ?', [business_email]);
+        // Query the review table to fetch reviews for the specified worker email
+        const reviews = await db.all('SELECT * FROM review WHERE business_email = ? ORDER BY review_time DESC LIMIT 4', [workerEmail]);
 
         // If there are no reviews found, return an empty array
         if (!reviews || reviews.length === 0) {
-            return res.status(404).json({ message: 'No reviews found for the specified business email' });
+            return res.status(404).json({ message: 'No reviews found for the specified worker email' });
         }
 
         // Return the reviews as JSON response
@@ -1200,6 +1255,28 @@ app.get('/reviews', async (req, res) => {
     }
 });
 
+// Endpoint to retrieve reviews for a specific workerEmail from the review table
+app.get('/reviewsproperty', async (req, res) => {
+    const { propertyEmail } = req.query; // Assuming worker email is sent as workerEmail parameter
+
+    try {
+        const db = await connectDb(); // Connect to the SQLite database
+
+        // Query the review table to fetch reviews for the specified worker email
+        const reviews = await db.all('SELECT * FROM propertyreview WHERE business_email = ? ORDER BY review_time DESC LIMIT 4', [propertyEmail]);
+
+        // If there are no reviews found, return an empty array
+        if (!reviews || reviews.length === 0) {
+            return res.status(404).json({ message: 'No reviews found for the specified worker email' });
+        }
+
+        // Return the reviews as JSON response
+        res.json(reviews);
+    } catch (error) {
+        console.error('Error fetching reviews:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 // POST endpoint to add a review
 app.post('/review', async (req, res) => {
@@ -1218,6 +1295,27 @@ app.post('/review', async (req, res) => {
         return res.status(500).json({ error: 'Error inserting review' });
     }
 });
+
+
+// POST endpoint to add a review
+app.post('/reviewproperty', async (req, res) => {
+    const { business_email, review_time, content, likecount, unlikecount } = req.body;
+    const user_email = req.session.email;
+    const db = await connectDb();
+
+    try {
+        // Insert review into the database
+        const insertQuery = `INSERT INTO propertyreview (business_email, user_email, review_time, content, likecount, unlikecount) VALUES (?, ?, ?, ?, ?, ?)`;
+        await db.run(insertQuery, [business_email, user_email, review_time, content, likecount, unlikecount]);
+        console.log('Review inserted successfully');
+        return res.status(201).json({ message: 'Review inserted successfully' });
+    } catch (error) {
+        console.error('Error inserting review:', error);
+        return res.status(500).json({ error: 'Error inserting review' });
+    }
+});
+
+
 
 // PUT endpoint to update likecount and unlikecount of a review
 app.put('/update_review/:uniqueId', async (req, res) => {
