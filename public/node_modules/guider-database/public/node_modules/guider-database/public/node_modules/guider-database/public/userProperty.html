@@ -367,55 +367,7 @@ function fetchReviewsByPropertyEmail(propertyEmail) {
 
     // Review input handling function
     function reviewfunction() {
-        let content = reviewinput.value;
-        let card = document.createElement('div');
-        card.classList.add("contentcard", "mb-3");
-        textareadiv.appendChild(card);
 
-        let reviewcontent = document.createElement("span");
-        reviewcontent.textContent = content;
-        card.appendChild(reviewcontent);
-
-        let thumbdiv = document.createElement('div');
-        thumbdiv.classList.add("text-right", "mr-4");
-        card.appendChild(thumbdiv);
-
-        let spandiv = document.createElement("span");
-        let spandiv1 = document.createElement("span");
-        thumbdiv.appendChild(spandiv);
-        thumbdiv.appendChild(spandiv1);
-
-        let likeicon = document.createElement("i");
-        let likeiconfill = document.createElement("i");
-
-        let unlikeicon = document.createElement("i");
-        let unlikeiconfill = document.createElement("i");
-
-        likeicon.classList.add("bi", "bi-hand-thumbs-up", "mr-3");
-        likeiconfill.classList.add("bi", "bi-hand-thumbs-up-fill", "d-none", "mr-3");
-
-        unlikeicon.classList.add("bi", "bi-hand-thumbs-down", "mr-3");
-        unlikeiconfill.classList.add("bi", "bi-hand-thumbs-down-fill", "d-none", "mr-3");
-
-        spandiv.appendChild(likeicon);
-        spandiv.appendChild(likeiconfill);
-
-        spandiv1.appendChild(unlikeicon);
-        spandiv1.appendChild(unlikeiconfill);
-
-        spandiv.addEventListener("click", () => {
-            likeicon.classList.toggle("d-none");
-            likeiconfill.classList.toggle("d-none");
-            unlikeiconfill.classList.add("d-none");
-            unlikeicon.classList.remove("d-none");
-        });
-
-        spandiv1.addEventListener("click", () => {
-            unlikeicon.classList.toggle("d-none");
-            unlikeiconfill.classList.toggle("d-none");
-            likeicon.classList.remove("d-none");
-            likeiconfill.classList.add("d-none");
-        });
         let value = reviewinput.value;
         let reviewData = {
             business_email: item.email, // Use worker email as business_email
@@ -676,7 +628,7 @@ function cardsProperty(item) {
 }
 
 
-function hideMessageBox() {
+function hideMessageBox1() {
     document.getElementById("messageBox1").style.display = "none";
 }
 
