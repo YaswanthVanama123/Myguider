@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" type="text/css" href="/myguider.css">
+    <title>OTP Verification</title>
+    <style>
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+
+        .verify-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .captainVerification{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            gap: 30px;
+        }
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+
+        .verify-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-left serviceIcon2 fixed-top">
+        <i class="fab fa-glide brand-icon iconService"></i>
+        <span class="headingServices">My Guider</span>
+    </div>
+    <div class="captainVerification">
+    <div class="otp-container">
+        <input type="text" class="otp-input" maxlength="1" oninput="moveToNextOrPrevInput(this, 1)">
+        <input type="text" class="otp-input" maxlength="1" oninput="moveToNextOrPrevInput(this, 2)">
+        <input type="text" class="otp-input" maxlength="1" oninput="moveToNextOrPrevInput(this, 3)">
+        <input type="text" class="otp-input" maxlength="1" oninput="moveToNextOrPrevInput(this, 4)">
+    </div>
+    <button class="verify-button" onclick="verifyOTP()">Verify</button>
+</div>
+
+    <script>
+// Get the current URL
+const url = window.location.href;
+
+// Find the position of '?' in the URL
+const questionMarkIndex = url.indexOf('?');
+
+// Extract the substring after '?' character
+const queryString = url.substring(questionMarkIndex + 1);
+
+// Convert the query string to a number
+const notificationNumber = parseInt(queryString);
+console.log(notificationNumber);
+
+
+        function moveToNextOrPrevInput(currentInput, index) {
+            const currentLength = currentInput.value.length;
+            
+            // Move cursor to the next input box if current input has a value
+            if (currentLength === 1 && index < 4) {
+                document.querySelector(`.otp-container input:nth-child(${index + 1})`).focus();
+            }
+
+            // Move cursor to the previous input box if current input is empty and user pressed backspace
+            if (currentLength === 0 && index > 1 && event.inputType === 'deleteContentBackward') {
+                document.querySelector(`.otp-container input:nth-child(${index - 1})`).focus();
+            }
+        }
+
+        function verifyOTP() {
+            // Get the OTP value from input boxes
+            const otp1 = document.querySelector('.otp-container input:nth-child(1)').value;
+            const otp2 = document.querySelector('.otp-container input:nth-child(2)').value;
+            const otp3 = document.querySelector('.otp-container input:nth-child(3)').value;
+            const otp4 = document.querySelector('.otp-container input:nth-child(4)').value;
+            
+            // Combine the OTP digits
+            const enteredOTP = otp1 + otp2 + otp3 + otp4;
+
+            // Replace the fetch URL with your backend endpoint
+            fetch(`/get-pin?notificationNumber=${notificationNumber}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+
+                    let {pin} = data;
+                    
+                    // Check if entered OTP is correct (replace "1435" with your OTP)
+                    if (enteredOTP == pin) {
+                        // If OTP is correct, insert notificationNumber into successfulWork table
+                        fetch('/insert-notification', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ notificationNumber })
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                // If the response is successful (status code 200), handle redirection
+                                console.log('Notification number inserted successfully');
+                                console.log('OTP is correct! Notification number inserted successfully.');
+                                window.location.href = `/work/started?${notificationNumber}`; // Redirect to "/work/started"
+                            } else if (response.status === 409) {
+                                // If the notification already exists in the successfulWork table (status code 409), handle redirection
+                                console.log('Notification already exists in successfulWork table');
+                                console.log('Notification already exists in successfulWork table.');
+                                window.location.href = `/work/started?${notificationNumber}`; // Redirect to "/work/started"
+                            } else {
+                                // Handle other response statuses
+                                throw new Error('Network response was not ok');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error inserting notification number:', error);
+                            alert('Error inserting notification number.'); // Handle error
+                        });
+                            console.log('OTP is correct!'); // Replace alert with your desired action
+                        } else {
+                            alert('Incorrect OTP. Please try again.'); // Replace alert with your desired action
+                        }
+                })
+                .catch(error => {
+                    console.error('Error fetching pin:', error);
+                });
+        }
+    </script>
+</body>
+</html>

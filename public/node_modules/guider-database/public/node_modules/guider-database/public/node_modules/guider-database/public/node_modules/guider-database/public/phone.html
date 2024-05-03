@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Phone</title>
+</head>
+<body>
+    <h1>Welcome to Your Website</h1>
+    <button id="loginWithPhoneBtn">Login with Phone</button>
+
+    <script>
+        // URL for phone.email authentication
+        const AUTH_URL = "https://auth.phone.email/log-in?client_id=14384655975163593511&redirect_url=http://localhost:3000/verified";
+
+        // Event listener for the "Login with Phone" button
+        document.getElementById("loginWithPhoneBtn").addEventListener("click", function() {
+            // Redirect the user to the phone authentication page
+            window.location.href = AUTH_URL;
+        });
+    </script>
+</body>
+</html>

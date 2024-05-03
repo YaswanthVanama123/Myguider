@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<link rel="stylesheet" type="text/css" href="/myguider.css">
+<title>Stopwatch with Animation</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #005692;
+        max-height: 100vh;
+    }
+
+    .stopwatch-container {
+        text-align: center;
+    }
+
+    .time {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+        position: relative;
+        background-color: #00204C;
+        box-sizing: content-box;
+        min-height: 100px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        flex-shrink: 0;
+        width: 230px; /* Prevent stretching */
+        margin: 0 auto; /* Center horizontally */
+    }
+    
+
+    .time-animation {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid black;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: moveCircle 1s linear infinite;
+ /* Increased height */
+
+    }
+    .captainStartedTime{
+        font-size: 25px;
+        padding: 10px;
+        color: wheat;
+        font-weight: bold;
+    }
+    .completedWorkButton{
+        background: linear-gradient(to right, #5BFBA5, #0EE7EE);
+        padding: 8px;
+        border: 0px;
+        color: white;
+        border-radius: 10px;
+        font-size: 16px;
+        margin: 10px;
+    }
+
+        .userDisplaycard{
+            padding: 10px;
+            gap :10px ;
+            margin-top: 30px;
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+    @keyframes moveCircle {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+    .completeMsg{
+        width: 200px;
+    }
+</style>
+</head>
+<body>
+    <div class="text-left serviceIcon2 fixed-top">
+        <i class="fab fa-glide brand-icon iconService"></i>
+        <span class="headingServices">My Guider</span>
+    </div>
+<div class="stopwatch-container">
+    <div>
+        <h1 class="captainStartedTime">Captain Work Time</h1>
+    </div>
+    <div class="time" id="time">00:00:00</div>
+    <!-- <div class="time-animation"></div> -->
+
+    <div class="text-center m-3">
+        <span class="text-center">You can click the button for total charge for captain after completion of work</span>
+        
+    </div>
+    <button class="completedWorkButton" onclick="stopStopwatch()">Completed Work</button>
+
+    <div class="userDisplaycard p-3">
+        <p>The first 0-1 hour 200₹ will be charged</p>
+        <p>After every half and hour 75₹ will be charged</p>
+    </div>
+    
+
+
+</div>
+
+<script>
+  // Get the current URL
+  const url = window.location.href;
+
+  // Find the position of '?' in the URL
+  const questionMarkIndex = url.indexOf('?');
+ 
+  // Extract the substring after '?' character
+  const queryString = url.substring(questionMarkIndex + 1);
+ 
+  // Convert the query string to a number
+  const notificationNumber = parseInt(queryString);
+  console.log(notificationNumber);
+ 
+  let timer; // Variable to store the interval timer
+  let seconds = 0, minutes = 0, hours = 0;
+ 
+  // Function to fetch initial time from the backend when the page loads
+  async function fetchInitialTime() {
+      try {
+         const response = await fetch(`/get-initial-time/${notificationNumber}`);
+ 
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          const initialTime = data.time; // Extract the initial time from the response
+          console.log(initialTime);
+          if(initialTime === null){
+             updateDisplayTime('00:00:00');
+          }
+          else{
+              // Parse the initial time to get hours, minutes, and seconds
+              const [initialHours, initialMinutes, initialSeconds] = initialTime.split(':').map(Number);
+              // Set the initial time values
+              hours = initialHours;
+              minutes = initialMinutes;
+              seconds = initialSeconds;
+              // Update the displayed time with the fetched initial time
+              updateDisplayTime(initialTime);
+              // Start the stopwatch with the fetched initial time
+              startStopwatch();
+          }
+      } catch (error) {
+          console.error('Error fetching initial time:', error);
+          // If an error occurs, display default initial time
+          updateDisplayTime('00:00:00');
+      }
+  }
+ 
+  // Function to update the displayed time
+  function updateDisplayTime(time) {
+      const timeDisplay = document.getElementById('time');
+      timeDisplay.textContent = time;
+  }
+ 
+  // Function to start the stopwatch
+  function startStopwatch() {
+      if (!timer) {
+          timer = setInterval(updateTimeAndSend, 1000); // Update every second
+      }
+  }
+ 
+  // Function to stop the stopwatch
+  function stopStopwatch() {
+      clearInterval(timer);
+      timer = null;
+      // Send a POST request to update completedWork
+    fetch('/update-completed-work', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ notificationNumber })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Completed work updated successfully:', data);
+        window.location.href = `/payment/page?${notificationNumber}`;
+        // Optionally, perform any other actions needed upon successful update
+    })
+    .catch(error => {
+        console.error('Error updating completed work:', error);
+    });
+  }
+ 
+  // Function to reset the stopwatch
+  function resetStopwatch() {
+      stopStopwatch();
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      updateTime();
+  }
+ 
+  // Function to update the stopwatch time and send it to the backend
+  function updateTimeAndSend() {
+      updateTime(); // Update the stopwatch time
+ 
+      // Get the time displayed on the stopwatch
+      const timeDisplay = document.getElementById('time');
+      const time = timeDisplay.textContent;
+ 
+      // Send the stopwatch time and notificationNumber to the backend
+      fetch('/update-time-worked', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ time, notificationNumber })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Time updated successfully:', data);
+          // Optionally, perform any other actions needed upon successful update
+      })
+      .catch(error => {
+          console.error('Error updating time:', error);
+      });
+  }
+ 
+  // Function to update the stopwatch time
+  function updateTime() {
+      seconds++;
+      if (seconds === 60) {
+          seconds = 0;
+          minutes++;
+          if (minutes === 60) {
+              minutes = 0;
+              hours++;
+          }
+      }
+ 
+      updateDisplayTime(formatTime(hours) + ':' + formatTime(minutes) + ':' + formatTime(seconds));
+  }
+ 
+  // Function to format time with leading zeros
+  function formatTime(time) {
+      return time < 10 ? '0' + time : time;
+  }
+ 
+  // Function to send stopwatch time to backend when the "Completed Work" button is clicked
+  function sendStopwatchTime() {
+      // Get the time displayed on the stopwatch
+      const timeDisplay = document.getElementById('time');
+      const time = timeDisplay.textContent;
+ 
+      // Send the stopwatch time and notificationNumber to the backend
+      fetch('/update-time-worked', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ time, notificationNumber })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Time updated successfully:', data);
+          // Optionally, perform any other actions needed upon successful update
+      })
+      .catch(error => {
+          console.error('Error updating time:', error);
+      });
+  }
+ 
+  let checkCompletedWorkTimer; // Variable to store the interval timer for checking completed work
+
+  // Function to check completed work status continuously
+  function checkCompletedWork() {
+      checkCompletedWorkTimer = setInterval(async () => {
+          try {
+              const response = await fetch(`/check-completed-work/${notificationNumber}`);
+  
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+  
+              const data = await response.json();
+  
+              if (data.completedWork === 'completed') {
+                  clearInterval(checkCompletedWorkTimer); // Clear the interval timer
+                  checkCompletedWorkTimer = null;
+                  console.log('Work completed');
+                  window.location.href = `/payment/page?${notificationNumber}`;
+              } else {
+                  console.log('Work not completed yet');
+              }
+          } catch (error) {
+              console.error('Error checking completed work:', error);
+          }
+      }, 1000); // Check every second
+  }
+  
+  // Call the function to start checking completed work status
+  checkCompletedWork();
+  
+
+
+  // Call the function to fetch initial time when the page loads
+  fetchInitialTime();
+</script>
+</body>
+</html>

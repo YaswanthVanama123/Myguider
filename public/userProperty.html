@@ -682,6 +682,8 @@ function hideMessageBox() {
 
 
 
+
+
 function fetchPropertyDetails() {
     console.log("fetched");
     fetch('/propertyalldetails')
@@ -694,263 +696,270 @@ function fetchPropertyDetails() {
                 // Process each property data here
             });
 
-            function displayFilteredcardsProperty(selectedCityProperty2, selectedproperty) {
-                console.log("Selected City:", selectedCityProperty2);
-                console.log("Selected property:", selectedproperty);
-            
-                const cityFilteredArrayProperty1 = data.filter(item =>
-                    item.city &&
-                    selectedCityProperty2.toLowerCase().includes(item.city.toLowerCase())
-                );
-            
-                console.log("City Filtered Array:", cityFilteredArrayProperty1);
-            
-                homeContainerProperty1.innerHTML = '';
-            
-                // If city search is empty, filter cards in all cards
-                if (!selectedCityProperty2) {
-                    for (let item of data) {
-                        if (item) {
-                            console.log("property in Data:", item.property_type);
-            
-                            const propertyMatches = !selectedproperty ||
-                                (item.property_type &&
-                                    item.property_type.toLowerCase().includes(selectedproperty.toLowerCase()));
-            
-                            console.log("property Matches:", propertyMatches);
-            
-                            if (propertyMatches) {
-                                cardsProperty(item);
-                            }
-                        }
-                    }
-                } else {
-                    // Otherwise, filter cards based on selected city and property
-                    for (let item of cityFilteredArrayProperty1) {
-                        if (item.propertyBusinessDetails) {
-                            console.log("property in Data:", item.propertyBusinessDetails.property);
-            
-                            const propertyMatches = !selectedproperty ||
-                                (item.propertyBusinessDetails.property &&
-                                    item.propertyBusinessDetails.property.toLowerCase().includes(selectedproperty.toLowerCase()));
-            
-                            console.log("property Matches:", propertyMatches);
-            
-                            if (propertyMatches) {
-                                cardsProperty(item);
-                            }
-                        }
-                    }
+
+
+
+// Function to Display Filtered cardsProperty
+function displayFilteredcardsProperty(selectedCityProperty2, selectedproperty) {
+    console.log("Selected City:", selectedCityProperty2);
+    console.log("Selected property:", selectedproperty);
+
+    const cityFilteredArrayProperty1 = data.filter(item =>
+        item.city &&
+        selectedCityProperty2.toLowerCase().includes(item.city.toLowerCase())
+    );
+
+    console.log("City Filtered Array:", cityFilteredArrayProperty1);
+
+    homeContainerProperty1.innerHTML = '';
+
+    // If city search is empty, filter cards in all cards
+    if (!selectedCityProperty2) {
+        for (let item of data) {
+           
+                console.log("property in Data:", item.property_type);
+
+                const propertyMatches = !selectedproperty ||
+                    (item.property_type &&
+                        item.property_type.toLowerCase().includes(selectedproperty.toLowerCase()));
+
+                console.log("property Matches:", propertyMatches);
+
+                if (propertyMatches) {
+                    cardsProperty(item);
                 }
-            }
-            
-            
-            // Location Search
-            const searchInputProperty2 = document.getElementById('searchInputProperty2');
-            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
-            
-            function handleSuggestionClick(place) {
-                searchInputProperty2.value = `${place.display_name}, ${place.address.postcode}`;
-            
-                currentPlaceProperty2 = {
-                    name: place.display_name,
-                    pincode: place.address.postcode
-                };
-            
-                const selectedCityProperty2 = place.address.city || place.address.name;
-                homeContainerProperty1.innerHTML = '';
-            
-                data.forEach(item => {
-                    if (item.city.includes(selectedCityProperty2) && item.property_registration_status === true) {
-                        cardsProperty(item);
-                    }
-                });
-            
-                searchInputpropertySearch.value = '';
-            
+        
+        }
+    } else {
+        // Otherwise, filter cards based on selected city and property
+        for (let item of cityFilteredArrayProperty1) {
+        
+                console.log("property in Data:", item.property_type);
+
+                const propertyMatches = !selectedproperty ||
+                    (item.property_type &&
+                        item.property_type.toLowerCase().includes(selectedproperty.toLowerCase()));
+
+                console.log("property Matches:", propertyMatches);
+
+                if (propertyMatches) {
+                    cardsProperty(item);
+                }
+          
+        }
+    }
+}
+          
+// Location Search
+const searchInputProperty2 = document.getElementById('searchInputProperty2');
+const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+let currentPlaceProperty2 = {};
+
+function handleSuggestionClick(place) {
+    searchInputProperty2.value = `${place.display_name}, ${place.address.postcode}`;
+
+    currentPlaceProperty2 = {
+        name: place.display_name,
+        pincode: place.address.postcode
+    };
+
+    const selectedCityProperty2 = place.address.city || place.address.name;
+    homeContainerProperty1.innerHTML = '';
+
+    data.forEach(item => {
+        if (item.city.includes(selectedCityProperty2) && item.property_registration_status === 1) {
+            cardsProperty(item);
+        }
+    });
+
+    searchInputpropertySearch.value = '';
+
+    suggestionsListProperty2.innerHTML = '';
+}
+
+function debounceProperty2(func, delay) {
+    let timeoutIdProperty2;
+    return function() {
+        clearTimeout(timeoutIdProperty2);
+        timeoutIdProperty2 = setTimeout(func, delay);
+    };
+}
+
+
+function handleInput() {
+    const searchTerm = searchInputProperty2.value.trim();
+    if (searchTerm.length >= 2) {
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTerm}`;
+
+        fetch(apiUrl)
+            .then(responseProperty2 => responseProperty2.json())
+            .then(data => {
                 suggestionsListProperty2.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleSuggestionClick(place));
+                    suggestionsListProperty2.appendChild(li);
+                });
+
+                suggestionsListProperty2.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting suggestionsListProperty2:', error));
+    } else {
+        suggestionsListProperty2.style.display = 'none';
+    }
+}
+
+
+suggestionsListProperty2.style.display = 'none';
+
+searchInputProperty2.addEventListener('click', handleInput);
+searchInputProperty2.addEventListener('input', debounceProperty2(handleInput, 300));
+searchInputProperty2.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        let village = searchInputProperty2.value;
+        console.log(village);
+        if (currentPlaceProperty2.name && currentPlaceProperty2.pincode) {
+            console.log('Current Place:', currentPlaceProperty2);
+        }
+
+        suggestionsListProperty2.innerHTML = '';
+    }
+});
+
+
+document.addEventListener('click', (event) => {
+    if (event.target !== searchInputProperty2 && event.target !== suggestionsListProperty2) {
+        suggestionsListProperty2.style.display = 'none';
+    }
+});
+
+
+// property Search
+const arrayProperty = ["House", "Shop", "Property"];
+const searchInputpropertySearch = document.getElementById("searchInputpropertySearch");
+const suggestionsOccupationSearchContainerProperty2 = document.getElementById("suggestionsOccupationSearchContainerProperty2");
+
+function showsearchInputProperty2OccupationSearch() {
+    const inputValue = searchInputpropertySearch.value.toLowerCase();
+    const filteredsuggestionsListProperty2propertySearch = arrayProperty.filter(suggestion => suggestion.toLowerCase().includes(inputValue));
+
+    if (filteredsuggestionsListProperty2propertySearch.length > 0) {
+        const suggestionList = filteredsuggestionsListProperty2propertySearch.map(suggestion => `<div class="suggestion-item">${suggestion}</div>`).join('');
+        suggestionsOccupationSearchContainerProperty2.innerHTML = suggestionList;
+        suggestionsOccupationSearchContainerProperty2.style.display = 'block';
+    } else {
+        suggestionsOccupationSearchContainerProperty2.style.display = 'none';
+    }
+}
+
+
+// Event listener for property Search
+// Event listener for property Search
+searchInputpropertySearch.addEventListener('input', debounceProperty2(showsearchInputProperty2OccupationSearch, 300));
+
+document.addEventListener('click', function(event) {
+    const clickedSuggestion = event.target.closest('.suggestion-item');
+    if (clickedSuggestion) {
+        searchInputpropertySearch.value = clickedSuggestion.textContent;
+        suggestionsOccupationSearchContainerProperty2.style.display = 'none';
+
+        // Filter and display cardsProperty based on selected property and city
+        const selectedproperty = searchInputpropertySearch.value.toLowerCase();
+        const selectedCityProperty2 = currentPlaceProperty2.name || '';
+
+        displayFilteredcardsProperty(selectedCityProperty2, selectedproperty);
+    } else if (!event.target.closest('#searchInputpropertySearch') && !event.target.closest('#suggestionsOccupationSearchContainerProperty2')) {
+        suggestionsOccupationSearchContainerProperty2.style.display = 'none';
+    }
+});
+
+
+
+
+function allowLocationPropertyFilter(city) {
+    console.log("hi");
+    homeContainerProperty1.innerHTML = '';
+    for (let item of data) {
+        console.log("hi");
+        if (item.propertyBusinessDetails !== undefined && item.city === city) {
+            cardsProperty(item);
+        }
+    }
+
+}
+
+// Allow Location
+let locationButtonProperty2 = document.getElementById("locationButtonProperty2");
+let locationDivProperty2 = document.getElementById("locationDivProperty2");
+
+const showLocationProperty2 = async (position) => {
+    try {
+        let timestamp = new Date().getTime();
+        let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json&_=${timestamp}`, {
+            headers: {
+                'Accept-Language': 'en'
             }
-            
-            function debounceProperty2(func, delay) {
-                let timeoutIdProperty2;
-                return function() {
-                    clearTimeout(timeoutIdProperty2);
-                    timeoutIdProperty2 = setTimeout(func, delay);
-                };
-            }
-            
-            function handleInput() {
-                const searchTerm = searchInputProperty2.value.trim();
-                if (searchTerm.length >= 2) {
-                    const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTerm}`;
-            
-                    fetch(apiUrl)
-                        .then(responseProperty2 => responseProperty2.json())
-                        .then(data => {
-                            suggestionsListProperty2.innerHTML = '';
-            
-                            data.forEach(place => {
-                                const li = document.createElement('li');
-                                li.textContent = place.display_name;
-                                li.addEventListener('click', () => handleSuggestionClick(place));
-                                suggestionsListProperty2.appendChild(li);
-                            });
-            
-                            suggestionsListProperty2.style.display = 'block';
-                        })
-                        .catch(error => console.error('Error getting suggestionsListProperty2:', error));
-                } else {
-                    suggestionsListProperty2.style.display = 'none';
-                }
-            }
-            
-            suggestionsListProperty2.style.display = 'none';
-            
-            searchInputProperty2.addEventListener('click', handleInput);
-            searchInputProperty2.addEventListener('input', debounceProperty2(handleInput, 300));
-            searchInputProperty2.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter') {
-                    let village = searchInputProperty2.value;
-                    console.log(village);
-                    if (currentPlaceProperty2.name && currentPlaceProperty2.pincode) {
-                        console.log('Current Place:', currentPlaceProperty2);
-                    }
-            
-                    suggestionsListProperty2.innerHTML = '';
-                }
-            });
-            
-            document.addEventListener('click', (event) => {
-                if (event.target !== searchInputProperty2 && event.target !== suggestionsListProperty2) {
-                    suggestionsListProperty2.style.display = 'none';
-                }
-            });
-            
-            // property Search
-            const arrayProperty = ["House", "Shop", "Property"];
-            const searchInputpropertySearch = document.getElementById("searchInputpropertySearch");
-            const suggestionsOccupationSearchContainerProperty2 = document.getElementById("suggestionsOccupationSearchContainerProperty2");
-            
-            // Event listener for property Search
-            // Event listener for property Search
-            searchInputpropertySearch.addEventListener('input', debounceProperty2(showsearchInputProperty2OccupationSearch, 300));
-            
-            document.addEventListener('click', function(event) {
-                const clickedSuggestion = event.target.closest('.suggestion-item');
-                if (clickedSuggestion) {
-                    searchInputpropertySearch.value = clickedSuggestion.textContent;
-                    suggestionsOccupationSearchContainerProperty2.style.display = 'none';
-            
-                    // Filter and display cardsProperty based on selected property and city
-                    const selectedproperty = searchInputpropertySearch.value.toLowerCase();
-                    const selectedCityProperty2 = currentPlaceProperty2.name || '';
-            
-                    displayFilteredcardsProperty(selectedCityProperty2, selectedproperty);
-                } else if (!event.target.closest('#searchInputpropertySearch') && !event.target.closest('#suggestionsOccupationSearchContainerProperty2')) {
-                    suggestionsOccupationSearchContainerProperty2.style.display = 'none';
-                }
-            });
-            
-            
-            function showsearchInputProperty2OccupationSearch() {
-                const inputValue = searchInputpropertySearch.value.toLowerCase();
-                const filteredsuggestionsListProperty2propertySearch = arrayProperty.filter(suggestion => suggestion.toLowerCase().includes(inputValue));
-            
-                if (filteredsuggestionsListProperty2propertySearch.length > 0) {
-                    const suggestionList = filteredsuggestionsListProperty2propertySearch.map(suggestion => `<div class="suggestion-item">${suggestion}</div>`).join('');
-                    suggestionsOccupationSearchContainerProperty2.innerHTML = suggestionList;
-                    suggestionsOccupationSearchContainerProperty2.style.display = 'block';
-                } else {
-                    suggestionsOccupationSearchContainerProperty2.style.display = 'none';
-                }
-            }
-            
-            
-            
-            function allowLocationPropertyFilter(city) {
-                console.log("hi");
-                homeContainerProperty1.innerHTML = '';
-                for (let item of data) {
-                    console.log("hi");
-                    if ( item.city === city) {
-                        cardsProperty(item);
-                    }
-                }
-            
-            }
-            
-            
-            // Allow Location
-            let locationButtonProperty2 = document.getElementById("locationButtonProperty2");
-            let locationDivProperty2 = document.getElementById("locationDivProperty2");
-            
-            const showLocationProperty2 = async (position) => {
-                try {
-                    let timestamp = new Date().getTime();
-                    let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json&_=${timestamp}`, {
-                        headers: {
-                            'Accept-Language': 'en'
-                        }
-                    });
-            
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-                    }
-            
-                    let data = await response.json();
-                    console.log(data);
-            
-                    let village = data.address.city || 'N/A';
-                    let road = data.address.road || 'N/A';
-                    let area1 = data.address.suburb || data.address.neighbourhood || data.address.city_district || 'N/A';
-                    let pincode1 = data.address.postcode || 'N/A';
-            
-                    let city = data.address.city || data.address.village;
-                    if (city === undefined) {
-                        city = data.address.name;
-                    }
-                    let area = data.address.road;
-                    let pincode = data.address.postcode;
-            
-                    console.log(city);
-                    console.log(area);
-                    console.log(pincode);
-                    allowLocationPropertyFilter(city);
-            
-                    // Add your desired pincode here
-                    if (pincode === 'your-desired-pincode') {
-                        console.log('City name or village name:', city || village);
-                    }
-                } catch (error) {
-                    console.error("Error fetching location:", error);
-                    locationDivProperty2.innerText = "Error fetching location. Please try again later.";
-                }
-            };
-            
-            
-            const checkErrorProperty = (error) => {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        locationDivProperty2.innerText = "Please allow access to location.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        locationDivProperty2.innerText = "Location information is unavailable.";
-                        break;
-                    case error.TIMEOUT:
-                        locationDivProperty2.innerText = "The request to get user location timed out.";
-                        break;
-                }
-            };
-            
-            locationButtonProperty2.addEventListener("click", () => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showLocationProperty2, checkErrorProperty);
-                } else {
-                    locationDivProperty2.innerText = "The browser does not support geolocation.";
-                }
-            });
-            
-            
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        let data = await response.json();
+        console.log(data);
+
+        let village = data.address.city || 'N/A';
+        let road = data.address.road || 'N/A';
+        let area1 = data.address.suburb || data.address.neighbourhood || data.address.city_district || 'N/A';
+        let pincode1 = data.address.postcode || 'N/A';
+
+        let city = data.address.city || data.address.village;
+        if (city === undefined) {
+            city = data.address.name;
+        }
+        let area = data.address.road;
+        let pincode = data.address.postcode;
+
+        console.log(city);
+        console.log(area);
+        console.log(pincode);
+        allowLocationPropertyFilter(city);
+
+        // Add your desired pincode here
+        if (pincode === 'your-desired-pincode') {
+            console.log('City name or village name:', city || village);
+        }
+    } catch (error) {
+        console.error("Error fetching location:", error);
+        locationDivProperty2.innerText = "Error fetching location. Please try again later.";
+    }
+};
+
+const checkErrorProperty = (error) => {
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            locationDivProperty2.innerText = "Please allow access to location.";
+            break;
+        case error.POSITION_UNAVAILABLE:
+            locationDivProperty2.innerText = "Location information is unavailable.";
+            break;
+        case error.TIMEOUT:
+            locationDivProperty2.innerText = "The request to get user location timed out.";
+            break;
+    }
+};
+
+
+locationButtonProperty2.addEventListener("click", () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showLocationProperty2, checkErrorProperty);
+    } else {
+        locationDivProperty2.innerText = "The browser does not support geolocation.";
+    }
+});
+
 
 
             // Function to Display Filtered cardsProperty

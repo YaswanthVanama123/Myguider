@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+    </head>
+<body>
+    <!-- Your HTML content -->
+    <div class="businessSkilledHomePageContainer mt-5">
+        <div class="d-flex flex-row justify-content-center">
+            <div class="skilledStatusCard shadow pt-3">
+                
+                <h1 class="skilledStatusHead text-center">Your Current Status <span id="currentStatusPresent4"></span></h1>
+                <div class="text-center mt-5">
+                    <button class="btn buttonSkillHelp" id="buttonLocationHelp">Ready to Help</button>
+                    <button class="btn buttonSkillUnHelp" id="buttonLocationUnHelp">Unable to Help</button>
+                    <p class="pt-5 skilledStatuspara1" id="buttonLocationHelpPara">Great to hear now you are online your deatils will display to the user</p>
+                    <p class="skilledStatuspara2 d-none pt-5" id="buttonLocationUnHelpPara">Now you are offline please come as soon as possible click green button to online</p>
+                </div>
+            </div>
+        </div>
+        <div class="detailsSkilledBuisness mt-4 m-3 mb-3 shadow">
+            <h1 class="text-center skilledStatusHead1">Your Details</h1>
+            <div class="d-flex flex-row justify-content-center mt-5">
+                <div class="mr-3">
+                    <h1 class="skilledStatuspara2">Email :</h1>
+                    <h1 class="skilledStatuspara2">Shop name :</h1>
+                    <h1 class="skilledStatuspara2">Opens in a week : </h1>
+                    <h1 class="skilledStatuspara2">Opens at :</h1>
+                    <h1 class="skilledStatuspara2">Closes at :</h1>
+                    <h1 class="skilledStatuspara2">Phone no :</h1>
+                    <h1 class="skilledStatuspara2">City :</h1>
+                    <h1 class="skilledStatuspara2">Area :</h1>
+                    <h1 class="skilledStatuspara2">State :</h1>
+                    <h1 class="skilledStatuspara2">Type :</h1>
+                    <h1 class="skilledStatuspara2">Pin Code :</h1>
+                    <h1 class="skilledStatuspara2">special :</h1>
+                </div>
+                <div id="skilledDetails1 ml-5">
+                    <h1 class="skilledStatuspara2" id="L1"></h1>
+                    <h1 class="skilledStatuspara2" id="L2"></h1>
+                    <h1 class="skilledStatuspara2" id="L3"></h1>
+                    <h1 class="skilledStatuspara2" id="L4"></h1>
+                    <h1 class="skilledStatuspara2" id="L5"></h1>
+                    <h1 class="skilledStatuspara2" id="L6"></h1>
+                    <h1 class="skilledStatuspara2" id="L7"></h1>
+                    <h1 class="skilledStatuspara2" id="L8"></h1>
+                    <h1 class="skilledStatuspara2" id="L9"></h1>
+                    <h1 class="skilledStatuspara2" id="L10"></h1>
+                    <h1 class="skilledStatuspara2" id="L11"></h1>
+                    <h1 class="skilledStatuspara2" id="L12"></h1>
+                </div>
+            </div>
+            <div class="mt-5 text-center">
+                <button class="btn bg-primary editBtn" onclick="preLocation()">Edit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchBusinessLocationDetails() {
+            try {
+                const response = await fetch('/businesslocation/details', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    // Populate the DOM elements with the fetched data
+                    document.getElementById('L1').textContent = data.email || 'Not Available';
+                    document.getElementById('L2').textContent = data.shop_name || 'Not Available';
+                    document.getElementById('L3').textContent = data.opens_in_a_week || 'Not Available';
+                    document.getElementById('L4').textContent = data.opens_at || 'Not Available';
+                    document.getElementById('L5').textContent = data.closes_at || 'Not Available';
+                    document.getElementById('L6').textContent = data.phonenumber || 'Not Available';
+                    document.getElementById('L7').textContent = data.city || 'Not Available';
+                    document.getElementById('L8').textContent = data.area || 'Not Available';
+                    document.getElementById('L9').textContent = data.state || 'Not Available';
+                    document.getElementById('L10').textContent = data.shop_type || 'Not Available';
+                    document.getElementById('L11').textContent = data.pincode || 'Not Available';
+                    document.getElementById('L12').textContent = data.special || 'Not Available';
+                    document.getElementById('currentStatusPresent4').textContent = data.business_location_status ? ': Online' : ': Offline';
+                    document.getElementById('currentStatusPresent4').style.color = data.business_location_status ? 'green' : 'red';
+                    if (data.business_location_status) {
+                        document.getElementById('buttonLocationHelpPara').classList.remove('d-none');
+                        document.getElementById('buttonLocationUnHelpPara').classList.add('d-none');
+                    } else {
+                        document.getElementById('buttonLocationHelpPara').classList.add('d-none');
+                        document.getElementById('buttonLocationUnHelpPara').classList.remove('d-none');
+                    }
+                } else {
+                    console.error('Error fetching business location details:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching business location details:', error.message);
+            }
+        }
+
+        async function toggleBusinessLocationStatus(status) {
+            try {
+                const response = await fetch('/businesslocation/status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status })
+                });
+                if (!response.ok) {
+                    console.error('Error updating business location status:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error updating business location status:', error.message);
+            }
+        }
+
+        async function init() {
+            await fetchBusinessLocationDetails();
+
+            document.getElementById('buttonLocationHelp').addEventListener('click', async () => {
+                await toggleBusinessLocationStatus(true);
+                document.getElementById('currentStatusPresent4').textContent = ': Online';
+                document.getElementById('currentStatusPresent4').style.color = 'green';
+                document.getElementById('buttonLocationHelpPara').classList.remove('d-none');
+                document.getElementById('buttonLocationUnHelpPara').classList.add('d-none');
+            });
+
+            document.getElementById('buttonLocationUnHelp').addEventListener('click', async () => {
+                await toggleBusinessLocationStatus(false);
+                document.getElementById('currentStatusPresent4').textContent = ': Offline';
+                document.getElementById('currentStatusPresent4').style.color = 'red';
+                document.getElementById('buttonLocationHelpPara').classList.add('d-none');
+                document.getElementById('buttonLocationUnHelpPara').classList.remove('d-none');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+
+
+        function preLocation(){
+            window.location.href = "/business/businesslocation/editdetails";
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Acceptance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+        }
+        .btn-container {
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .accept-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .reject-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Notification Acceptance</h2>
+        <h3 id="notificationNumber"></h3> <!-- This will display the notification number -->
+        <div class="message">
+            <p>You have received a new job opportunity nearby. Do you want to accept or reject it?</p>
+        </div>
+        <div class="btn-container">
+            <!-- Pass the notificationNumber to the acceptNotification and rejectNotification functions -->
+            <button class="btn accept-btn" onclick="acceptNotification(`${notificationNumber}`)">Accept</button>
+
+            <button class="btn reject-btn" onclick="rejectNotification(`${notificationNumber}`)">Reject</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const queryParams = new URLSearchParams(window.location.search);
+            return Object.fromEntries(queryParams.entries());
+        }
+
+        // Get the notificationNumber from the query parameters and display it
+        const queryParams = getQueryParams();
+        const notificationNumber = queryParams.notificationNumber;
+        console.log(notificationNumber);
+        document.getElementById('notificationNumber').innerText = `Notification Number: ${notificationNumber || 'Not Found'}`;
+
+        // Function to handle notification acceptance
+        function acceptNotification(notificationNumber) {
+            console.log(notificationNumber); // This should now print the correct notificationNumber
+            if (notificationNumber) {
+                // Send a request to the backend to mark the notification as accepted
+                fetch('/accept-notification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        notificationNumber: notificationNumber,
+                        status: 'accepted'
+                    })
+                })
+                .then(response => {
+                    console.log(response);
+                    if (response.ok) {
+                        alert('You have accepted the notification.');
+                        // Redirect to a thank you page or homepage
+                        window.location.href = `/successfully/booked?${notificationNumber}`;
+                    } else {
+                        throw new Error('Failed to accept notification.');
+                    }
+                })
+                .catch(error => {
+                    console.log(response);
+                    console.error('Accept notification error:', error);
+                    alert('Failed to accept notification. Please try again later.');
+                });
+            } else {
+                alert('Notification number not found.');
+            }
+        }
+
+        // Function to handle notification rejection
+        function rejectNotification(notificationNumber) {
+            if (notificationNumber) {
+                // Send a request to the backend to mark the notification as rejected
+                fetch('/reject-notification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        notificationNumber: notificationNumber,
+                        status: 'rejected'
+                    })
+                })
+
+                .then(response => {
+                    console.log(response);
+                    if (response.ok) {
+                        alert('You have rejected the notification.');
+                        // Redirect to a thank you page or homepage
+                        window.location.href = '/thank-you.html';
+                    } else {
+                        throw new Error('Failed to reject notification.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Reject notification error:', error);
+                    alert('Failed to reject notification. Please try again later.');
+                });
+            } else {
+                alert('Notification number not found.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "guider-database": "file:.."
+  }
+}

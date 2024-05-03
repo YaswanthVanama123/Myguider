@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+    </head>
+    <body>
+        <!-- section 5 business signup page -->
+
+        <div id="section5" class="businessSignUpMainHeadingEmail ">
+            <section class="formBusinessSignUp">
+                <div class="form-box">
+                    <div class="form-value">
+                        <form action="">
+                            <h2 class="pt-2">Business Sign Up</h2>
+                            <div class="inputbox mb-0">
+                                <ion-icon name="mail-outline" id="BusinessSignUpemailIcon"></ion-icon>
+                                <ion-icon name="checkmark-circle-outline" class="d-none" id="businessSignUpCheckIcon"></ion-icon>
+                                <ion-icon name="close-circle-outline" class="d-none" id="businessSignUpwrongCheckIcon"></ion-icon>
+                                <input type="text" required id="businessSignUpUsername">
+                                <label for="businessSignUpUsername">Email</label>
+    
+                            </div>
+                            <div class="text-right">
+                                <label class="text-right send" id="sendOtpButton1">Send OTP</label>
+                                <div class="otpverify">
+                                    <input type="text" id="otp_inp" placeholder="Enter the OTP sent to your Email..." class="verifybox">
+                                    <button class="btn" id="otp-btn">Verify</button>
+                                </div>
+                            </div>
+                            <p id="otpVerification"></p>
+                            <div class="inputbox mt-0">
+                                <div id="businessSignUpPasswordToUser">
+                                    <ion-icon name="lock-closed-outline" id="businessSignUpopenEyePassword"></ion-icon>
+                                    <ion-icon name="lock-open-outline" class="d-none" id="businessSignUpcloseEyePassword"></ion-icon>
+                                </div>
+                                <input type="password" required id="businessSignUpPassword">
+                                <label for="businessPassword">Password</label>
+                            </div>
+                            <div class="inputbox">
+                                <div id="businessSignUpCoPasswordToUser">
+                                    <ion-icon name="lock-closed-outline" id="businessUpopenEyeConfirmPassword"></ion-icon>
+                                    <ion-icon name="lock-open-outline" class="d-none" id="businessSignUpcloseEyeConfirmPassword"></ion-icon>
+                                </div>
+                                <input type="password" required id="businessSignUpConfirmPassword">
+                                <label for="businessConfirmPassword">Confirm Password</label>
+                            </div>
+    
+                            <div class="forget">
+                                <label for=""><a href="#">Forget Password</a></label>
+                            </div>
+                            <p id="invalidBusinessSignUp" class="text-center"></p>
+                            <button id="BusinessCreateAccount" class="BusinessSignUpButtonEmail">Sign Up</button>
+                            <div class="register">
+                                <p>I have already an account <a href="#" onclick="display3(); nullEntered()">Sign In</a></p>
+                            </div>
+                            <p>
+                                <a class="nav-link " href="#">
+                                    <i class="fa-solid fa-circle-arrow-left font1 mr-2" id="backButton" onclick="display1()" nullEntered() "></i><span class="back1" for="backButton">Back</span>
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+ 
+    
+           // business signup 
+
+
+           let businessSignUpUsername = document.getElementById("businessSignUpUsername");
+           let businessSignUpPassword = document.getElementById("businessSignUpPassword");
+           let businessSignUpConfirmPassword = document.getElementById("businessSignUpConfirmPassword");
+           let businessCreateButton = document.getElementById("BusinessCreateAccount");
+           let invalidBusinessSignUp = document.getElementById("invalidBusinessSignUp");
+           
+           
+           
+           
+           let businessSignUpopenEyePassword = document.getElementById("businessSignUpopenEyePassword");
+           let businessSignUpcloseEyePassword = document.getElementById("businessSignUpcloseEyePassword");
+           let businessSignUpopenEyeConfirmPassword = document.getElementById("businessUpopenEyeConfirmPassword");
+           let businessSignUpcloseEyeConfirmPassword = document.getElementById("businessSignUpcloseEyeConfirmPassword");
+           
+           
+           let businessSignUpPasswordToUser = document.getElementById("businessSignUpPasswordToUser");
+           let businessSignUpCoPasswordToUser = document.getElementById("businessSignUpCoPasswordToUser");
+           
+           
+           
+           let emailVerifiedStatus = false;
+           
+           
+           
+           //email verification
+           
+           
+           
+           let sendOtpButton1 = document.getElementById("sendOtpButton1");
+           let BusinessSignUpemailIcon = document.getElementById("BusinessSignUpemailIcon");
+           let businessSignUpCheckIcon = document.getElementById("businessSignUpCheckIcon");
+           let businessSignUpwrongCheckIcon = document.getElementById("businessSignUpwrongCheckIcon");
+           
+           
+           function otpGenerator() {
+            alert("clicked");
+               const email = document.getElementById('businessSignUpUsername');
+               const otpverify = document.getElementsByClassName('otpverify')[0];
+           
+               // Generating random number as OTP;
+               let otp_val = Math.floor(Math.random() * 10000);
+           
+               let emailbody = `
+                   <h1>My Guider business Sign Up</h1> <br>
+                   <h2>Your OTP is </h2>${otp_val}
+               `;
+           
+               Email.send({
+                   SecureToken: "75ff0a1b-f9e3-40f1-96b8-451f81ec6a84",
+                   To: email.value,
+                   From: "vanamayaswanth321@gmail.com",
+                   Subject: "This is for business SignUp email verification",
+                   Body: emailbody
+               }).then(
+                   message => {
+                       if (message === "OK") {
+                           alert("OTP sent to your email " + email.value);
+           
+                           // now making otp input visible
+                           otpverify.style.display = "block";
+                           const otp_inp = document.getElementById('otp_inp');
+                           const otp_btn = document.getElementById('otp-btn');
+           
+                           otp_btn.addEventListener('click', (event) => {
+                               event.preventDefault();
+                               const enteredOTP = parseInt(otp_inp.value);
+                               if (enteredOTP === otp_val) {
+                                   alert("Email address verified...");
+                                   BusinessSignUpemailIcon.classList.add("d-none");
+                                   businessSignUpCheckIcon.classList.remove("d-none");
+                                   businessSignUpwrongCheckIcon.classList.add("d-none");
+                                   businessSignUpCheckIcon.style.backgroundColor = "green";
+                                   otpverify.style.display = "none";
+                                   emailVerifiedStatus = true;
+                               } else {
+                                   alert("Invalid OTP");
+                                   BusinessSignUpemailIcon.classList.add("d-none");
+                                   businessSignUpCheckIcon.classList.add("d-none");
+                                   businessSignUpwrongCheckIcon.classList.remove("d-none");
+                                   businessSignUpwrongCheckIcon.style.backgroundColor = "red";
+                                   otpverify.style.display = "block";
+                                   emailVerifiedStatus = false;
+                               }
+                           });
+                       }
+                   }
+               );
+           }
+           
+           
+           
+           
+           
+           
+           sendOtpButton1.addEventListener("click", otpGenerator);
+           
+           
+           function businessSignUpConfirmPasswordToText() {
+               businessSignUpopenEyeConfirmPassword.classList.toggle("d-none");
+               businessSignUpcloseEyeConfirmPassword.classList.toggle("d-none");
+               if (businessSignUpopenEyeConfirmPassword.classList.contains("d-none")) {
+                   businessSignUpConfirmPassword.type = "text";
+               } else {
+                   businessSignUpConfirmPassword.type = "password";
+               }
+           }
+           
+           businessSignUpCoPasswordToUser.addEventListener("click", businessSignUpConfirmPasswordToText);
+           
+           function businessSignUpPasswordToText() {
+               businessSignUpopenEyePassword.classList.toggle("d-none");
+               businessSignUpcloseEyePassword.classList.toggle("d-none");
+               if (businessSignUpopenEyePassword.classList.contains("d-none")) {
+                   businessSignUpPassword.type = "text";
+               } else {
+                   businessSignUpPassword.type = "password";
+               }
+           }
+           
+           businessSignUpPasswordToUser.addEventListener("click", businessSignUpPasswordToText);
+           
+           // Attach event listener to the create button
+           businessCreateButton.addEventListener("click", async (event) => {
+               event.preventDefault(); // Prevent default form submission behavior
+               
+               // Check if email is verified and password fields match
+               if (emailVerifiedStatus && businessSignUpPassword.value === businessSignUpConfirmPassword.value) {
+                   try {
+                       // Make fetch request to backend to sign up user
+                       const response = await fetch("/business/signup", {
+                           method: "POST",
+                           headers: {
+                               "Content-Type": "application/json"
+                           },
+                           body: JSON.stringify({
+                               email: businessSignUpUsername.value,
+                               password: businessSignUpPassword.value
+                           })
+                       });
+           
+                       if (response.ok) {
+                           // Business signed up successfully
+                           window.location.href = "/business/service";
+                       } else if (response.status === 400) {
+                           // Email already exists in database
+                           alert("Email already exists.");
+                       } else {
+                           // Error signing up business
+                           alert("Error signing up business. Please try again later.");
+                       }
+                   } catch (error) {
+                       console.error("Error signing up business:", error.message);
+                       alert("Error signing up business. Please try again later.");
+                   }
+               } else {
+                   // If email is not verified or passwords don't match, show error message
+                   invalidBusinessSignUp.textContent = "Invalid email verification or passwords don't match.";
+               }
+           });
+
+
+           // Define the display1 function
+function display1() {
+    window.location.href = '/';
+}
+
+// Define the display2 function
+function display2(){
+    window.location.href = '/user/signin';
+}
+
+// Define the display5 function
+function display5() {
+    window.location.href = '/business/signup';
+}
+
+// Define the display3 function
+function display3(){
+    window.location.href = '/business/signin';
+}
+
+// Define the display4 function
+function display4(){
+    window.location.href = '/user/signup';
+}
+
+
+
+
+
+        </script>
+        <script src="/myguider.js"></script>
+       
+    </body>
+</html>

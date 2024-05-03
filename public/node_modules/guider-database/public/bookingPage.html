@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 80vh;
+            background: grey;
+        }
+        
+        .pin-icon {
+            position: absolute;
+            top: 60%;
+            right: 10px;
+            font-size: 24px;
+            z-index: 1000;
+            margin-right: 20px;
+        }
+        
+        .search-box {
+            position: relative;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 300px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
+            border: 0px;
+        }
+        .search-box:placeholder-shown{
+            font-family: bree-serif;
+            font-size: 13px;
+        }
+
+        
+        .suggestions-list {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the search box */
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .suggestions-list li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .suggestions-list li:hover {
+            background-color: #f0f0f0;
+        }
+        
+        #map-container {
+            position: relative;
+        }
+        
+        #map {
+            width: 100%;
+            height: 80vh;
+            background: grey;
+        }
+        
+
+        
+        .search-box {
+            margin-top: 20px;
+            width: 300px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        #search-container {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        
+        .suggestions-list {
+            position: absolute;
+            top: calc(100% + 55px); /* Adjusted to start below the search box */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 50vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        
+        .suggestions-list li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .suggestions-list li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .suggestions-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: white;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        .suggestions-list li {
+            width: 100%;
+            /* Adjust the width as needed */
+            padding: 5px;
+            /* Optional: Add padding for better appearance */
+            border: 1px solid #ccc;
+            padding-left: 5px;
+            /* Optional: Add border for better visibility */
+        }
+        .list-icon {
+            position: absolute;
+            top: 33px;
+            right: 167px;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+            background-color: white;
+            border-radius: 50%;
+            
+        }
+        
+        .search-box {
+            padding-left: 40px; /* Adjust as needed */
+            width: 300px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        .search-container {
+            position: relative;
+            text-align: center; /* Center align the content */
+        }
+        .bookingcard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            padding: 20px;
+            position: relative; /* Add relative positioning */
+            min-height: 20vh;
+        }
+        
+        /* Create a pseudo-element with shadow for the top */
+        .bookingcard::before {
+            content: '';
+            position: absolute;
+            top: -10px; /* Adjust this value to control the shadow distance from the top */
+            left: 0;
+            width: 100%;
+            height: 10px; /* Adjust this value to control the shadow height */
+            border-radius: 20px; /* Match the border-radius of the card */
+            background: rgba(0, 0, 0, 0.1); /* Shadow color and opacity */
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Shadow properties */
+            z-index: -1; /* Move the shadow behind the card */
+        }
+        .confirmLocation{
+            background-color: black;
+            padding: 10px;
+            border: 0px;
+            color: white;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+        .chargesDetails{
+            font-size: 15px;
+     
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <!-- <div id="map"></div>
+    <input type="text" id="location-input" placeholder="Enter a location">
+    <ul id="suggestionsListProperty2"></ul>
+    <div id="location-details"></div>
+    <button id="get-location" class="btn bg-primary">getlocation</button> -->
+
+
+    <!-- <div id="map-container">
+        <div id="map"></div>
+        <input type="text" id="location-input" class="search-box" placeholder="Enter a location">
+        <ul id="suggestionsListProperty2"></ul>
+        <div id="location-details"></div>
+        <button id="get-location" class="btn bg-primary">getlocation</button>
+    </div> -->
+<div id="">
+    <div id="map"></div>
+    <div id="search-container">
+        <i class="fa-solid fa-bars list-icon"></i>
+        <input type="text" id="location-input" class="search-box" placeholder="Enter a location">
+        <ul id="suggestionsListProperty2" class="suggestions-list"></ul>
+    </div>
+
+</div> 
+<div id="container">
+<div class="bookingcard shadow-lg" id="booking-card">
+    <div>
+        <h1 class="chargesDetails">Minimum 1st 1/2 hour charges 99₹</h1>
+        <h1 class="chargesDetails">After next every 1/2 hour 49₹ charged</h1>
+    </div>
+    <button class="btn confirmLocation" onclick="bookingCaptain()">Confirm Location</button>
+</div> 
+</div>
+
+
+    <script>
+            // Function to fetch place suggestions based on user input
+            async function fetchPlaceSuggestions(query) {
+                try {
+                    const response = await fetch(`https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${query}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data;
+                    } else {
+                        console.error('Error fetching place suggestions:', response.statusText);
+                        return [];
+                    }
+                } catch (error) {
+                    console.error('Error fetching place suggestions:', error.message);
+                    return [];
+                }
+            }
+
+            // Declare variables to store latitude and longitude
+            let latitude = 0;
+            let longitude = 0;
+
+            // Declare a variable to store the current location marker
+            let currentLocationMarker = null;
+
+            // Function to handle suggestion click
+            async function handleSuggestionClick(place) {
+                // Remove the current location marker if it exists
+                if (currentLocationMarker) {
+                    map.removeObject(currentLocationMarker);
+                    currentLocationMarker = null;
+                }
+
+                // Store latitude and longitude in respective variables
+                let latitude = place.lat;
+                let longitude = place.lon;
+
+                console.log(latitude);
+                console.log(longitude);
+
+                // Paste the selected location into the search box
+                document.getElementById('location-input').value = place.display_name;
+
+                // Zoom to the selected location
+                map.setCenter({ lat: latitude, lng: longitude });
+                map.setZoom(15);
+
+                // Remove any existing markers from the map
+                map.removeObjects(map.getObjects());
+
+                // Add a marker for the selected location
+                var marker = new H.map.Marker({ lat: latitude, lng: longitude });
+                map.addObject(marker);
+
+                await sendDataToServer(longitude,latitude);
+
+                // Display location details
+                await getLocationDetails(latitude, longitude);
+
+                // Clear the suggestions list
+                clearPlaceSuggestions();
+            }
+
+
+
+
+
+        // Function to display place suggestions
+        function displayPlaceSuggestions(suggestions) {
+            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+            suggestionsListProperty2.innerHTML = '';
+
+            suggestions.forEach(place => {
+                const li = document.createElement('li');
+                li.textContent = place.display_name;
+                li.addEventListener('click', () => handleSuggestionClick(place));
+                suggestionsListProperty2.appendChild(li);
+            });
+
+            suggestionsListProperty2.style.display = 'block';
+        }
+
+        // Function to clear place suggestions
+        function clearPlaceSuggestions() {
+            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+            suggestionsListProperty2.innerHTML = '';
+            suggestionsListProperty2.style.display = 'none';
+        }
+
+        // Initialize the map            
+        var platform = new H.service.Platform({
+            'apikey': 'Wt0nBkP_kcThUD6OQ4GzIZJycwbtzxeGl-4NOT9BLiw'
+        });
+
+        var defaultLayers = platform.createDefaultLayers();
+        var map = new H.Map(
+            document.getElementById('map'),
+            defaultLayers.vector.normal.map, {
+                zoom: 5, // Adjust the zoom level as needed
+                center: {
+                    lat: 20.5937, // Latitude of India
+                    lng: 78.9629 // Longitude of India
+                },
+                pixelRatio: window.devicePixelRatio || 1 // Hide default marker
+            });
+        
+
+        // Define the behavior variable
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map, {
+            'dragging': true, // Enable dragging (panning)
+            'mouseWheel': true, // Enable mouse wheel zoom
+            'pinchZoom': true, // Enable pinch zoom
+            'doubleClickZoom': false, // Disable double-click zoom
+            'keyboard': true // Enable keyboard navigation
+        }));
+
+        // Define the UI variable
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+        // Create the pin icon
+
+        const pinIcon = document.createElement("i");
+        
+        pinIcon.classList.add("bi", "bi-crosshair2", "pin-icon");
+        pinIcon.style.fontSize = "24px"; // Set the font size to make the icon visible
+
+         // Function to send longitude and latitude to the server
+         async function sendDataToServer(longitude, latitude) {
+            try {
+                const response = await fetch('/user/location', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ longitude, latitude })
+                });
+                
+                if (response.ok) {
+                    console.log('User location sent to backend successfully');
+                } else {
+                    console.error('Failed to send user location to backend');
+                }
+            } catch (error) {
+                console.error('Error sending user location to backend:', error);
+            }
+        }
+        async function startingLocation()  {
+            try {
+                var position = await getCurrentPosition();
+                // Save latitude and longitude
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                console.log(latitude);
+                console.log(longitude);
+                await sendDataToServer(longitude, latitude)
+             
+
+                // Add a marker for the current location
+                if (!currentLocationMarker) {
+                    currentLocationMarker = new H.map.Marker({ lat: latitude, lng: longitude });
+                    map.addObject(currentLocationMarker);
+                }
+
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                console.log("Error fetching location. Please try again later.");
+            }
+        }
+        
+        // Add event listener to pin icon for getting current location
+        pinIcon.addEventListener("click", async () => {
+            try {
+                var position = await getCurrentPosition();
+                // Save latitude and longitude
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                console.log(latitude);
+                console.log(longitude);
+                await sendDataToServer(longitude, latitude)
+                showLocation(position);
+
+                // Add a marker for the current location
+                if (!currentLocationMarker) {
+                    currentLocationMarker = new H.map.Marker({ lat: latitude, lng: longitude });
+                    map.addObject(currentLocationMarker);
+                }
+
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                console.log("Error fetching location. Please try again later.");
+            }
+        });
+
+
+
+
+
+
+
+
+                // Append the pin icon to the map container
+            // Append the pin icon to the map container
+        map.getElement().appendChild(pinIcon);
+
+
+               
+                var marker = null;
+
+                // Define a flag to track if location has been retrieved
+                var locationRetrieved = false;
+
+                // Event listener for location input
+                const locationInput = document.getElementById("location-input");
+                locationInput.addEventListener("input", async () => {
+                    const query = locationInput.value.trim();
+                    if (query !== "") {
+                        const suggestions = await fetchPlaceSuggestions(query);
+                        displayPlaceSuggestions(suggestions);
+                    } else {
+                        clearPlaceSuggestions();
+                    }
+                });
+
+        // Add event listener to the map to listen for tap events
+        map.addEventListener('tap', async function(evt) {
+            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+
+            // Call function to get details of the clicked location
+            getLocationDetails(coord.lat, coord.lng);
+            await sendDataToServer(coord.lng, coord.lat)
+
+            // Get all existing objects on the map
+            var objects = map.getObjects();
+
+            // Loop through each object
+            objects.forEach(function(object) {
+                // Check if the object is the blue circle location marker
+                if (object === blueCircle) {
+                    // Skip the blue circle location marker
+                    return;
+                }
+
+                // Remove the object from the map
+                map.removeObject(object);
+            });
+
+            // Add a marker for the clicked location
+            var marker = new H.map.Marker({
+                lat: coord.lat,
+                lng: coord.lng
+            });
+            map.addObject(marker);
+        });
+
+
+
+
+        // Function to get location details
+        async function getLocationDetails(latitude, longitude) {
+            try {
+                let timestamp = new Date().getTime();
+                let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&_=${timestamp}`, {
+                    headers: {
+                        'Accept-Language': 'en'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                let data = await response.json();
+                console.log(data);
+
+                let city = data.address.city || data.address.village || 'N/A';
+                let area = data.address.road || 'N/A';
+                let pincode = data.address.postcode || 'N/A';
+
+                console.log(city);
+                console.log(area);
+                console.log(pincode);
+
+                console.log(`<p>City: ${city}</p><p>Area: ${area}</p><p>Pincode: ${pincode}</p>`);
+            } catch (error) {
+                console.error("Error fetching location details:", error);
+                console.log("Error fetching location details. Please try again later.");
+            }
+        }
+        // Function to get the current position
+        async function getCurrentPosition() {
+            return new Promise((resolve, reject) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                } else {
+                    reject("Geolocation is not supported by this browser.");
+                }
+            });
+        }
+
+        // Function to show location on the map
+        async function showLocation(position) {
+            try {
+                let timestamp = new Date().getTime();
+                let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json&_=${timestamp}`, {
+                    headers: {
+                        'Accept-Language': 'en'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                let data = await response.json();
+                console.log(data);
+
+                let city = data.address.city || data.address.village || 'N/A';
+                let area = data.address.road || 'N/A';
+                let pincode = data.address.postcode || 'N/A';
+
+                // Clear existing markers on the map
+                map.removeObjects(map.getObjects());
+
+                // Set the center of the map to the current location with padding
+                var padding = 0.01; // Adjust this value as needed
+                var newCenter = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude - padding // Adjust longitude for padding
+                };
+                map.setCenter(newCenter);
+
+                // Set the zoom level to focus on the current location
+                map.setZoom(15);
+
+                // Create a marker for the current location
+                var marker = new H.map.Marker({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+                map.addObject(marker);
+                map.addObject(blueCircle);
+
+                // Add bubble with location details
+                var bubble = new H.ui.InfoBubble({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }, {
+                    content: `<div>${city}, ${area}, ${pincode}</div>`
+                });
+                ui.addBubble(bubble);
+
+                console.log(`<p>City: ${city}</p><p>Area: ${area}</p><p>Pincode: ${pincode}</p>`);
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                console.log("Error fetching location. Please try again later.");
+            }
+        }
+
+
+
+        // Global variables to store references to the blue circle and the external marker
+        var blueCircle = null;
+        var externalMarker = null;
+
+
+        // Function to show user's location on the map
+        async function showUserLocation() {
+            try {
+                var position = await getCurrentPosition();
+                var userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Set the center of the map to the user's location
+                map.setCenter(userLocation);
+
+                // Set the zoom level to focus on the user's location
+                map.setZoom(15);
+                await sendDataToServer(userLocation.lng, userLocation.lat)
+                showLocation(position);
+
+                // Remove any existing blue circle from the map
+                if (blueCircle) {
+                    map.removeObject(blueCircle);
+                }
+
+                // Create a filled inner circle around the user's location
+                blueCircle = new H.map.Circle(userLocation, 30); // Adjust the radius as needed
+                blueCircle.setStyle({
+                    fillColor: 'rgba(0, 0, 255, 0.5)', // Blue color with opacity
+                    lineWidth: 0 // No outline for the filled inner circle
+                });
+
+                // Add the blue circle to the map
+                map.addObject(blueCircle);
+            } catch (error) {
+                console.error("Error showing user's location:", error);
+            }
+        }
+
+        showUserLocation()
+        // Function to display an external marker with custom icon
+        function displayExternalMarker(latitude, longitude) {
+            // Remove any existing external marker from the map
+            if (externalMarker) {
+                map.removeObject(externalMarker);
+            }
+
+            // Remove the marker associated with the pinIcon, if it exists
+            var pinMarker = map.getObjects().find(obj => obj === pinIcon);
+            if (pinMarker) {
+                map.removeObject(pinMarker);
+            }
+
+            // Create a custom marker with icon HTML content
+            var icon = '<i class="fa-solid fa-map-pin" style="color: #ff0000; font-size: 24px;"></i>';
+
+            // Create a custom marker with the icon
+            var customMarker = new H.map.DomIcon(icon);
+
+            // Create a marker for the specified location with the custom icon
+            externalMarker = new H.map.DomMarker({ lat: latitude, lng: longitude }, {
+                icon: customMarker
+            });
+
+            // Add the marker to the map
+            map.addObject(externalMarker);
+        }
+
+        // Add event listener to close suggestions when clicking outside
+        document.body.addEventListener('click', function(event) {
+            const target = event.target;
+            const suggestionsList = document.getElementById('suggestionsListProperty2');
+            const searchContainer = document.getElementById('search-container');
+
+            // Check if the click target is outside the search container or suggestions list
+            if (!searchContainer.contains(target) && !suggestionsList.contains(target)) {
+                // If so, hide the suggestions list
+                clearPlaceSuggestions();
+            }
+        });
+
+
+        // Function to remove the external marker from the map
+        function removeExternalMarker() {
+            if (externalMarker) {
+                map.removeObject(externalMarker);
+                externalMarker = null;
+            }
+        }
+
+
+        // Call the function to show the user's location
+      //  showUserLocation();
+        // JavaScript code for swipe-up functionality
+        const container = document.getElementById('container');
+        const bookingCard = document.getElementById('booking-card');
+        let isSwiping = false;
+        let startY = 0;
+
+        // Event listeners for touch events
+        container.addEventListener('touchstart', touchStart);
+        container.addEventListener('touchmove', touchMove);
+        container.addEventListener('touchend', touchEnd);
+
+        function touchStart(event) {
+            isSwiping = true;
+            startY = event.touches[0].clientY;
+        }
+
+        function touchMove(event) {
+            if (!isSwiping) return;
+            const deltaY = event.touches[0].clientY - startY;
+            if (deltaY < 0) {
+                // Swipe up detected
+                bookingCard.style.transition = 'none';
+                bookingCard.style.transform = `translateY(${deltaY}px)`;
+            }
+        }
+
+        function touchEnd(event) {
+            if (!isSwiping) return;
+            isSwiping = false;
+            const finalY = event.changedTouches[0].clientY;
+            const deltaY = finalY - startY;
+            if (deltaY < 0 && Math.abs(deltaY) > 50) {
+                // Swipe up with sufficient distance
+                bookingCard.style.transition = 'transform 0.3s ease';
+                bookingCard.style.transform = 'translateY(-50%)'; // Adjust the final position
+                bookingCard.style.height = '70vh'; // Adjust the final height
+                bookingCard.style.zIndex = '1000'; // Bring booking card to front
+            } else {
+                // Reset to initial position
+                bookingCard.style.transition = 'transform 0.3s ease';
+                bookingCard.style.transform = 'translateY(0)';
+            }
+        }
+
+
+        function bookingCaptain() {
+            // Function to update UI based on notification acceptance status
+            function updateAcceptanceStatus(accepted) {
+                const acceptButton = document.getElementById('acceptButton');
+                if (accepted) {
+                    acceptButton.disabled = true;
+                    acceptButton.textContent = 'Notification Accepted';
+                    // Optionally change the appearance of the button to indicate it's disabled
+                    acceptButton.style.backgroundColor = '#ccc'; // Example: Change background color to gray
+                }
+            }
+        
+            // Function to continuously check notification status and redirect upon acceptance
+            function checkNotificationStatus(notificationNumber) {
+                setInterval(() => {
+                    fetch(`/check-notification-status?notificationNumber=${notificationNumber}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'accepted') {
+                                // If notification is accepted, redirect to the desired URL
+                                window.location.href = `/successfully/captain/booked?${notificationNumber}`;
+                            }
+                        })
+                        .catch(error => console.error('Error checking notification status:', error));
+                }, 5000); // Check status every 5 seconds (adjust as needed)
+            }
+        
+            // Fetch skilled workers' locations from the backend
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+                fetch(`/skilledworkersnear/count?lat=${userLat}&lng=${userLng}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Skilled workers within 2km radius:', data);
+                        // Check if any skilled worker has already accepted the notification
+                        console.log('Notification Number:', data.notificationNumber);
+                        checkNotificationStatus(data.notificationNumber);
+                    })
+                    .catch(error => console.error('Error fetching skilled workers:', error));
+            }, function(error) {
+                console.error('Error getting user\'s location:', error.message);
+            });
+        }
+        
+
+
+     
+        
+
+    </script>
+</body>
+
+</html>

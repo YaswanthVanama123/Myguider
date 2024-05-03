@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/myguider.js" ></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+    </head>
+    <body>
+
+        <!-- fourth section User SignUp -->
+        <div id="section4" class="">
+            <section class="formUserSignUp">
+                <div class="form-box">
+                    <div class="form-value">
+                        <form action="">
+                            <h2 class="pt-2">User Sign Up</h2>
+                            <div class="inputbox mb-0">
+                                <ion-icon name="mail-outline" id="userSignUpemailIcon"></ion-icon>
+                                <ion-icon name="checkmark-circle-outline" class="d-none" id="userSignUpCheckIcon"></ion-icon>
+                                <ion-icon name="close-circle-outline" class="d-none" id="userSignUpWrongCheckIcon"></ion-icon>
+                                <input type="text" required id="userSignUpUserName">
+                                <label for="userSignUpUserName">Email</label>
+                            </div>
+
+                            <div class="text-right ">
+                                <label class="text-right send" id="sendOtpButton">Send OTP</label>
+
+                                <div class="otpverify1">
+                                    <input type="text" id="otp_inp1" placeholder="Enter the OTP sent to your Email..." class="verifybox">
+                                    <button class="btn" id="otp-btn1">Verify</button>
+                                </div>
+                            </div>
+
+                            <p id=""></p>
+                            <div class="inputbox mt-0">
+                                <div id="userSignUpPasswordToUser">
+                                    <ion-icon name="lock-closed-outline" id="userSignUpopenEyePassword"></ion-icon>
+                                    <ion-icon name="lock-open-outline" class="d-none" id="userSignUpcloseEyePassword"></ion-icon>
+                                </div>
+                                <input type="password" required id="userSignUpPassword">
+                                <label for="userSignUpPassword">Password</label>
+                            </div>
+                            <div class="inputbox">
+                                <div id="userSignUpCoPasswordToUser">
+                                    <ion-icon name="lock-closed-outline" id="userSignUpopenEyeConfirmPassword"></ion-icon>
+                                    <ion-icon name="lock-open-outline" class="d-none" id="userSignUpcloseEyeConfirmPassword"></ion-icon>
+                                </div>
+                                <input type="password" required id="userSignUpConfirmPassword">
+                                <label for="userSignUpConfirmPassword">Confirm Password</label>
+                            </div>
+                            <div class="forget">
+                                <label for=""><a href="#">Forget Password</a></label>
+
+                            </div>
+                            <p id="invalidUserSignUp"></p>
+                            <button id="userCreateButton" class="userSignUpButtonEmail">Sign Up</button>
+                            <div class="register">
+                                <p>I have already an account <a href="#" onclick="display2(); nullEntered()">Sign In</a></p>
+                            </div>
+                            <p>
+                                <a class="nav-link " href="#">
+                                    <i class="fa-solid fa-circle-arrow-left font1 mr-2"  onclick="display1(); nullEntered()"></i><span class="back1" ">Back</span>
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        </div>
+
+        <script>
+
+
+    
+// user SignUp 
+
+
+//section 4 User SignUp 
+let userSignUpUserName = document.getElementById("userSignUpUserName");
+let userSignUpPassword = document.getElementById("userSignUpPassword");
+let userSignUpConfirmPassword = document.getElementById("userSignUpConfirmPassword");
+let userCreateButton = document.getElementById("userCreateButton");
+let invalidUserSignUp = document.getElementById("invalidUserSignUp");
+
+
+
+
+let userSignUpopenEyePassword = document.getElementById("userSignUpopenEyePassword");
+let userSignUpcloseEyePassword = document.getElementById("userSignUpcloseEyePassword");
+let userSignUpopenEyeConfirmPassword = document.getElementById("userSignUpopenEyeConfirmPassword");
+let userSignUpcloseEyeConfirmPassword = document.getElementById("userSignUpcloseEyeConfirmPassword");
+
+
+let userSignUpPasswordToUser = document.getElementById("userSignUpPasswordToUser");
+let userSignUpCoPasswordToUser = document.getElementById("userSignUpCoPasswordToUser");
+
+
+
+let emailVerifiedStatus1 = false;
+
+
+
+//email verification
+
+
+
+let sendOtpButton = document.getElementById("sendOtpButton");
+let userSignUpemailIcon = document.getElementById("userSignUpemailIcon");
+let userSignUpCheckIcon = document.getElementById("userSignUpCheckIcon");
+let userSignUpWrongCheckIcon = document.getElementById("userSignUpWrongCheckIcon");
+
+
+function otpGenerator1() {
+    console.log("hi")
+    const email = document.getElementById('userSignUpUserName');
+    const otpverify1 = document.getElementsByClassName('otpverify1')[0];
+
+    // Generating random number as OTP;
+    let otp_val = Math.floor(Math.random() * 10000);
+
+    let emailbody = `
+        <h1>My Guider user Sign Up</h1><br>
+        <h2>Your OTP is </h2>${otp_val}
+    `;
+
+    Email.send({
+        SecureToken: "75ff0a1b-f9e3-40f1-96b8-451f81ec6a84",
+        To: email.value,
+        From: "vanamayaswanth321@gmail.com",
+        Subject: "This is for user SignUp email verification",
+        Body: emailbody
+    }).then(
+        message => {
+            if (message === "OK") {
+                alert("OTP sent to your email " + email.value);
+
+                // now making otp input visible
+                otpverify1.style.display = "block";
+                const otp_inp1 = document.getElementById('otp_inp1');
+                const otp_btn1 = document.getElementById('otp-btn1');
+
+                otp_btn1.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const enteredOTP = parseInt(otp_inp1.value);
+                    if (enteredOTP === otp_val) {
+                        alert("Email address verified...");
+                        alert("Email address Verified");
+                        userSignUpemailIcon.classList.add("d-none");
+                        userSignUpCheckIcon.classList.remove("d-none");
+                        userSignUpWrongCheckIcon.classList.add("d-none");
+                        userSignUpCheckIcon.style.backgroundColor = "green";
+                        otpverify1.style.display = "none";
+                        emailVerifiedStatus1 = true;
+                    } else {
+                        alert("Invalid OTP");
+                        userSignUpemailIcon.classList.add("d-none");
+                        userSignUpCheckIcon.classList.add("d-none");
+                        userSignUpWrongCheckIcon.classList.remove("d-none");
+                        userSignUpWrongCheckIcon.style.backgroundColor = "red";
+                        otpverify1.style.display = "block";
+                        emailVerifiedStatus1 = false;
+                    }
+                });
+            }
+        }
+    );
+}
+
+
+
+
+
+
+sendOtpButton.addEventListener("click", otpGenerator1);
+
+
+
+
+
+function uSignUpConfirmPasswordToText1() {
+    userSignUpopenEyeConfirmPassword.classList.toggle("d-none");
+    userSignUpcloseEyeConfirmPassword.classList.toggle("d-none");
+    if (userSignUpopenEyeConfirmPassword.classList.contains("d-none")) {
+        userSignUpConfirmPassword.type = "text";
+    } else {
+        userSignUpConfirmPassword.type = "password";
+    }
+}
+
+userSignUpCoPasswordToUser.addEventListener("click", uSignUpConfirmPasswordToText1);
+
+function uSignUpPasswordToText() {
+    userSignUpopenEyePassword.classList.toggle("d-none");
+    userSignUpcloseEyePassword.classList.toggle("d-none");
+    if (userSignUpopenEyePassword.classList.contains("d-none")) {
+        userSignUpPassword.type = "text";
+    } else {
+        userSignUpPassword.type = "password";
+    }
+}
+
+userSignUpPasswordToUser.addEventListener("click", uSignUpPasswordToText);
+
+
+
+
+// Attach event listener to the create button
+userCreateButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    // Check if email is verified and password fields match
+    if (emailVerifiedStatus1 && userSignUpPassword.value === userSignUpConfirmPassword.value) {
+        // Make AJAX request to backend to signup user
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/user/signup");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    alert("User signed up successfully!");
+                } else if (xhr.status === 400) {
+                    alert("Email already exists.");
+                } else {
+                    alert("Error signing up user. Please try again later.");
+                }
+            }
+        };
+        // Prepare data to send in request body
+        const data = {
+            email: userSignUpUserName.value,
+            password: userSignUpPassword.value
+        };
+        // Send data as JSON string
+        xhr.send(JSON.stringify(data));
+    } 
+    else if(emailVerifiedStatus1 === false){
+        invalidUserSignUp.textContent = "Verify the email before Signup";   
+    }
+    else if(userSignUpPassword.value !== userSignUpConfirmPassword.value){
+        invalidUserSignUp.textContent = "Password and confirm password must be same";
+    }
+    else {
+        // If email is not verified or passwords don't match, show error message
+        invalidUserSignUp.textContent = "Invalid email verification or passwords don't match.";
+    }
+});
+
+
+
+
+
+
+
+
+
+            // Define the display1 function
+function display1() {
+    window.location.href = '/';
+}
+
+// Define the display2 function
+function display2(){
+    window.location.href = '/user/signin';
+}
+
+// Define the display5 function
+function display5() {
+    window.location.href = '/business/signup';
+}
+
+// Define the display3 function
+function display3(){
+    window.location.href = '/business/signin';
+}
+
+// Define the display4 function
+function display4(){
+    window.location.href = '/user/signup';
+}
+
+
+
+
+
+        </script>
+
+
+    </body>
+</html>

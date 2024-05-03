@@ -806,5 +806,3 @@ let buttonSkillHelpPara = document.getElementById("buttonSkillHelpPara");
 
 
 buttonSkillHelpPara.textContent = "Its working Priya";
-
-

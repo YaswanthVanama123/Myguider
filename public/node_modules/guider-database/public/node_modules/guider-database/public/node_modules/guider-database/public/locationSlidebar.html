@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="myguider.css">
+    <link rel="stylesheet" type="text/css" href="/myguider.css">
+
+</head>
+
+
+
+
+<body>
+
+ <!-- section 20 slide bar-->
+
+ <div id="section20" class=" ">
+    <div id="nav-bar">
+        <input id="nav-toggle" type="checkbox">
+
+        <div id="nav-header">
+            <a id="nav-title"  target="_blank">
+                <i class="fab fa-glide brand-icon fontMainPage"></i><span class="headingMainPage">My Guider</span>
+            </a>
+            <label for="nav-toggle">
+                <span id="nav-toggle-burger"></span>
+            </label>
+            <hr>
+        </div>
+        <i class=" fa-palette"></i>
+        <div id="nav-content">
+            <div class="nav-button" onclick="display21()">
+                <span><div class="fas"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5" />
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                </svg></div> Profile</span>
+            </div>
+            <div class="nav-button" onclick="display22()"><span><i class="fa-solid fa-address-card fas"></i> Aadhar Proof</span></div>
+            <div class="nav-button" onclick="display77()"><span><i class="fa-regular fa-file fas"></i> Registration Form</span></div>
+            <div class="nav-button" onclick="display25()"><span><i class="bi bi-geo-alt-fill fas"></i> Maps</span></div>
+            <hr>
+            <div class="nav-button"><span><i class="fa-solid fa-video fas"></i> Guide Videos</span></div>
+            <div class="nav-button" onclick="display6()">
+                <span><ion-icon name="albums-outline" class="fas"></ion-icon> Back to service</span>
+            </div>
+            <!--    <div class="nav-button"><i class="fas fa-fire"></i><span>Challenges</span></div>
+        <div class="nav-button"><i class="fas fa-magic"></i><span>Spark</span></div>
+        <hr>
+        <div class="nav-button"><i class="fas fa-gem"></i><span>Codepen Pro</span></div>
+        <div id="nav-content-highlight"></div> -->
+        </div>
+
+        <input id="nav-footer-toggle" type="checkbox">
+
+        <div id="nav-footer">
+            <div id="nav-footer-heading">
+                <div id="nav-footer-avatar">
+                    <div class="fas mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="nav-footer-titlebox" onclick="display1()">
+                    <a id="nav-footer-title">LogOut</a>
+
+                </div>
+                <label for="nav-footer-toggle"><span><i class="fas fa-caret-up"></i></span></label>
+            </div>
+
+            <div id="nav-footer-content">
+                You are go to My Guider main page.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- <div id="map"></div>
+    <input type="text" id="location-input" placeholder="Enter a location">
+    <ul id="suggestionsListProperty2"></ul>
+    <div id="location-details"></div>
+    <button id="get-location" class="btn bg-primary">getlocation</button> -->
+
+
+    <!-- <div id="map-container">
+        <div id="map"></div>
+        <input type="text" id="location-input" class="search-box" placeholder="Enter a location">
+        <ul id="suggestionsListProperty2"></ul>
+        <div id="location-details"></div>
+        <button id="get-location" class="btn bg-primary">getlocation</button>
+    </div> -->
+  <div id="section25">
+    <div id="map"></div>
+<div id="search-container">
+    <input type="text" id="location-input" class="search-box" placeholder="Enter a location">
+    <ul id="suggestionsListProperty2" class="suggestions-list"></ul>
+</div>
+<div id="location-details"></div>
+<button id="get-location" class="btn bg-primary">getlocation</button>
+
+</div>  
+
+ <!-- section 21 skilled workers profile  -->
+ <div id="section21" class="d-none">
+    <div class="profile">
+        <div id="image-container">
+            <img id="uploaded-image" src="#" alt="" />
+        </div>
+        <input type="file" id="upload-input" accept="image/*" onchange="displayImage()" />
+        <label for="upload-input" id="upload-label">Upload Image</label>
+    </div>
+</div>
+
+    <!-- section 22 worker aadhar proof-->
+    <div id="section22" class="d-none">
+        <div class="profile">
+            <div id="workerProof">
+                <img id="uploaded-proof" src="#" alt="" />
+            </div>
+            <input type="file" id="upload-inputworkerProof" accept="image/*" onchange="displayImageworkerProof()" />
+            <label for="upload-inputworkerProof" id="upload-labelworkerProof">Upload Image</label>
+        </div>
+    </div>
+
+
+        <!-- section 14 user registration form for location -->
+        <div class="center-container" id="section14">
+            <div class="container9">
+                <header class="reg">Registration</header>
+                <form action="#" id="formRegCityAllLocation">
+                    <div class="form first" id="firstFormAll">
+                        <div class="details personal">
+                            <span class="title">Personal Detail</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="locationfield1">Email</label>
+                                    <input type="email" placeholder="Enter your email" required id="locationfield1" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield2">Shop Name</label>
+                                    <input type="text" placeholder="Enter your Shop Name" required id="locationfield2" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield3">How many days open in a week</label>
+                                    <select class="regSelect" id="locationfield3">
+                                        <option value="Every day Opens">Every day Opens</option>
+                                        <option value="Except Sunday opens">Except Sunday opens</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield4">Opens at</label>
+                                    <input type="text" placeholder="Please include AM or PM" required id="locationfield4" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield5">Closes at</label>
+                                    <input type="text" placeholder="Please include AM or PM" required id="locationfield5" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield6">Phone no</label>
+                                    <input type="tel" placeholder="Enter your Phone number" required id="locationfield6" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details ID">
+                            <button class="backRegistration btn bg-primary" id="backRegistration1" onclick="display6()">Back to Home</button>
+                            <button class="nextBtnLocation buttonRegistration" id="nextBtnLocation">
+                                <span class="btnText">
+                                    Next
+                                    <i class="fa-solid fa-forward"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form second">
+                        <div class="details address">
+                            <span class="title">Profession Details</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="citySearchLocation">City</label>
+                                    <input type="text" placeholder="Enter your city" required id="citySearchLocation" />
+                                    <div>
+                                        <ul id="citySuggestionsListLocation"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="roadSearchInputLocation">Area</label>
+                                    <input type="address" placeholder="Enter pin code" required id="roadSearchInputLocation" />
+                                    <div>
+                                        <ul id="roadSearchSuggestionsLocation"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield9">State</label>
+                                    <input type="text" placeholder="Enter your State" required id="locationfield9" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="searchInputOccupationRegLocation">Type</label>
+                                    <div class="occupation-container">
+                                        <div style="position: relative;">
+                                            <input type="text" placeholder="Enter your " required id="searchInputOccupationRegLocation" oninput="showSuggestionsOccupationRegLocation()" onfocus="showSuggestionsOccupationRegLocation()" />
+                                            <div id="suggestionsContainerOccupationRegLocation" class="suggestionsOccupation"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-field">
+                                    <label for="locationfield11">Pin code</label>
+                                    <input type="number" placeholder="Enter your area pincode" required id="locationfield11" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield12">what is the Special in your shop</label>
+                                    <input type="email" placeholder="Enter your special in your shop" required id="locationfield12" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details family">
+                            <div class="buttons">
+                                <div class="backBtnLocation" id="backBtnLocation">
+                                    <a href="#" class="btnText">
+                                        <i class="fa-solid fa-forward"></i>
+                                    </a>
+                                </div>
+                                <button class="nextBtnLocation btn buttonRegistration" type="button">
+                                    <span class="btnText" id="submitButtonLocation">
+                                        Submit
+                                        <i class="fa-solid fa-forward"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    <script>
+        // Function to fetch place suggestions based on user input
+        async function fetchPlaceSuggestions(query) {
+            try {
+                const response = await fetch(`https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${query}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return data;
+                } else {
+                    console.error('Error fetching place suggestions:', response.statusText);
+                    return [];
+                }
+            } catch (error) {
+                console.error('Error fetching place suggestions:', error.message);
+                return [];
+            }
+        }
+
+// Declare variables to store latitude and longitude
+let latitude = 0;
+let longitude = 0;
+
+// Function to handle suggestion click
+async function handleSuggestionClick(place) {
+    // Alert to confirm that the function is working
+    alert("working");
+
+    // Store latitude and longitude in respective variables
+    let latitude = place.lat;
+    let longitude = place.lon;
+
+    console.log(latitude);
+    console.log(longitude);
+
+    // Paste the selected location into the search box
+    document.getElementById('location-input').value = place.display_name;
+
+    // Zoom to the selected location
+    map.setCenter({ lat: latitude, lng: longitude });
+    map.setZoom(15);
+
+    // Remove any existing markers from the map
+    map.removeObjects(map.getObjects());
+
+    // Add a marker for the selected location
+    var marker = new H.map.Marker({ lat: latitude, lng: longitude });
+    map.addObject(marker);
+
+    await sendDataToServer(longitude,latitude);
+
+    // Display location details
+    await getLocationDetails(latitude, longitude);
+
+    // Clear the suggestions list
+    clearPlaceSuggestions();
+}
+
+
+
+
+        // Function to display place suggestions
+        function displayPlaceSuggestions(suggestions) {
+            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+            suggestionsListProperty2.innerHTML = '';
+
+            suggestions.forEach(place => {
+                const li = document.createElement('li');
+                li.textContent = place.display_name;
+                li.addEventListener('click', () => handleSuggestionClick(place));
+                suggestionsListProperty2.appendChild(li);
+            });
+
+            suggestionsListProperty2.style.display = 'block';
+        }
+
+        // Function to clear place suggestions
+        function clearPlaceSuggestions() {
+            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+            suggestionsListProperty2.innerHTML = '';
+            suggestionsListProperty2.style.display = 'none';
+        }
+
+        // Initialize the map            
+        var platform = new H.service.Platform({
+            'apikey': 'Wt0nBkP_kcThUD6OQ4GzIZJycwbtzxeGl-4NOT9BLiw'
+        });
+
+        var defaultLayers = platform.createDefaultLayers();
+        var map = new H.Map(
+            document.getElementById('map'),
+            defaultLayers.vector.normal.map, {
+                zoom: 5, // Adjust the zoom level as needed
+                center: {
+                    lat: 20.5937, // Latitude of India
+                    lng: 78.9629 // Longitude of India
+                },
+                pixelRatio: window.devicePixelRatio || 1 // Hide default marker
+            });
+        
+
+        // Define the behavior variable
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map, {
+            'dragging': true, // Enable dragging (panning)
+            'mouseWheel': true, // Enable mouse wheel zoom
+            'pinchZoom': true, // Enable pinch zoom
+            'doubleClickZoom': false, // Disable double-click zoom
+            'keyboard': true // Enable keyboard navigation
+        }));
+
+        // Define the UI variable
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+        // Create the pin icon
+
+        const pinIcon = document.createElement("i");
+        
+        pinIcon.classList.add("bi", "bi-crosshair2", "pin-icon");
+        pinIcon.style.fontSize = "24px"; // Set the font size to make the icon visible
+
+         // Function to send longitude and latitude to the server
+         async function sendDataToServer(longitude,latitude) {
+
+
+            try {
+                const response = await fetch('/mapslocation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ longitude, latitude })
+                });
+
+                if (response.ok) {
+                    console.log('Data sent successfully to server');
+                    // Optionally, you can redirect or show a success message here
+                } else {
+                    console.error('Failed to send data to server:', response.statusText);
+                    // Handle the error accordingly
+                }
+            } catch (error) {
+                console.error('Error sending data to server:', error);
+                // Handle the error accordingly
+            }
+        }
+
+        // Add event listener to pin icon for getting current location
+        pinIcon.addEventListener("click", async () => {
+            try {
+                var position = await getCurrentPosition();
+                // Save latitude and longitude
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                console.log(latitude);
+                console.log(longitude);
+                await sendDataToServer(longitude,latitude)
+                showLocation(position);
+
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                locationDiv.innerText = "Error fetching location. Please try again later.";
+            }
+        });
+
+
+
+        // Append the pin icon to the map container
+      // Append the pin icon to the map container
+map.getElement().appendChild(pinIcon);
+
+
+        var locationDiv = document.getElementById("location-details");
+        var marker = null;
+
+        // Define a flag to track if location has been retrieved
+        var locationRetrieved = false;
+
+        // Event listener for location input
+        const locationInput = document.getElementById("location-input");
+        locationInput.addEventListener("input", async () => {
+            const query = locationInput.value.trim();
+            if (query !== "") {
+                const suggestions = await fetchPlaceSuggestions(query);
+                displayPlaceSuggestions(suggestions);
+            } else {
+                clearPlaceSuggestions();
+            }
+        });
+
+        // Add event listener to the map to listen for tap events
+        map.addEventListener('tap', function(evt) {
+            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+            // Call function to get details of the clicked location
+            getLocationDetails(coord.lat, coord.lng);
+            // Update marker position to the clicked location
+            if (marker) {
+                marker.setGeometry(new H.geo.Point(coord.lat, coord.lng));
+            } else {
+                marker = new H.map.Marker({
+                    lat: coord.lat,
+                    lng: coord.lng
+                });
+                map.addObject(marker);
+            }
+        });
+
+// Function to get location details
+async function getLocationDetails(latitude, longitude) {
+    try {
+        let timestamp = new Date().getTime();
+        let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&_=${timestamp}`, {
+            headers: {
+                'Accept-Language': 'en'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        let data = await response.json();
+        console.log(data);
+
+        let city = data.address.city || data.address.village || 'N/A';
+        let area = data.address.road || 'N/A';
+        let pincode = data.address.postcode || 'N/A';
+
+        console.log(city);
+        console.log(area);
+        console.log(pincode);
+
+        locationDiv.innerHTML = `<p>City: ${city}</p><p>Area: ${area}</p><p>Pincode: ${pincode}</p>`;
+    } catch (error) {
+        console.error("Error fetching location details:", error);
+        locationDiv.innerText = "Error fetching location details. Please try again later.";
+    }
+}
+        // Function to get the current position
+        async function getCurrentPosition() {
+            return new Promise((resolve, reject) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                } else {
+                    reject("Geolocation is not supported by this browser.");
+                }
+            });
+        }
+
+        // Function to show location on the map
+        async function showLocation(position) {
+            try {
+                let timestamp = new Date().getTime();
+                let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json&_=${timestamp}`, {
+                    headers: {
+                        'Accept-Language': 'en'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                let data = await response.json();
+                console.log(data);
+
+                let city = data.address.city || data.address.village || 'N/A';
+                let area = data.address.road || 'N/A';
+                let pincode = data.address.postcode || 'N/A';
+
+                // Clear existing markers on the map
+                map.removeObjects(map.getObjects());
+
+                // Set the center of the map to the current location with padding
+                var padding = 0.01; // Adjust this value as needed
+                var newCenter = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude - padding // Adjust longitude for padding
+                };
+                map.setCenter(newCenter);
+
+                // Set the zoom level to focus on the current location
+                map.setZoom(15);
+
+                // Create a marker for the current location
+                var marker = new H.map.Marker({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+                map.addObject(marker);
+
+                // Add bubble with location details
+                var bubble = new H.ui.InfoBubble({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }, {
+                    content: `<div>${city}, ${area}, ${pincode}</div>`
+                });
+                ui.addBubble(bubble);
+
+                locationDiv.innerHTML = `<p>City: ${city}</p><p>Area: ${area}</p><p>Pincode: ${pincode}</p>`;
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                locationDiv.innerText = "Error fetching location. Please try again later.";
+            }
+        }
+
+        let section20 = document.getElementById("section20");
+        let section21 = document.getElementById("section21");
+        let section22 = document.getElementById("section22");
+        let section25 = document.getElementById("section25");
+        let section7 = document.getElementById("section14");
+        
+        
+        function display21(){
+        
+            section21.classList.remove("d-none");
+            section22.classList.add("d-none");
+            section7.classList.add("d-none");
+            section25.classList.add("d-none");
+        }
+        
+        function display22(){
+            section21.classList.add("d-none");
+            section22.classList.remove("d-none"); 
+            section7.classList.add("d-none");
+            section25.classList.add("d-none");
+        }
+        
+        function display77(){
+            section21.classList.add("d-none");
+            section22.classList.add("d-none"); 
+            section7.classList.remove("d-none");  
+            section25.classList.add("d-none"); 
+        }
+        
+        function display25(){
+            section21.classList.add("d-none");
+            section22.classList.add("d-none"); 
+            section7.classList.add("d-none");  
+            section25.classList.remove("d-none");    
+        }
+
+        function display6(){
+            window.location.href = "/business/service";
+        }
+        
+        document.getElementById("upload-input").addEventListener("change", displayImage);
+
+        async function displayImage() {
+            const input = document.getElementById("upload-input");
+            const file = input.files[0];
+            if (file) {
+                try {
+                    const imageUrl = await uploadImage(file);
+                    updateImageSrc(imageUrl);
+                } catch (error) {
+                    console.error("Error uploading image:", error);
+                }
+            }
+        }
+
+        async function uploadImage(imageFile) {
+            const apiKey = "287b4ba48139a6a59e75b5a8266bbea2"; // Replace with your ImgBB API key
+            const apiUrl = "https://api.imgbb.com/1/upload";
+
+            const formData = new FormData();
+            formData.append("key", apiKey);
+            formData.append("image", imageFile);
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to upload image.");
+            }
+
+            const data = await response.json();
+            return data.data.url;
+        }
+
+        async function updateProfileUrl(profileUrl) {
+            try {
+                const response = await fetch('/businesslocation/profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        profileurllink: profileUrl
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.message); // Log the success message
+                } else {
+                    console.error('Failed to update profile URL');
+                }
+            } catch (error) {
+                console.error('Error updating profile URL:', error);
+            }
+        }
+
+        function updateImageSrc(src) {
+            const uploadedImage = document.getElementById("uploaded-image");
+            console.log(src);
+            uploadedImage.src = src;
+            updateProfileUrl(src);
+        }
+        
+        // section 22
+
+        let workerProof = document.getElementById("workerProof");
+
+        document
+            .getElementById("upload-inputworkerProof")
+            .addEventListener("change", displayImageworkerProof);
+
+        let imageProof = document.createElement("img");
+        imageProof.setAttribute("id", "uploaded-imageworkerProof");
+        workerProof.appendChild(imageProof);
+
+        async function displayImageworkerProof() {
+            const inputProof = document.getElementById("upload-inputworkerProof");
+            const file = inputProof.files[0];
+            if (file) {
+                try {
+                    const imageUrl = await uploadImage(file);
+                    updateImageSrcProof(imageUrl);
+                } catch (error) {
+                    console.error("Error uploading image:", error);
+                }
+            }
+        }
+
+        async function uploadImage(imageFile) {
+            const apiKey = "287b4ba48139a6a59e75b5a8266bbea2"; // Replace with your ImgBB API key
+            const apiUrl = "https://api.imgbb.com/1/upload";
+
+            const formData = new FormData();
+            formData.append("key", apiKey);
+            formData.append("image", imageFile);
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to upload image.");
+            }
+
+            const data = await response.json();
+            return data.data.url;
+        }
+
+        async function updateProofUrl(proofUrl) {
+            try {
+                const response = await fetch('/businesslocation/proof', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        proofurllink: proofUrl
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.message); // Log the success message
+                } else {
+                    console.error('Failed to update proof URL');
+                }
+            } catch (error) {
+                console.error('Error updating proof URL:', error);
+            }
+        }
+
+        function updateImageSrcProof(src) {
+            let workerProof = document.getElementById("uploaded-proof");
+                   
+                
+            workerProof.src = src;  
+          
+            console.log(src)
+            updateProofUrl(src);
+        }
+
+
+        let locationfield1 = document.getElementById("locationfield1");
+        let locationfield2 = document.getElementById("locationfield2");
+        let locationfield3 = document.getElementById("locationfield3");
+        let locationfield4 = document.getElementById("locationfield4");
+        let locationfield5 = document.getElementById("locationfield5");
+        let locationfield6 = document.getElementById("locationfield6");
+        let locationfield7 = document.getElementById("citySearchLocation");
+        let locationfield8 = document.getElementById("roadSearchInputLocation");
+        let locationfield9 = document.getElementById("locationfield9");
+        let locationfield10 = document.getElementById("searchInputOccupationRegLocation");
+        let locationfield11 = document.getElementById("locationfield11");
+        let locationfield12 = document.getElementById("locationfield12");
+                const formRegCityAllLocation = document.getElementById("formRegCityAllLocation");
+                const nextBtnLocation = document.getElementById("nextBtnLocation");
+                const backBtnLocation = document.getElementById("backBtnLocation");
+                const allInputLocation = formRegCityAllLocation.querySelectorAll(".first input");
+            
+                nextBtnLocation.addEventListener("click", () => {
+                    let allInputLocationsFilled = true;
+                    allInputLocation.forEach((input) => {
+                        if (input.value === "") {
+                            allInputLocationsFilled = false;
+                        }
+                    });
+            
+                    if (allInputLocationsFilled) {
+                        formRegCityAllLocation.classList.add("secActive");
+                    } else {
+                        formRegCityAllLocation.classList.remove("secActive");
+                    }
+                });
+            
+                backBtnLocation.addEventListener("click", () =>
+                    formRegCityAllLocation.classList.remove("secActive")
+                );
+        
+        // city search 
+        
+        const citySearchLocation = document.getElementById('citySearchLocation');
+        const citySuggestionsListLocation = document.getElementById('citySuggestionsListLocation');
+        
+        let currentPlaceLocation = {};
+        
+        function handleCitySuggestionClickLocation(place) {
+            console.log('Selected City:', place);
+        
+            let cityLocation = place.address.city || place.address.name;
+        
+            citySearchLocation.value = cityLocation;
+        
+            currentPlaceLocation = {
+                name: place.display_name,
+                pincodeLocation: place.address.postcode
+            };
+        
+            let areaLocation = place.display_place;
+            let streetLocation = place.address.road;
+            let pincodeLocation = place.address.postcode;
+        
+            console.log(cityLocation);
+            console.log(areaLocation);
+            console.log(streetLocation);
+            console.log(pincodeLocation);
+        
+            citySuggestionsListLocation.innerHTML = '';
+        }
+        
+        function debounceCityLocation(func, delay) {
+            let timeoutIdLocation;
+            return function() {
+                clearTimeout(timeoutIdLocation);
+                timeoutIdLocation = setTimeout(func, delay);
+            };
+        }
+        
+        function handleCityInputLocation() {
+            const searchTermLocation = citySearchLocation.value.trim();
+            if (searchTermLocation.length >= 2) {
+        
+                const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermLocation}`;
+        
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+        
+                        citySuggestionsListLocation.innerHTML = '';
+        
+                        data.forEach(place => {
+                            const li = document.createElement('li');
+                            li.textContent = place.display_name;
+                            li.addEventListener('click', () => handleCitySuggestionClickLocation(place));
+                            citySuggestionsListLocation.appendChild(li);
+                        });
+        
+                        citySuggestionsListLocation.style.display = 'block';
+                    })
+                    .catch(error => console.error('Error getting city suggestions:', error));
+            } else {
+                citySuggestionsListLocation.style.display = 'none';
+            }
+        }
+        
+        citySuggestionsListLocation.style.display = 'none';
+        
+        citySearchLocation.addEventListener('input', debounceCityLocation(handleCityInputLocation, 300));
+        
+        document.addEventListener('click', (event) => {
+            if (event.target !== citySearchLocation && event.target !== citySuggestionsListLocation) {
+                citySuggestionsListLocation.style.display = 'none';
+            }
+        });
+        
+        // Road search
+        
+        const roadSearchInputLocation = document.getElementById('roadSearchInputLocation');
+        const roadSearchSuggestionsLocationList = document.getElementById('roadSearchSuggestionsLocation');
+        
+        let currentPlaceLocation1 = {};
+        
+        function handleRoadSuggestionClickLocation(place) {
+            console.log('Selected Road:', place);
+        
+            let areaLocation = place.display_place;
+        
+            roadSearchInputLocation.value = areaLocation;
+        
+            currentPlaceLocation1 = {
+                name: place.display_name,
+                pincodeLocation: place.address.postcode
+            };
+        
+            let cityLocation = place.address.city || place.address.name;
+            let streetLocation = place.address.road;
+            let pincodeLocation = place.address.postcode;
+        
+            console.log(cityLocation);
+            console.log(areaLocation);
+            console.log(streetLocation);
+            console.log(pincodeLocation);
+        
+            roadSearchSuggestionsLocationList.innerHTML = '';
+        }
+        
+        function debounceRoadLocation(func, delay) {
+            let timeoutIdLocation;
+            return function() {
+                clearTimeout(timeoutIdLocation);
+                timeoutIdLocation = setTimeout(func, delay);
+            };
+        }
+        
+        function handleRoadInputLocation() {
+            const searchTermLocation = roadSearchInputLocation.value.trim();
+            if (searchTermLocation.length >= 2) {
+        
+                const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermLocation}`;
+        
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+        
+                        roadSearchSuggestionsLocationList.innerHTML = '';
+        
+                        data.forEach(place => {
+                            const li = document.createElement('li');
+                            li.textContent = place.display_name;
+                            li.addEventListener('click', () => handleRoadSuggestionClickLocation(place));
+                            roadSearchSuggestionsLocationList.appendChild(li);
+                        });
+        
+                        roadSearchSuggestionsLocationList.style.display = 'block';
+                    })
+                    .catch(error => console.error('Error getting road suggestions:', error));
+            } else {
+                roadSearchSuggestionsLocationList.style.display = 'none';
+            }
+        }
+        
+        roadSearchSuggestionsLocationList.style.display = 'none';
+        
+        roadSearchInputLocation.addEventListener('input', debounceRoadLocation(handleRoadInputLocation, 300));
+        
+        document.addEventListener('click', (event) => {
+            if (event.target !== roadSearchInputLocation && event.target !== roadSearchSuggestionsLocationList) {
+                roadSearchSuggestionsLocationList.style.display = 'none';
+            }
+        });
+        
+        
+        
+        
+        
+        
+        
+        //occupation search
+        
+        const arrayOccupationRegLocation = ["Fancy shop", "Street Foods", "Food Court", "Cloth shop", "Mall", "Carpentor shop", "Welder shop", "Book store", "Bakery", "Groceries shop", "Pan shop", "Plumber Shop", "Bricks shop", "Electrical shop", "Restaurant", "Tiles shop", "Sweet Shop", "Furniture shop", "Drinks shop", "Bar", "Hotel", "Dhaba", "School", "College", "Tailor shop", "Mechanic shop", "Cement shop", "Phone show room", "Vegtables shop", "Super market", "Chicken and mutton Shop", "Fish and sea food", "Bag shop", "Sports shop", "Water plant", "Medical shop", "Fast foods shop", "Dry clinic", "Car showroom", "Bike showroom", "Petrol bunk", "Banks", "Goldsmith", "Blacksmith", "Paint shop", "Sandal shop", "Hospitals", "Gas company", "Cycle showroom", "Pestiside shops", "Government office", "Library", "Temples", "Steel shop", "Internet center", "Busstand", "Railway station", "Air port", "Watch shop", "Auto Stand", "Nursery", "Iron shop", "Mess and fencing shop", "Paper shop", "Gym", "Cinema theater", "Parks", "Stadium", "Zoo", "Tourist place", "Glass shop", "Mesuem", "Photo shop", "Delivery shop", "ATM", "Gift shop", "Saloon shop"];
+        const searchInputOccupationRegLocation = document.getElementById("searchInputOccupationRegLocation");
+        const suggestionsContainerOccupationRegLocation = document.getElementById("suggestionsContainerOccupationRegLocation");
+        
+        document.addEventListener('click', function(event) {
+            const clickedSuggestionLocation = event.target.closest('.suggestion-itemOccupationReg');
+            if (clickedSuggestionLocation) {
+                searchInputOccupationRegLocation.value = clickedSuggestionLocation.textContent;
+                suggestionsContainerOccupationRegLocation.style.display = 'none';
+            } else if (!event.target.closest('#searchInputOccupationRegLocation') && !event.target.closest('#suggestionsContainerOccupationRegLocation')) {
+                suggestionsContainerOccupationRegLocation.style.display = 'none';
+            }
+        });
+        
+        function handleOccupationSuggestionClickLocation(suggestion) {
+            searchInputOccupationRegLocation.value = suggestion;
+            suggestionsContainerOccupationRegLocation.style.display = 'none';
+        }
+        
+        function updateOccupationSuggestionsLocation(filteredSuggestionsLocation) {
+            if (filteredSuggestionsLocation.length > 0) {
+                const suggestionListLocation = filteredSuggestionsLocation.map(suggestion => `<div class="suggestion-itemOccupationReg" onclick="handleOccupationSuggestionClickLocation('${suggestion}')">${suggestion}</div>`).join('');
+                suggestionsContainerOccupationRegLocation.innerHTML = suggestionListLocation;
+                suggestionsContainerOccupationRegLocation.style.display = 'block';
+            } else {
+                suggestionsContainerOccupationRegLocation.style.display = 'none';
+            }
+        }
+        
+        function showSuggestionsOccupationRegLocation() {
+            const inputValueLocation = searchInputOccupationRegLocation.value.toLowerCase();
+            const filteredSuggestionsLocation = arrayOccupationRegLocation.filter(suggestion => suggestion.toLowerCase().includes(inputValueLocation));
+            updateOccupationSuggestionsLocation(filteredSuggestionsLocation);
+        }
+        
+        const submitButtonLocation = document.getElementById("submitButtonLocation");
+        
+        function handleSubmitLocation(event) {
+            alert("clicked");
+            event.preventDefault();
+            
+            const locationData = {
+                email: document.getElementById("locationfield1").value,
+                shopname: document.getElementById("locationfield2").value,
+                opensinaweek: document.getElementById("locationfield3").value,
+                openat: document.getElementById("locationfield4").value,
+                closesat: document.getElementById("locationfield5").value,
+                phoneno: document.getElementById("locationfield6").value,
+                city: document.getElementById("citySearchLocation").value,
+                areaLocation: document.getElementById("roadSearchInputLocation").value,
+                state: document.getElementById("locationfield9").value,
+                type: document.getElementById("searchInputOccupationRegLocation").value,
+                pincodeLocation: document.getElementById("locationfield11").value,
+                special: document.getElementById("locationfield12").value,
+                locationRegistrationStatus: true
+            };
+        
+            fetch("/business/location/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(locationData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle successful response from the server
+                console.log(data);
+                alert("Location registration successful");
+                // Redirect or perform any other actions as needed
+            })
+            .catch(error => {
+                // Handle errors
+                console.error("Error:", error);
+                alert("An error occurred during location registration");
+            });
+        }
+        
+        
+        
+        
+        
+        submitButtonLocation.addEventListener("click", handleSubmitLocation);
+        
+        
+
+
+
+            // Define the display1 function
+            function display1() {
+                window.location.href = '/';
+            }
+        
+            // Define the display2 function
+            function display2(){
+                window.location.href = '/user/signin';
+            }
+        
+            // Define the display5 function
+            function display5() {
+                window.location.href = '/business/signup';
+            }
+        
+            // Define the display3 function
+            function display3(){
+                window.location.href = '/business/signin';
+            }
+        
+            // Define the display4 function
+            function display4(){
+                window.location.href = '/user/signup';
+            }
+
+            // Define the display6 function 
+            function display6(){
+                window.location.href = '/business/service';
+            }
+        
+            // Define the display7 function 
+            function display7(){
+                window.location.href = '/business/skilledworkers/registration';
+            }
+
+
+
+    </script>
+</body>
+
+</html>

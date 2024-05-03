@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="/myguider.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+    <style>
+        .billDiv{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background-color: #EBEBEB;
+        }
+        .recieptDiv{
+            display: flex;
+            flex-direction: row;
+            width: 100%;  
+            justify-content: space-around;
+        }
+        .yourBillHead{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .billMoney{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .handCash{
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .rupeeIcon{
+            padding-right: 10px;
+            color: blue;
+        }
+        .rupees{
+            font-weight: bold;
+        }
+        .billIcon{
+            font-size: 20px;
+        }
+        .serviceDetails{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding-top: 50px;
+            padding: 10px;
+            width: auto;
+        }
+        .iconColor{
+            border: 0px;
+            border-radius: 50%;
+            background-color: rgb(2, 128, 0);
+            box-shadow: 0 0 10px 5px rgba(0, 255, 0, 0.7);
+            width: 20px;
+            height: 20px;
+        }
+        .iconColorRed{
+            border: 0px;
+            border-radius: 50%;
+            background-color: rgb(200, 51, 51);
+            box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.7);
+            width: 20px;
+            height: 20px;
+        }
+        .greenToRed {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            
+        }
+        .greenToRed p {
+            margin: 0;
+        }
+        .greenToRed .line {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #ccc;
+            margin: 0 5px;
+        }
+        .greenToRed .bi-person {
+            margin: 0 5px;
+            font-size: 20px;
+        }
+        .line{
+            width: 10px;
+            color: black;
+        }
+        .timeDiv{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .ratingHeading{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .captainIcon{
+            font-size: 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="billDiv">
+        <div class="recieptDiv">
+            <h1 class="yourBillHead">Your Bill</h1>
+            <i class="bi bi-receipt billIcon"></i>
+        </div>
+        <div class="cashDiv mt-5">
+            <h1 class="rupees">99<span class="rupeeIcon">₹</span><i class="fa-regular fa-circle-check"></i></h1>
+        </div>
+        <button class="handCash m-3">PAYED IN CASH  <i class="fa-solid fa-money-bill-1-wave billIcon"></i></span></button>
+    </div>
+    <div class="serviceDetails pt-5">
+        <p>Sat, 27 Apr, 8:05 PM</p> 
+        <div class="pt-3 greenToRed">   
+            <span class="iconColor"></span>
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <i class="bi bi-person"></i>
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <span class="iconColorRed"></span>
+        </div>
+        <div class="timeDiv">
+            <p>7:05</p>
+            <p>captain</p>
+            <p>7:55</p>
+        </div>
+        <h1 class="ratingHeading">Rate your Captain</h1>
+        <i class="bi bi-person-fill captainIcon"></i>
+        <div id="star">
+
+        </div>
+    </div>
+
+    <script>
+        let star = document.getElementById("star");
+
+        // Create the rating box
+        const ratingBox = document.createElement('div');
+        ratingBox.classList.add('rating-box');
+        
+        const ratingHeader = document.createElement('header');
+        ratingHeader.textContent = 'Give us a rating';
+        
+        const ratingStars = document.createElement('div');
+        ratingStars.classList.add('stars');
+        
+        // Add stars to the ratingStars div
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement('i');
+            star.classList.add('fa-solid', 'fa-star');
+            star.dataset.rating = i;
+            ratingStars.appendChild(star);
+        }
+        
+        // Add an event listener to the rating stars
+        ratingStars.addEventListener('click', (event) => {
+            const clickedStar = event.target;
+        
+            // Check if the clicked element is a star (i tag)
+            if (clickedStar.tagName === 'I') {
+                const selectedRating = clickedStar.dataset.rating;
+        
+                // Remove 'active' class from all stars
+                ratingStars.querySelectorAll('i').forEach(star => star.classList.remove('active'));
+        
+                // Add 'active' class to the clicked star and stars with a lower index
+                ratingStars.querySelectorAll('i').forEach(star => {
+                    if (star.dataset.rating <= selectedRating) {
+                        star.classList.add('active');
+                    }
+                });
+        
+                // Save the rating to local storage or perform any other action
+                console.log(`User gave a rating of ${selectedRating}`);
+            }
+        });
+        
+        // Append elements to the rating box
+        ratingBox.appendChild(ratingHeader);
+        ratingBox.appendChild(ratingStars);
+        
+        // Append the rating box to the 'star' element
+        star.appendChild(ratingBox);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="myguider.css">
+    <link rel="stylesheet" type="text/css" href="/myguider.css">
+
+</head>
+
+
+
+
+<body>
+
+ <!-- section 20 slide bar-->
+
+ <div id="section20" class=" ">
+    <div id="nav-bar">
+        <input id="nav-toggle" type="checkbox">
+
+        <div id="nav-header">
+            <a id="nav-title"  target="_blank">
+                <i class="fab fa-glide brand-icon fontMainPage"></i><span class="headingMainPage">My Guider</span>
+            </a>
+            <label for="nav-toggle">
+                <span id="nav-toggle-burger"></span>
+            </label>
+            <hr>
+        </div>
+        <i class=" fa-palette"></i>
+        <div id="nav-content">
+            <div class="nav-button" onclick="display21()">
+                <span><div class="fas"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5" />
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                </svg></div> Profile</span>
+            </div>
+            <div class="nav-button" onclick="display22()"><span><i class="fa-solid fa-address-card fas"></i> Aadhar Proof</span></div>
+            <div class="nav-button" onclick="display77()"><span><i class="fa-regular fa-file fas"></i> Registration Form</span></div>
+            <div class="nav-button" onclick="display25()"><span><i class="bi bi-geo-alt-fill fas"></i> Maps</span></div>
+            <hr>
+            <div class="nav-button"><span><i class="fa-solid fa-video fas"></i> Guide Videos</span></div>
+            <div class="nav-button" onclick="display6()">
+                <span><ion-icon name="albums-outline" class="fas"></ion-icon> Back to service</span>
+            </div>
+            <!--    <div class="nav-button"><i class="fas fa-fire"></i><span>Challenges</span></div>
+        <div class="nav-button"><i class="fas fa-magic"></i><span>Spark</span></div>
+        <hr>
+        <div class="nav-button"><i class="fas fa-gem"></i><span>Codepen Pro</span></div>
+        <div id="nav-content-highlight"></div> -->
+        </div>
+
+        <input id="nav-footer-toggle" type="checkbox">
+
+        <div id="nav-footer">
+            <div id="nav-footer-heading">
+                <div id="nav-footer-avatar">
+                    <div class="fas mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="nav-footer-titlebox" onclick="display1()">
+                    <a id="nav-footer-title">LogOut</a>
+
+                </div>
+                <label for="nav-footer-toggle"><span><i class="fas fa-caret-up"></i></span></label>
+            </div>
+
+            <div id="nav-footer-content">
+                You are go to My Guider main page.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- <div id="map"></div>
+    <input type="text" id="location-input" placeholder="Enter a location">
+    <ul id="suggestionsListProperty2"></ul>
+    <div id="location-details"></div>
+    <button id="get-location" class="btn bg-primary">getlocation</button> -->
+
+
+    <!-- <div id="map-container">
+        <div id="map"></div>
+        <input type="text" id="location-input" class="search-box" placeholder="Enter a location">
+        <ul id="suggestionsListProperty2"></ul>
+        <div id="location-details"></div>
+        <button id="get-location" class="btn bg-primary">getlocation</button>
+    </div> -->
+  <div id="section25">
+    <div id="map"></div>
+<div id="search-container">
+    <input type="text" id="location-input" class="search-box" placeholder="Enter a location">
+    <ul id="suggestionsListProperty2" class="suggestions-list"></ul>
+</div>
+<div id="location-details"></div>
+<button id="get-location" class="btn bg-primary">getlocation</button>
+
+</div>  
+
+ <!-- section 21 skilled workers profile  -->
+ <div id="section21" class="d-none">
+    <div class="profile">
+        <div id="image-container">
+            <img id="uploaded-image" src="#" alt="" />
+        </div>
+        <input type="file" id="upload-input" accept="image/*" onchange="displayImage()" />
+        <label for="upload-input" id="upload-label">Upload Image</label>
+    </div>
+</div>
+
+    <!-- section 22 worker aadhar proof-->
+    <div id="section22" class="d-none">
+        <div class="profile">
+            <div id="workerProof">
+                <img id="uploaded-proof" src="#" alt="" />
+            </div>
+            <input type="file" id="upload-inputworkerProof" accept="image/*" onchange="displayImageworkerProof()" />
+            <label for="upload-inputworkerProof" id="upload-labelworkerProof">Upload Image</label>
+        </div>
+    </div>
+
+
+        <!-- section12 registration for parttimes -->
+        <div class="center-container" id="section12">
+            <div class="container9">
+                <header class="reg">Registration</header>
+                <form action="#" id="formRegCityAllParttime">
+                    <div class="form first" id="firstFormAll">
+                        <div class="details personal">
+                            <span class="title">Personal Detail</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="PartTime1">Email</label>
+                                    <input type="text" placeholder="Enter your email" required id="PartTime1" />
+                                </div>
+
+                                <div class="input-field">
+                                    <label for="PartTime3">Shopname or Companyname</label>
+                                    <input type="text" placeholder="Enter your full name" required id="PartTime3" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime4">Type</label>
+                                    <select class="regSelect" id="PartTime4">
+                                        <option value="Part Time">Part Time</option>
+                                        <option value="Full Time">Full Time</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime5">Phone number</label>
+                                    <input type="tel" placeholder="Enter your phone number" required id="PartTime5" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime6">No of Vacancies</label>
+                                    <input type="number" placeholder="Enter vacancies" required id="PartTime6" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details ID">
+                            <button class="backRegistration btn bg-primary" id="backRegistration3">Back to Home</button>
+                            <button class="nextBtnParttime buttonRegistration" id="nextBtnParttime">
+                                <span class="btnText">
+                                    Next
+                                    <i class="fa-solid fa-forward"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form second">
+                        <div class="details address">
+                            <span class="title">Profession Details</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="citySearchParttime">City</label>
+                                    <input type="text" placeholder="Enter your city" required id="citySearchParttime" />
+                                    <div>
+                                        <ul id="citySuggestionsListPartTime"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="roadSearchInputParttime">Area</label>
+                                    <input type="address" placeholder="Enter pin code" required id="roadSearchInputParttime" />
+                                    <div>
+                                        <ul id="roadSearchSuggestionsListParttime"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime9">Pin Code</label>
+                                    <input type="number" placeholder="Enter your occupation" required id="PartTime9" />
+                                </div>
+
+
+                                <div class="input-field">
+                                    <label for="searchInputOccupationRegParttime">Education</label>
+                                    <select class="regSelect" id="searchInputOccupationRegParttime">
+                                        <option value="Any One">Any One</option>
+                                        <option value="Above 10th">Above 10th</option>
+                                        <option value="PG">PG</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field">
+                                    <label for="PartTime11">Expected Salary</label>
+                                    <input type="number" placeholder="Enter expected Salary" required id="PartTime11" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="PartTime2">Job For</label>
+                                    <select class="regSelect" id="PartTime2">
+                                        <option value="Any One">Any One</option>
+                                        <option value="Only for mens">Only for mens</option>
+                                        <option value="Only for women">Only for women</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="details family">
+                                <div class="buttons">
+                                    <div class="backBtnParttime" id="backBtnParttime">
+                                        <a href="#" class="btnText">
+                                            <i class="fa-solid fa-forward"></i>
+                                        </a>
+                                    </div>
+                                    <button class="nextBtnParttime btn buttonRegistration" type="button">
+                                        <span class="btnText" id="submitButtonParttime">
+                                            Submit
+                                            <i class="fa-solid fa-forward"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    <script>
+        // Function to fetch place suggestions based on user input
+        async function fetchPlaceSuggestions(query) {
+            try {
+                const response = await fetch(`https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${query}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return data;
+                } else {
+                    console.error('Error fetching place suggestions:', response.statusText);
+                    return [];
+                }
+            } catch (error) {
+                console.error('Error fetching place suggestions:', error.message);
+                return [];
+            }
+        }
+
+// Declare variables to store latitude and longitude
+let latitude = 0;
+let longitude = 0;
+
+// Function to handle suggestion click
+async function handleSuggestionClick(place) {
+    // Alert to confirm that the function is working
+    alert("working");
+
+    // Store latitude and longitude in respective variables
+    let latitude = place.lat;
+    let longitude = place.lon;
+
+    console.log(latitude);
+    console.log(longitude);
+
+    // Paste the selected location into the search box
+    document.getElementById('location-input').value = place.display_name;
+
+    // Zoom to the selected location
+    map.setCenter({ lat: latitude, lng: longitude });
+    map.setZoom(15);
+
+    // Remove any existing markers from the map
+    map.removeObjects(map.getObjects());
+
+    // Add a marker for the selected location
+    var marker = new H.map.Marker({ lat: latitude, lng: longitude });
+    map.addObject(marker);
+
+    await sendDataToServer(longitude,latitude);
+
+    // Display location details
+    await getLocationDetails(latitude, longitude);
+
+    // Clear the suggestions list
+    clearPlaceSuggestions();
+}
+
+
+
+
+        // Function to display place suggestions
+        function displayPlaceSuggestions(suggestions) {
+            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+            suggestionsListProperty2.innerHTML = '';
+
+            suggestions.forEach(place => {
+                const li = document.createElement('li');
+                li.textContent = place.display_name;
+                li.addEventListener('click', () => handleSuggestionClick(place));
+                suggestionsListProperty2.appendChild(li);
+            });
+
+            suggestionsListProperty2.style.display = 'block';
+        }
+
+        // Function to clear place suggestions
+        function clearPlaceSuggestions() {
+            const suggestionsListProperty2 = document.getElementById('suggestionsListProperty2');
+            suggestionsListProperty2.innerHTML = '';
+            suggestionsListProperty2.style.display = 'none';
+        }
+
+        // Initialize the map            
+        var platform = new H.service.Platform({
+            'apikey': 'Wt0nBkP_kcThUD6OQ4GzIZJycwbtzxeGl-4NOT9BLiw'
+        });
+
+        var defaultLayers = platform.createDefaultLayers();
+        var map = new H.Map(
+            document.getElementById('map'),
+            defaultLayers.vector.normal.map, {
+                zoom: 5, // Adjust the zoom level as needed
+                center: {
+                    lat: 20.5937, // Latitude of India
+                    lng: 78.9629 // Longitude of India
+                },
+                pixelRatio: window.devicePixelRatio || 1 // Hide default marker
+            });
+        
+
+        // Define the behavior variable
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map, {
+            'dragging': true, // Enable dragging (panning)
+            'mouseWheel': true, // Enable mouse wheel zoom
+            'pinchZoom': true, // Enable pinch zoom
+            'doubleClickZoom': false, // Disable double-click zoom
+            'keyboard': true // Enable keyboard navigation
+        }));
+
+        // Define the UI variable
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+        // Create the pin icon
+
+        const pinIcon = document.createElement("i");
+        
+        pinIcon.classList.add("bi", "bi-crosshair2", "pin-icon");
+        pinIcon.style.fontSize = "24px"; // Set the font size to make the icon visible
+
+         // Function to send longitude and latitude to the server
+         async function sendDataToServer(longitude,latitude) {
+
+
+            try {
+                const response = await fetch('/mapsparttime', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ longitude, latitude })
+                });
+
+                if (response.ok) {
+                    console.log('Data sent successfully to server');
+                    // Optionally, you can redirect or show a success message here
+                } else {
+                    console.error('Failed to send data to server:', response.statusText);
+                    // Handle the error accordingly
+                }
+            } catch (error) {
+                console.error('Error sending data to server:', error);
+                // Handle the error accordingly
+            }
+        }
+
+        // Add event listener to pin icon for getting current location
+        pinIcon.addEventListener("click", async () => {
+            try {
+                var position = await getCurrentPosition();
+                // Save latitude and longitude
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                console.log(latitude);
+                console.log(longitude);
+                await sendDataToServer(longitude,latitude)
+                showLocation(position);
+
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                locationDiv.innerText = "Error fetching location. Please try again later.";
+            }
+        });
+
+
+
+        // Append the pin icon to the map container
+      // Append the pin icon to the map container
+map.getElement().appendChild(pinIcon);
+
+
+        var locationDiv = document.getElementById("location-details");
+        var marker = null;
+
+        // Define a flag to track if location has been retrieved
+        var locationRetrieved = false;
+
+        // Event listener for location input
+        const locationInput = document.getElementById("location-input");
+        locationInput.addEventListener("input", async () => {
+            const query = locationInput.value.trim();
+            if (query !== "") {
+                const suggestions = await fetchPlaceSuggestions(query);
+                displayPlaceSuggestions(suggestions);
+            } else {
+                clearPlaceSuggestions();
+            }
+        });
+
+        // Add event listener to the map to listen for tap events
+        map.addEventListener('tap', function(evt) {
+            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+            // Call function to get details of the clicked location
+            getLocationDetails(coord.lat, coord.lng);
+            // Update marker position to the clicked location
+            if (marker) {
+                marker.setGeometry(new H.geo.Point(coord.lat, coord.lng));
+            } else {
+                marker = new H.map.Marker({
+                    lat: coord.lat,
+                    lng: coord.lng
+                });
+                map.addObject(marker);
+            }
+        });
+
+// Function to get location details
+async function getLocationDetails(latitude, longitude) {
+    try {
+        let timestamp = new Date().getTime();
+        let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&_=${timestamp}`, {
+            headers: {
+                'Accept-Language': 'en'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        let data = await response.json();
+        console.log(data);
+
+        let city = data.address.city || data.address.village || 'N/A';
+        let area = data.address.road || 'N/A';
+        let pincode = data.address.postcode || 'N/A';
+
+        console.log(city);
+        console.log(area);
+        console.log(pincode);
+
+        locationDiv.innerHTML = `<p>City: ${city}</p><p>Area: ${area}</p><p>Pincode: ${pincode}</p>`;
+    } catch (error) {
+        console.error("Error fetching location details:", error);
+        locationDiv.innerText = "Error fetching location details. Please try again later.";
+    }
+}
+        // Function to get the current position
+        async function getCurrentPosition() {
+            return new Promise((resolve, reject) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                } else {
+                    reject("Geolocation is not supported by this browser.");
+                }
+            });
+        }
+
+        // Function to show location on the map
+        async function showLocation(position) {
+            try {
+                let timestamp = new Date().getTime();
+                let response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json&_=${timestamp}`, {
+                    headers: {
+                        'Accept-Language': 'en'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                let data = await response.json();
+                console.log(data);
+
+                let city = data.address.city || data.address.village || 'N/A';
+                let area = data.address.road || 'N/A';
+                let pincode = data.address.postcode || 'N/A';
+
+                // Clear existing markers on the map
+                map.removeObjects(map.getObjects());
+
+                // Set the center of the map to the current location with padding
+                var padding = 0.01; // Adjust this value as needed
+                var newCenter = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude - padding // Adjust longitude for padding
+                };
+                map.setCenter(newCenter);
+
+                // Set the zoom level to focus on the current location
+                map.setZoom(15);
+
+                // Create a marker for the current location
+                var marker = new H.map.Marker({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+                map.addObject(marker);
+
+                // Add bubble with location details
+                var bubble = new H.ui.InfoBubble({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }, {
+                    content: `<div>${city}, ${area}, ${pincode}</div>`
+                });
+                ui.addBubble(bubble);
+
+                locationDiv.innerHTML = `<p>City: ${city}</p><p>Area: ${area}</p><p>Pincode: ${pincode}</p>`;
+            } catch (error) {
+                console.error("Error fetching location:", error);
+                locationDiv.innerText = "Error fetching location. Please try again later.";
+            }
+        }
+
+        let section20 = document.getElementById("section20");
+        let section21 = document.getElementById("section21");
+        let section22 = document.getElementById("section22");
+        let section25 = document.getElementById("section25");
+        let section7 = document.getElementById("section12");
+        
+        
+        function display21(){
+        
+            section21.classList.remove("d-none");
+            section22.classList.add("d-none");
+            section7.classList.add("d-none");
+            section25.classList.add("d-none");
+        }
+        
+        function display22(){
+            section21.classList.add("d-none");
+            section22.classList.remove("d-none"); 
+            section7.classList.add("d-none");
+            section25.classList.add("d-none");
+        }
+        
+        function display77(){
+            section21.classList.add("d-none");
+            section22.classList.add("d-none"); 
+            section7.classList.remove("d-none");  
+            section25.classList.add("d-none"); 
+        }
+        
+        function display25(){
+            section21.classList.add("d-none");
+            section22.classList.add("d-none"); 
+            section7.classList.add("d-none");  
+            section25.classList.remove("d-none");    
+        }
+
+        function display6(){
+            window.location.href = "/business/service";
+        }
+        
+        document.getElementById("upload-input").addEventListener("change", displayImage);
+
+        async function displayImage() {
+            const input = document.getElementById("upload-input");
+            const file = input.files[0];
+            if (file) {
+                try {
+                    const imageUrl = await uploadImage(file);
+                    updateImageSrc(imageUrl);
+                } catch (error) {
+                    console.error("Error uploading image:", error);
+                }
+            }
+        }
+
+        async function uploadImage(imageFile) {
+            const apiKey = "287b4ba48139a6a59e75b5a8266bbea2"; // Replace with your ImgBB API key
+            const apiUrl = "https://api.imgbb.com/1/upload";
+
+            const formData = new FormData();
+            formData.append("key", apiKey);
+            formData.append("image", imageFile);
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to upload image.");
+            }
+
+            const data = await response.json();
+            return data.data.url;
+        }
+
+        async function updateProfileUrl(profileUrl) {
+            try {
+                const response = await fetch('/parttime/profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        profileurllink: profileUrl
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.message); // Log the success message
+                } else {
+                    console.error('Failed to update profile URL');
+                }
+            } catch (error) {
+                console.error('Error updating profile URL:', error);
+            }
+        }
+
+        function updateImageSrc(src) {
+            const uploadedImage = document.getElementById("uploaded-image");
+            console.log(src);
+            uploadedImage.src = src;
+            updateProfileUrl(src);
+        }
+        
+        // section 22
+
+        let workerProof = document.getElementById("workerProof");
+
+        document
+            .getElementById("upload-inputworkerProof")
+            .addEventListener("change", displayImageworkerProof);
+
+        let imageProof = document.createElement("img");
+        imageProof.setAttribute("id", "uploaded-imageworkerProof");
+        workerProof.appendChild(imageProof);
+
+        async function displayImageworkerProof() {
+            const inputProof = document.getElementById("upload-inputworkerProof");
+            const file = inputProof.files[0];
+            if (file) {
+                try {
+                    const imageUrl = await uploadImage(file);
+                    updateImageSrcProof(imageUrl);
+                } catch (error) {
+                    console.error("Error uploading image:", error);
+                }
+            }
+        }
+
+        async function uploadImage(imageFile) {
+            const apiKey = "287b4ba48139a6a59e75b5a8266bbea2"; // Replace with your ImgBB API key
+            const apiUrl = "https://api.imgbb.com/1/upload";
+
+            const formData = new FormData();
+            formData.append("key", apiKey);
+            formData.append("image", imageFile);
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to upload image.");
+            }
+
+            const data = await response.json();
+            return data.data.url;
+        }
+
+        async function updateProofUrl(proofUrl) {
+            try {
+                const response = await fetch('/parttime/proof', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        proofurllink: proofUrl
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.message); // Log the success message
+                } else {
+                    console.error('Failed to update proof URL');
+                }
+            } catch (error) {
+                console.error('Error updating proof URL:', error);
+            }
+        }
+
+        function updateImageSrcProof(src) {
+            let workerProof = document.getElementById("uploaded-proof");
+                   
+                
+            workerProof.src = src;  
+          
+            console.log(src)
+            updateProofUrl(src);
+        }
+
+
+        // section 12 parttime registration
+
+
+        let valuePartTime1 = document.getElementById("PartTime1");
+            let valuePartTime2 = document.getElementById("PartTime2");
+            let valuePartTime3 = document.getElementById("PartTime3");
+            let valuePartTime4 = document.getElementById("PartTime4");
+            let valuePartTime5 = document.getElementById("PartTime5");
+            let valuePartTime6 = document.getElementById("PartTime6");
+            let valuePartTime7 = document.getElementById("citySearchParttime");
+            let valuePartTime8 = document.getElementById("roadSearchInputParttime");
+            let valuePartTime9 = document.getElementById("PartTime9");
+            let valuePartTime10 = document.getElementById("searchInputOccupationRegParttime");
+            let valuePartTime11 = document.getElementById("PartTime11");
+
+
+
+            const formRegCityAllParttime = document.getElementById("formRegCityAllParttime");
+            const nextBtnParttime = document.getElementById("nextBtnParttime");
+            const backBtnParttime = document.getElementById("backBtnParttime");
+            const allInputPartTime = formRegCityAllParttime.querySelectorAll(".first input");
+        
+            // Function to handle next button click event
+            nextBtnParttime.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+        
+                let allInputPartTimesFilled = true;
+                allInputPartTime.forEach((input) => {
+                    if (input.value === "") {
+                        allInputPartTimesFilled = false;
+                    }
+                });
+        
+                if (allInputPartTimesFilled) {
+                    formRegCityAllParttime.classList.add("secActive");
+                } else {
+                    formRegCityAllParttime.classList.remove("secActive");
+                }
+            });
+        
+            // Function to handle back button click event
+            backBtnParttime.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+                formRegCityAllParttime.classList.remove("secActive");
+            });
+
+
+            // city search 
+
+const citySearchParttime = document.getElementById('citySearchParttime');
+const citySuggestionsListPartTime = document.getElementById('citySuggestionsListPartTime');
+
+let currentPlacePartTime = {};
+
+function handleCitySuggestionClickParttime(place) {
+    console.log('Selected City:', place);
+
+    let cityParttime = place.address.city || place.address.name;
+
+    citySearchParttime.value = cityParttime;
+
+    currentPlacePartTime = {
+        name: place.display_name,
+        pincode: place.address.postcode
+    };
+
+    let areaParttime = place.display_place;
+    let streetParttime = place.address.road;
+    let pincodeParttime = place.address.postcode;
+
+    console.log(cityParttime);
+    console.log(areaParttime);
+    console.log(streetParttime);
+    console.log(pincodeParttime);
+
+    citySuggestionsListPartTime.innerHTML = '';
+}
+
+function debounceCityParttime(func, delay) {
+    let timeoutIdParttime;
+    return function() {
+        clearTimeout(timeoutIdParttime);
+        timeoutIdParttime = setTimeout(func, delay);
+    };
+}
+
+function handleCityInputParttime() {
+    const searchTermParttime = citySearchParttime.value.trim();
+    if (searchTermParttime.length >= 2) {
+
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermParttime}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+                citySuggestionsListPartTime.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleCitySuggestionClickParttime(place));
+                    citySuggestionsListPartTime.appendChild(li);
+                });
+
+                citySuggestionsListPartTime.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting city suggestions:', error));
+    } else {
+        citySuggestionsListPartTime.style.display = 'none';
+    }
+}
+
+citySuggestionsListPartTime.style.display = 'none';
+
+citySearchParttime.addEventListener('input', debounceCityParttime(handleCityInputParttime, 300));
+
+document.addEventListener('click', (event) => {
+    if (event.target !== citySearchParttime && event.target !== citySuggestionsListPartTime) {
+        citySuggestionsListPartTime.style.display = 'none';
+    }
+});
+
+// Road search
+
+const roadSearchInputParttime = document.getElementById('roadSearchInputParttime');
+const roadSearchSuggestionsListParttime = document.getElementById('roadSearchSuggestionsListParttime');
+
+let currentPlacePartTime1 = {};
+
+function handleRoadSuggestionClickParttime(place) {
+    console.log('Selected Road:', place);
+
+    let areaParttime = place.display_place;
+
+    roadSearchInputParttime.value = areaParttime;
+
+    currentPlacePartTime1 = {
+        name: place.display_name,
+        pincodeS: place.address.postcode
+    };
+
+    let cityParttime = place.address.city || place.address.name;
+    let streetParttime = place.address.road;
+    let pincodeParttime = place.address.postcode;
+
+    console.log(cityParttime);
+    console.log(areaParttime);
+    console.log(streetParttime);
+    console.log(pincodeParttime);
+
+    roadSearchSuggestionsListParttime.innerHTML = '';
+}
+
+function debounceRoadParttime(func, delay) {
+    let timeoutIdParttime;
+    return function() {
+        clearTimeout(timeoutIdParttime);
+        timeoutIdParttime = setTimeout(func, delay);
+    };
+}
+
+function handleRoadInputParttime() {
+    const searchTermParttime = roadSearchInputParttime.value.trim();
+    if (searchTermParttime.length >= 2) {
+
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermParttime}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+                roadSearchSuggestionsListParttime.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleRoadSuggestionClickParttime(place));
+                    roadSearchSuggestionsListParttime.appendChild(li);
+                });
+
+                roadSearchSuggestionsListParttime.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting road suggestions:', error));
+    } else {
+        roadSearchSuggestionsListParttime.style.display = 'none';
+    }
+}
+
+roadSearchSuggestionsListParttime.style.display = 'none';
+
+roadSearchInputParttime.addEventListener('input', debounceRoadParttime(handleRoadInputParttime, 300));
+
+document.addEventListener('click', (event) => {
+    if (event.target !== roadSearchInputParttime && event.target !== roadSearchSuggestionsListParttime) {
+        roadSearchSuggestionsListParttime.style.display = 'none';
+    }
+});
+
+
+
+
+
+
+            const submitButtonParttime = document.getElementById("submitButtonParttime");
+            const parttimeForm = document.getElementById("formRegCityAllParttime");
+        
+            
+        
+            function handleSubmitParttime(event) {
+                event.preventDefault();
+            
+                // Construct form data object
+                const formValues = {
+                    email: document.getElementById('PartTime1').value,
+                    shop_name: document.getElementById('PartTime3').value,
+                    work_type: document.getElementById('PartTime4').value,
+                    phonenumber: document.getElementById('PartTime5').value,
+                    no_of_vacancies: document.getElementById('PartTime6').value,
+                    city: document.getElementById('citySearchParttime').value,
+                    area: document.getElementById('roadSearchInputParttime').value,
+                    pincode: document.getElementById('PartTime9').value,
+                    education: document.getElementById('searchInputOccupationRegParttime').value,
+                    expected_salary: document.getElementById('PartTime11').value,
+                    job_for: document.getElementById('PartTime2').value
+                    // Add more fields if needed
+                };
+            
+                // Make a POST request to the backend with form data
+                fetch('/parttime/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formValues)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    alert(data.message);
+                    // Handle success, e.g., redirect to another page
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors, e.g., display error message to the user
+                });
+            }
+
+            submitButtonParttime.addEventListener("click", handleSubmitParttime);
+
+
+
+
+        
+
+
+
+            // Define the display1 function
+            function display1() {
+                window.location.href = '/';
+            }
+        
+            // Define the display2 function
+            function display2(){
+                window.location.href = '/user/signin';
+            }
+        
+            // Define the display5 function
+            function display5() {
+                window.location.href = '/business/signup';
+            }
+        
+            // Define the display3 function
+            function display3(){
+                window.location.href = '/business/signin';
+            }
+        
+            // Define the display4 function
+            function display4(){
+                window.location.href = '/user/signup';
+            }
+
+            // Define the display6 function 
+            function display6(){
+                window.location.href = '/business/service';
+            }
+        
+            // Define the display7 function 
+            function display7(){
+                window.location.href = '/business/skilledworkers/registration';
+            }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="myguider.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+        <script src="/myguider.js"></script>
+        <script src="myguider.js"></script>
+    </head>
+    <body>
+        
+    <!-- section 17 Buisness home page for property  -->
+
+        <div class="" id="section17">
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light navBackground fixed-top">
+                    <a class="navbar-brand" href="#"><i class="fab fa-glide brand-icon fontMainPage"></i><span class="headingMainPage">My Guider</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto fontFamilyMainPage">
+                            <a class="nav-link active" href="#section6">
+
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link " href="#" onclick="display2(); nullEntered()">
+
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-link" href="#"></a>
+                            <a class="nav-link " href="#" onclick="display6()">LogOut <span class="sr-only">(current)</span></a>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="businessSkilledHomePageContainer mt-5">
+                <div class="d-flex flex-row justify-content-center">
+                    <div class="skilledStatusCard shadow pt-3">
+                        <h1 class="skilledStatusHead text-center" id="">Your Current Status <span id="currentStatusPresent2"></span></h1>
+                        <div class="text-center mt-5">
+                            <button class="btn buttonSkillHelp" id="buttonPropertyHelp">Ready to Help</button>
+                            <button class="btn buttonSkillUnHelp" id="buttonPropertyUnHelp">Unable to Help</button>
+                            <p class="pt-5 skilledStatuspara1" id="buttonPropertyHelpPara">Great to hear now you are online your deatils will display to the user</p>
+                            <p class="skilledStatuspara2 d-none pt-5" id="buttonPropertyUnHelpPara">Now you are offline please come as soon as possible click green button to online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailsSkilledBuisness mt-4 m-3 mb-3 shadow">
+                    <h1 class="text-center skilledStatusHead1">Your Details</h1>
+                    <div class="d-flex flex-row justify-content-center mt-5">
+                        <div class="mr-3">
+                            <h1 class="skilledStatuspara2">Email :</h1>
+                            <h1 class="skilledStatuspara2">Name :</h1>
+                            <h1 class="skilledStatuspara2">Age : </h1>
+                            <h1 class="skilledStatuspara2">Members can stay :</h1>
+                            <h1 class="skilledStatuspara2">Phoneno :</h1>
+                            <h1 class="skilledStatuspara2">State :</h1>
+                            <h1 class="skilledStatuspara2">City :</h1>
+                            <h1 class="skilledStatuspara2">Area :</h1>
+                            <h1 class="skilledStatuspara2">Pin Code :</h1>
+                            <h1 class="skilledStatuspara2">Property :</h1>
+                            <h1 class="skilledStatuspara2">Type :</h1>
+                            <h1 class="skilledStatuspara2">Estimation Cost :</h1>
+                        </div>
+                        <div id="skilledDetails1 ml-5">
+                            <h1 class="skilledStatuspara2" id="pr1"></h1>
+                            <h1 class="skilledStatuspara2" id="pr2"></h1>
+                            <h1 class="skilledStatuspara2" id="pr3"></h1>
+                            <h1 class="skilledStatuspara2" id="pr4"></h1>
+                            <h1 class="skilledStatuspara2" id="pr5"></h1>
+                            <h1 class="skilledStatuspara2" id="pr6"></h1>
+                            <h1 class="skilledStatuspara2" id="pr7"></h1>
+                            <h1 class="skilledStatuspara2" id="pr8"></h1>
+                            <h1 class="skilledStatuspara2" id="pr9"></h1>
+                            <h1 class="skilledStatuspara2" id="pr10"></h1>
+                            <h1 class="skilledStatuspara2" id="pr11"></h1>
+                            <h1 class="skilledStatuspara2" id="pr12"></h1>
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn bg-primary editBtn" onclick="preProperty()">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+// Function to fetch property details and populate the page
+async function fetchPropertyDetails() {
+    try {
+        const response = await fetch('/property/details', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            // Populate the DOM elements with the fetched data
+            document.getElementById('pr1').textContent = data.email || 'Not Available';
+            document.getElementById('pr2').textContent = data.name || 'Not Available';
+            document.getElementById('pr3').textContent = data.age || 'Not Available';
+            document.getElementById('pr4').textContent = data.members_can_stay || 'Not Available';
+            document.getElementById('pr5').textContent = data.phonenumber || 'Not Available';
+            document.getElementById('pr6').textContent = data.state || 'Not Available';
+            document.getElementById('pr7').textContent = data.city || 'Not Available';
+            document.getElementById('pr8').textContent = data.area || 'Not Available';
+            document.getElementById('pr9').textContent = data.pincode || 'Not Available';
+            document.getElementById('pr10').textContent = data.property_type || 'Not Available';
+            document.getElementById('pr11').textContent = data.stay_type || 'Not Available';
+            document.getElementById('pr12').textContent = data.estimated_cost || 'Not Available';
+            document.getElementById('currentStatusPresent2').textContent = data.property_registration_status ? ': Online' : ': Offline';
+            document.getElementById('currentStatusPresent2').style.color = data.property_registration_status ? 'green' : 'red';
+            if (data.property_registration_status) {
+                document.getElementById('buttonPropertyHelpPara').classList.remove('d-none');
+                document.getElementById('buttonPropertyUnHelpPara').classList.add('d-none');
+            } else {
+                document.getElementById('buttonPropertyHelpPara').classList.add('d-none');
+                document.getElementById('buttonPropertyUnHelpPara').classList.remove('d-none');
+            }
+        } else {
+            console.error('Error fetching property details:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching property details:', error.message);
+    }
+}
+
+// Function to toggle property registration status and update the UI
+async function togglePropertyRegistrationStatus(status) {
+    try {
+        const response = await fetch('/property/status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status })
+        });
+        if (!response.ok) {
+            console.error('Error updating property registration status:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error updating property registration status:', error.message);
+    }
+}
+
+// Function to initialize the page
+async function init() {
+    // Fetch property details and populate the page
+    await fetchPropertyDetails();
+
+    // Add event listeners to the helpful buttons
+    document.getElementById('buttonPropertyHelp').addEventListener('click', async () => {
+        await togglePropertyRegistrationStatus(true);
+        // Update UI if necessary
+        document.getElementById('currentStatusPresent2').textContent = ': Online';
+        document.getElementById('currentStatusPresent2').style.color = 'green';
+        document.getElementById('buttonPropertyHelpPara').classList.remove('d-none');
+        document.getElementById('buttonPropertyUnHelpPara').classList.add('d-none');
+    });
+
+    document.getElementById('buttonPropertyUnHelp').addEventListener('click', async () => {
+        await togglePropertyRegistrationStatus(false);
+        // Update UI if necessary
+        document.getElementById('currentStatusPresent2').textContent = ': Offline';
+        document.getElementById('currentStatusPresent2').style.color = 'red';
+        document.getElementById('buttonPropertyHelpPara').classList.add('d-none');
+        document.getElementById('buttonPropertyUnHelpPara').classList.remove('d-none');
+    });
+}
+
+// Call the init function when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', init);
+
+function preProperty(){
+    window.location.href = '/business/property/editdetails';
+}
+
+        </script>
+
+    <script src="myguider.js"></script>
+    </body>
+</html>

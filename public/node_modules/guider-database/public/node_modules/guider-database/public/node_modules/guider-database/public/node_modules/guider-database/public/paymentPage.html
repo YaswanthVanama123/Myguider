@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+        <style>
+            .paymentDiv{
+                background-color: #6052FF;
+            }
+            .paymentCard{
+                background-color: #FCFDFF;
+                
+                border-top-left-radius: 25px; /* Rounded top-left corner */
+                border-top-right-radius: 25px;
+                padding: 25px;
+                font-weight: bold;
+                display: flex;
+                color: #504D67;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                
+            
+            }
+            .payDetails{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                height: 20vh;
+                color: wheat;
+                font-weight: bold;
+                gap: 5%;
+            }
+            .hori{
+                width: 20px;
+                background-color: #B4A8ED;
+                height: 2px;
+            }
+            .paymentIcons{
+                padding: 10px;
+                border-radius: 50%;
+                background-color: #5745D2;
+                font-size: 25px;
+            }
+            .statusDiv{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .clockIcon{
+                font-size: 20px;
+            }
+            .moneyDiv{
+                background-color: white;
+                border-radius: 25px;
+                box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+                min-height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .paymentHeading{
+                font-size: 13px;
+                color: #D9DBE2;
+            }
+            .payStatus{
+                color: #332D5E;
+                font-weight: bold;
+                font-size: 20px;
+            }
+            .value{
+                color: black;
+                font-size: 13px;
+            }
+            .paymentButtonDiv{
+                display: flex;
+                flex-direction: row;
+                align-self: center;
+            }
+            .paymentButton{
+                background-color: black;
+                padding: 10px;
+                border: 0px;
+                color: white;
+                border-radius: 10px;
+                font-size: 13px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="paymentDiv">
+            <div class="payDetails">
+                <i class="bi bi-wallet2 paymentIcons"></i>
+                <hr class="hori">
+                <i class="bi bi-currency-rupee paymentIcons"></i>
+                <hr class="hori">
+                <i class="fa-regular fa-square-check paymentIcons p-3"></i>
+                
+                <!-- <h1>Payment Details</h1> -->
+            </div>  
+            <div class="paymentCard">
+                <div class="statusDiv">
+                    <p class="payStatus">Payment Status</p>
+                    <i class="fa-regular fa-clock clockIcon"></i>
+                </div>
+                <div class="moneyDiv">
+                    <p class="paymentHeading">Money charged for Captain</p>
+                    <h1 class="payStatus" id="totalPayment">274₹</h1>
+                </div>
+
+                <div class="statusDiv mt-5">
+                    <p class="paymentHeading">Captain Name</p>
+                    <p class="value" id="captainName">Yaswanth</p>
+                </div>
+                <div class="statusDiv ">
+                    <p class="paymentHeading" >Start time</p>
+                    <p class="value" id="startTime">10:45</p>
+                </div>
+                <div class="statusDiv ">
+                    <p class="paymentHeading" >End time</p>
+                    <p class="value" id="endTime">12:15</p>
+                </div>
+                <div class="statusDiv ">
+                    <p class="paymentHeading" >Time worked</p>
+                    <p class="value" id="timeWorked">1:30</p>
+                </div>
+                <div class="statusDiv ">
+                    <p class="paymentHeading">Charge for first 1/2 hour minimum charge</p>
+                    <p class="value">99₹</p>
+                </div>
+                <div class="statusDiv">
+                    <p class="paymentHeading">Remaining time</p>
+                    <p class="value" id="remaningTime">30 mins</p>
+                </div>
+                <div class="statusDiv">
+                    <p class="paymentHeading">Charge for Remaning time</p>
+                    <p class="value" id="remaningCharge">75₹</p>
+                </div>
+                <div class="paymentButtonDiv">
+                    <button class="paymentButton" onclick="moneyPaid()">Money paid to Captain</button>
+                </div>
+            </div>
+
+        </div>
+        <script>
+
+            const url = window.location.href;
+
+            // Find the position of '?' in the URL
+            const questionMarkIndex = url.indexOf('?');
+            
+            // Extract the substring after '?' character
+            const queryString = url.substring(questionMarkIndex + 1);
+            
+            // Convert the query string to a number
+            const notificationNumber = parseInt(queryString);
+            console.log(notificationNumber);
+
+            function calculatePayment(hours, minutes) {
+                const firstHourRate = 99; // Rate for the first hour
+                const subsequentRate = 49; // Rate for every 30 minutes after the first hour
+                const remainingMinuteRate = 2; // Rate for each remaining minute
+            
+                let totalMinutes = hours * 60 + minutes; // Convert hours to minutes and add remaining minutes
+                
+                let totalPayment = 0;
+            
+                // If the total time is less than or equal to 60 minutes
+                if (totalMinutes <= 30) {
+                    totalPayment = firstHourRate;
+                } else {
+                    // Calculate payment for the first hour
+                    totalPayment += firstHourRate;
+            
+                    // Calculate payment for subsequent 30-minute intervals
+                    totalMinutes -= 30; // Subtract the first hour
+                    let additionalHours = Math.floor(totalMinutes / 30); // Calculate additional 30-minute intervals
+                    totalPayment += additionalHours * subsequentRate;
+            
+                    // Calculate payment for remaining minutes
+                    let remainingMinutes = totalMinutes % 30;
+                    if (remainingMinutes > 0) {
+                        if (remainingMinutes > 24) {
+                            totalPayment += subsequentRate; // Add charge for the next 30-minute interval
+                        } else {
+                            totalPayment += remainingMinutes * remainingMinuteRate; // Add charge for remaining minutes
+                        }
+                    }
+                }
+            
+                return totalPayment;
+            }
+            
+
+            
+
+
+
+            // Function to fetch payment details using notificationNumber
+            async function fetchPaymentDetails(notificationNumber) {
+                try {
+                    function formatTime(datetimeStr) {
+                        const dateObj = new Date(datetimeStr);
+                        return dateObj.toLocaleTimeString('en-US', { hour12: true, hour: 'numeric', minute: '2-digit' });
+                    }
+                    // Fetch data from the backend
+                    const response = await fetch(`/get-payment-details/${notificationNumber}`);
+
+                    // Check if the response is ok
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    // Parse the JSON response
+                    const data = await response.json();
+
+                    // Extract payment details
+                    const { startTime, finishedTime, timeWorked, captainId } = data;
+
+                    const [hours, minutes, seconds] = timeWorked.split(':').map(part => parseInt(part));
+
+                    // Calculate payment based on hours and minutes
+                    console.log(hours);
+                    console.log(minutes);
+                    const payment = calculatePayment(hours, minutes);
+                    console.log("Total payment: " + payment + "₹");
+                    function remaningtime(hours,minutes){
+                        const totalMinutes = hours*60 + minutes
+                        let remaningMinutes = totalMinutes-30;
+                        if(remaningMinutes<0){
+                            return 0
+                        }
+                        else if(remaningMinutes === 1){
+                            return `${remaningMinutes} min`;
+                        }
+                        else{
+                            return `${remaningMinutes} mins`;
+                        }
+                    }
+
+                    let remaningTime = remaningtime(hours,minutes);
+                    let remaningCharge  = payment - 99;
+
+                    // Update the HTML elements with the fetched payment details
+                    document.getElementById('startTime').textContent = `${formatTime(startTime)}`;
+                    document.getElementById('endTime').textContent = `${formatTime(finishedTime)}`;
+                    document.getElementById('timeWorked').textContent = `${timeWorked}`;
+                    document.getElementById('totalPayment').textContent = `${payment}₹`;
+                    document.getElementById('remaningTime').textContent = `${remaningTime}`;
+                    document.getElementById('remaningCharge').textContent = `${remaningCharge}₹`;
+                    
+                    console.log(startTime);
+                    console.log(finishedTime);
+                    console.log(timeWorked);
+                    console.log(captainId);
+                    
+
+                } catch (error) {
+                    console.error('Error fetching payment details:', error);
+                    // Handle errors, show error message, etc.
+                }
+            }
+
+            // Call the fetchPaymentDetails function with the notificationNumber
+            fetchPaymentDetails(notificationNumber);
+
+            function moneyPaid(){
+                window.location.href = "/bill/paymented/page";
+            }
+
+        </script>
+    </body>
+</html>

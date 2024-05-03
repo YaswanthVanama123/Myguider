@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" type="text/css" href="myguider.css">
+        <link rel="stylesheet" type="text/css" href="/myguider.css">
+    </head>
+    <body>
+        
+        <!-- section 14 user registration form for location -->
+
+        <div class="center-container" id="section14">
+            <div class="container9">
+                <header class="reg">Registration</header>
+                <form action="#" id="formRegCityAllLocation">
+                    <div class="form first" id="firstFormAll">
+                        <div class="details personal">
+                            <span class="title">Personal Detail</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="locationfield1">Email</label>
+                                    <input type="email" placeholder="Enter your email" required id="locationfield1" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield2">Shop Name</label>
+                                    <input type="text" placeholder="Enter your Shop Name" required id="locationfield2" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield3">How many days open in a week</label>
+                                    <select class="regSelect" id="locationfield3">
+                                        <option value="Every day Opens">Every day Opens</option>
+                                        <option value="Except Sunday opens">Except Sunday opens</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield4">Opens at</label>
+                                    <input type="text" placeholder="Please include AM or PM" required id="locationfield4" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield5">Closes at</label>
+                                    <input type="text" placeholder="Please include AM or PM" required id="locationfield5" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield6">Phone no</label>
+                                    <input type="tel" placeholder="Enter your Phone number" required id="locationfield6" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details ID">
+                            <button class="backRegistration btn bg-primary" id="backRegistration1" onclick="display6()">Back to Home</button>
+                            <button class="nextBtnLocation buttonRegistration" id="nextBtnLocation">
+                                <span class="btnText">
+                                    Next
+                                    <i class="fa-solid fa-forward"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form second">
+                        <div class="details address">
+                            <span class="title">Profession Details</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="citySearchLocation">City</label>
+                                    <input type="text" placeholder="Enter your city" required id="citySearchLocation" />
+                                    <div>
+                                        <ul id="citySuggestionsListLocation"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="roadSearchInputLocation">Area</label>
+                                    <input type="address" placeholder="Enter pin code" required id="roadSearchInputLocation" />
+                                    <div>
+                                        <ul id="roadSearchSuggestionsLocation"></ul>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield9">State</label>
+                                    <input type="text" placeholder="Enter your State" required id="locationfield9" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="searchInputOccupationRegLocation">Type</label>
+                                    <div class="occupation-container">
+                                        <div style="position: relative;">
+                                            <input type="text" placeholder="Enter your " required id="searchInputOccupationRegLocation" oninput="showSuggestionsOccupationRegLocation()" onfocus="showSuggestionsOccupationRegLocation()" />
+                                            <div id="suggestionsContainerOccupationRegLocation" class="suggestionsOccupation"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-field">
+                                    <label for="locationfield11">Pin code</label>
+                                    <input type="number" placeholder="Enter your area pincode" required id="locationfield11" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="locationfield12">what is the Special in your shop</label>
+                                    <input type="email" placeholder="Enter your special in your shop" required id="locationfield12" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details family">
+                            <div class="buttons">
+                                <div class="backBtnLocation" id="backBtnLocation">
+                                    <a href="#" class="btnText">
+                                        <i class="fa-solid fa-forward"></i>
+                                    </a>
+                                </div>
+                                <button class="nextBtnLocation btn buttonRegistration" type="button">
+                                    <span class="btnText" id="submitButtonLocation">
+                                        Submit
+                                        <i class="fa-solid fa-forward"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <script>
+let locationfield1 = document.getElementById("locationfield1");
+let locationfield2 = document.getElementById("locationfield2");
+let locationfield3 = document.getElementById("locationfield3");
+let locationfield4 = document.getElementById("locationfield4");
+let locationfield5 = document.getElementById("locationfield5");
+let locationfield6 = document.getElementById("locationfield6");
+let locationfield7 = document.getElementById("citySearchLocation");
+let locationfield8 = document.getElementById("roadSearchInputLocation");
+let locationfield9 = document.getElementById("locationfield9");
+let locationfield10 = document.getElementById("searchInputOccupationRegLocation");
+let locationfield11 = document.getElementById("locationfield11");
+let locationfield12 = document.getElementById("locationfield12");
+        const formRegCityAllLocation = document.getElementById("formRegCityAllLocation");
+        const nextBtnLocation = document.getElementById("nextBtnLocation");
+        const backBtnLocation = document.getElementById("backBtnLocation");
+        const allInputLocation = formRegCityAllLocation.querySelectorAll(".first input");
+    
+        nextBtnLocation.addEventListener("click", () => {
+            let allInputLocationsFilled = true;
+            allInputLocation.forEach((input) => {
+                if (input.value === "") {
+                    allInputLocationsFilled = false;
+                }
+            });
+    
+            if (allInputLocationsFilled) {
+                formRegCityAllLocation.classList.add("secActive");
+            } else {
+                formRegCityAllLocation.classList.remove("secActive");
+            }
+        });
+    
+        backBtnLocation.addEventListener("click", () =>
+            formRegCityAllLocation.classList.remove("secActive")
+        );
+
+// city search 
+
+const citySearchLocation = document.getElementById('citySearchLocation');
+const citySuggestionsListLocation = document.getElementById('citySuggestionsListLocation');
+
+let currentPlaceLocation = {};
+
+function handleCitySuggestionClickLocation(place) {
+    console.log('Selected City:', place);
+
+    let cityLocation = place.address.city || place.address.name;
+
+    citySearchLocation.value = cityLocation;
+
+    currentPlaceLocation = {
+        name: place.display_name,
+        pincodeLocation: place.address.postcode
+    };
+
+    let areaLocation = place.display_place;
+    let streetLocation = place.address.road;
+    let pincodeLocation = place.address.postcode;
+
+    console.log(cityLocation);
+    console.log(areaLocation);
+    console.log(streetLocation);
+    console.log(pincodeLocation);
+
+    citySuggestionsListLocation.innerHTML = '';
+}
+
+function debounceCityLocation(func, delay) {
+    let timeoutIdLocation;
+    return function() {
+        clearTimeout(timeoutIdLocation);
+        timeoutIdLocation = setTimeout(func, delay);
+    };
+}
+
+function handleCityInputLocation() {
+    const searchTermLocation = citySearchLocation.value.trim();
+    if (searchTermLocation.length >= 2) {
+
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermLocation}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+                citySuggestionsListLocation.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleCitySuggestionClickLocation(place));
+                    citySuggestionsListLocation.appendChild(li);
+                });
+
+                citySuggestionsListLocation.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting city suggestions:', error));
+    } else {
+        citySuggestionsListLocation.style.display = 'none';
+    }
+}
+
+citySuggestionsListLocation.style.display = 'none';
+
+citySearchLocation.addEventListener('input', debounceCityLocation(handleCityInputLocation, 300));
+
+document.addEventListener('click', (event) => {
+    if (event.target !== citySearchLocation && event.target !== citySuggestionsListLocation) {
+        citySuggestionsListLocation.style.display = 'none';
+    }
+});
+
+// Road search
+
+const roadSearchInputLocation = document.getElementById('roadSearchInputLocation');
+const roadSearchSuggestionsLocationList = document.getElementById('roadSearchSuggestionsLocation');
+
+let currentPlaceLocation1 = {};
+
+function handleRoadSuggestionClickLocation(place) {
+    console.log('Selected Road:', place);
+
+    let areaLocation = place.display_place;
+
+    roadSearchInputLocation.value = areaLocation;
+
+    currentPlaceLocation1 = {
+        name: place.display_name,
+        pincodeLocation: place.address.postcode
+    };
+
+    let cityLocation = place.address.city || place.address.name;
+    let streetLocation = place.address.road;
+    let pincodeLocation = place.address.postcode;
+
+    console.log(cityLocation);
+    console.log(areaLocation);
+    console.log(streetLocation);
+    console.log(pincodeLocation);
+
+    roadSearchSuggestionsLocationList.innerHTML = '';
+}
+
+function debounceRoadLocation(func, delay) {
+    let timeoutIdLocation;
+    return function() {
+        clearTimeout(timeoutIdLocation);
+        timeoutIdLocation = setTimeout(func, delay);
+    };
+}
+
+function handleRoadInputLocation() {
+    const searchTermLocation = roadSearchInputLocation.value.trim();
+    if (searchTermLocation.length >= 2) {
+
+        const apiUrl = `https://us1.locationiq.com/v1/autocomplete.php?key=pk.8bbe50a42004401570a4c08ad0e05f89&q=${searchTermLocation}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+                roadSearchSuggestionsLocationList.innerHTML = '';
+
+                data.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.display_name;
+                    li.addEventListener('click', () => handleRoadSuggestionClickLocation(place));
+                    roadSearchSuggestionsLocationList.appendChild(li);
+                });
+
+                roadSearchSuggestionsLocationList.style.display = 'block';
+            })
+            .catch(error => console.error('Error getting road suggestions:', error));
+    } else {
+        roadSearchSuggestionsLocationList.style.display = 'none';
+    }
+}
+
+roadSearchSuggestionsLocationList.style.display = 'none';
+
+roadSearchInputLocation.addEventListener('input', debounceRoadLocation(handleRoadInputLocation, 300));
+
+document.addEventListener('click', (event) => {
+    if (event.target !== roadSearchInputLocation && event.target !== roadSearchSuggestionsLocationList) {
+        roadSearchSuggestionsLocationList.style.display = 'none';
+    }
+});
+
+
+
+
+
+
+
+//occupation search
+
+const arrayOccupationRegLocation = ["Fancy shop", "Street Foods", "Food Court", "Cloth shop", "Mall", "Carpentor shop", "Welder shop", "Book store", "Bakery", "Groceries shop", "Pan shop", "Plumber Shop", "Bricks shop", "Electrical shop", "Restaurant", "Tiles shop", "Sweet Shop", "Furniture shop", "Drinks shop", "Bar", "Hotel", "Dhaba", "School", "College", "Tailor shop", "Mechanic shop", "Cement shop", "Phone show room", "Vegtables shop", "Super market", "Chicken and mutton Shop", "Fish and sea food", "Bag shop", "Sports shop", "Water plant", "Medical shop", "Fast foods shop", "Dry clinic", "Car showroom", "Bike showroom", "Petrol bunk", "Banks", "Goldsmith", "Blacksmith", "Paint shop", "Sandal shop", "Hospitals", "Gas company", "Cycle showroom", "Pestiside shops", "Government office", "Library", "Temples", "Steel shop", "Internet center", "Busstand", "Railway station", "Air port", "Watch shop", "Auto Stand", "Nursery", "Iron shop", "Mess and fencing shop", "Paper shop", "Gym", "Cinema theater", "Parks", "Stadium", "Zoo", "Tourist place", "Glass shop", "Mesuem", "Photo shop", "Delivery shop", "ATM", "Gift shop", "Saloon shop"];
+const searchInputOccupationRegLocation = document.getElementById("searchInputOccupationRegLocation");
+const suggestionsContainerOccupationRegLocation = document.getElementById("suggestionsContainerOccupationRegLocation");
+
+document.addEventListener('click', function(event) {
+    const clickedSuggestionLocation = event.target.closest('.suggestion-itemOccupationReg');
+    if (clickedSuggestionLocation) {
+        searchInputOccupationRegLocation.value = clickedSuggestionLocation.textContent;
+        suggestionsContainerOccupationRegLocation.style.display = 'none';
+    } else if (!event.target.closest('#searchInputOccupationRegLocation') && !event.target.closest('#suggestionsContainerOccupationRegLocation')) {
+        suggestionsContainerOccupationRegLocation.style.display = 'none';
+    }
+});
+
+function handleOccupationSuggestionClickLocation(suggestion) {
+    searchInputOccupationRegLocation.value = suggestion;
+    suggestionsContainerOccupationRegLocation.style.display = 'none';
+}
+
+function updateOccupationSuggestionsLocation(filteredSuggestionsLocation) {
+    if (filteredSuggestionsLocation.length > 0) {
+        const suggestionListLocation = filteredSuggestionsLocation.map(suggestion => `<div class="suggestion-itemOccupationReg" onclick="handleOccupationSuggestionClickLocation('${suggestion}')">${suggestion}</div>`).join('');
+        suggestionsContainerOccupationRegLocation.innerHTML = suggestionListLocation;
+        suggestionsContainerOccupationRegLocation.style.display = 'block';
+    } else {
+        suggestionsContainerOccupationRegLocation.style.display = 'none';
+    }
+}
+
+function showSuggestionsOccupationRegLocation() {
+    const inputValueLocation = searchInputOccupationRegLocation.value.toLowerCase();
+    const filteredSuggestionsLocation = arrayOccupationRegLocation.filter(suggestion => suggestion.toLowerCase().includes(inputValueLocation));
+    updateOccupationSuggestionsLocation(filteredSuggestionsLocation);
+}
+
+const submitButtonLocation = document.getElementById("submitButtonLocation");
+
+function handleSubmitLocation(event) {
+    alert("clicked");
+    event.preventDefault();
+    
+    const locationData = {
+        email: document.getElementById("locationfield1").value,
+        shopname: document.getElementById("locationfield2").value,
+        opensinaweek: document.getElementById("locationfield3").value,
+        openat: document.getElementById("locationfield4").value,
+        closesat: document.getElementById("locationfield5").value,
+        phoneno: document.getElementById("locationfield6").value,
+        city: document.getElementById("citySearchLocation").value,
+        areaLocation: document.getElementById("roadSearchInputLocation").value,
+        state: document.getElementById("locationfield9").value,
+        type: document.getElementById("searchInputOccupationRegLocation").value,
+        pincodeLocation: document.getElementById("locationfield11").value,
+        special: document.getElementById("locationfield12").value,
+        locationRegistrationStatus: true
+    };
+
+    fetch("/business/location/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(locationData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Handle successful response from the server
+        console.log(data);
+        alert("Location registration successful");
+        // Redirect or perform any other actions as needed
+    })
+    .catch(error => {
+        // Handle errors
+        console.error("Error:", error);
+        alert("An error occurred during location registration");
+    });
+}
+
+
+
+
+
+submitButtonLocation.addEventListener("click", handleSubmitLocation);
+
+
+    </script>
+
+    <script src="myguider.js"></script>
+    </body>
+</html>

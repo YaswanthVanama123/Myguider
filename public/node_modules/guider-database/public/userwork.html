@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Skilled Workers Nearby</title>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="/myguider.js" ></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/68a5b899a1.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" type="text/css" href="myguider.css">
+    <link rel="stylesheet" type="text/css" href="/myguider.css">
+    <style>
+        .mainDiv{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+            background-color: antiquewhite;
+        }
+        .userDisplaycard{
+            padding: 10px;
+            gap :10px ;
+            margin-top: 30px;
+            width: 100vw;
+            min-height: 35vh;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        .pinDiv{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: start;
+        }
+        .pin{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .hourChargeDiv{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: start;
+        }
+        .captainDetails{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: start;
+        }
+        .captainProfile{
+            font-weight: bold;
+            display: flex;
+            flex-direction: row; 
+            gap: 5px;
+        }
+        .pro{
+            font-size: 20px;
+        }
+        .cancelCaptain{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .cancelCaptainButton{
+            background-color: black;
+            padding: 8px;
+            border: 0px;
+            color: white;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+        .captainRating{
+            captainRating
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainDiv">
+        <div id="map" style="width: 100%; height: 400px;">
+
+        </div>
+
+        <div class="userDisplaycard shadow-lg">
+            <div class="captainDetails">
+                <div class="captainProfile">
+                    <i class="bi bi-person-circle pro"></i>
+                    <p id="captainName">Yaswanth</p>
+                </div>
+                <div >
+                    <p class="captainRating" id="captainRating">rating: 4.6</p>
+                </div>
+            </div>
+            <div class="pinDiv">
+                <h1 id="pin" class="pin"></h1>
+            </div>
+            <div class="hourChargeDiv">
+                <p>First 0-1hr : 200₹</p>
+                <p>Next every 1/2hr: 100₹</p>
+            </div>
+            <div class="captainRecord">
+                <p id="captainCount">Yaswanth worked as a captain: 10</p>
+            </div>
+            <div class="cancelCaptain">
+                <div>
+                    <p>You can cancel the captain with in 2 minute</p>
+                </div>
+                <button class="cancelCaptainButton" id="cancelCaptainButton" onclick="confirmCancellation()">Cancel Captain</button>
+            </div>
+        </div>
+    </div>
+    <script>
+// Get the current URL
+const url = window.location.href;
+
+// Find the position of '?' in the URL
+const questionMarkIndex = url.indexOf('?');
+
+// Extract the substring after '?' character
+const queryString = url.substring(questionMarkIndex + 1);
+
+// Convert the query string to a number
+const notificationNumber = parseInt(queryString);
+console.log(notificationNumber);
+
+
+var map; // Declare map variable globally
+
+// Function to initialize the map
+function initMap() {
+    // Initialize Here Maps
+    var platform = new H.service.Platform({
+        'apikey': 'WCisPFGzH2pEJArskcZoBJmKFffRzIyEbG_htPyKQ1M'
+    });
+    var defaultLayers = platform.createDefaultLayers();
+    map = new H.Map(
+        document.getElementById('map'),
+        defaultLayers.vector.normal.map,
+        {
+            zoom: 12,
+            center: { lat: 0, lng: 0 }
+        });
+    window.addEventListener('resize', () => map.getViewPort().resize());
+}
+
+// Call initMap to initialize the map
+initMap();
+
+// Function to fetch skilled worker's location coordinates
+function fetchSkilledWorkerLocation(userLat, userLng, notificationNumber) {
+    // Fetch skilled worker's location coordinates
+    fetch(`/get-skilled-worker-coordinates?notificationNumber=${notificationNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+           
+
+            // Assuming the skilled worker's coordinates object has latitude and longitude properties
+            const skilledWorkerLatitude = parseFloat(data.latitude);
+            const skilledWorkerLongitude = parseFloat(data.longitude);
+
+            // Update map marker for skilled worker
+            var skilledWorkerMarker = new H.map.Marker({ lat: skilledWorkerLatitude, lng: skilledWorkerLongitude });
+            map.addObject(skilledWorkerMarker);
+
+            // Calculate route between skilled worker and user
+            calculateRoute({ lat: userLat, lng: userLng }, { lat: skilledWorkerLatitude, lng: skilledWorkerLongitude });
+        })
+        .catch(error => {
+            console.error('Error fetching skilled worker location:', error);
+        });
+};
+
+// Function to fetch user's location coordinates from backend
+function fetchUserLocation(notificationNumber) {
+    // Fetch user's location coordinates from backend
+    fetch(`/get-user-location?notificationNumber=${notificationNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Once user's location is fetched, proceed to fetch skilled worker's location
+            fetchSkilledWorkerLocation(parseFloat(data.latitude), parseFloat(data.longitude), notificationNumber);
+        })
+        .catch(error => {
+            console.error('Error fetching user location:', error);
+        });
+};
+
+// Function to calculate route between two points
+// Function to calculate route between two points
+function calculateRoute(start, end) {
+    // Fetch route information from server
+    fetch(`/get-route?waypoint0=${start.lat},${start.lng}&waypoint1=${end.lat},${end.lng}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+           
+            // Process route data and add it to the map
+            // (You can use the addRouteToMap() function here)
+        })
+        .catch(error => {
+            console.error('Error calculating route:', error);
+        });
+}
+
+
+// Function to add route to map
+function addRouteToMap(route) {
+    var lineString = new H.geo.LineString();
+    route.shape.forEach(function (point) {
+        var parts = point.split(',');
+        lineString.pushLatLngAlt(parts[0], parts[1]);
+    });
+
+    var routeLine = new H.map.Polyline(lineString, {
+        style: { strokeColor: 'blue', lineWidth: 3 }
+    });
+    map.addObject(routeLine);
+}
+
+// Replace with the actual notification number
+ // Example notification number
+
+// Fetch user's location and initialize the process
+fetchUserLocation(notificationNumber);
+
+// Update skilled worker's location and route every 5 seconds
+setInterval(() => {
+    fetchUserLocation(notificationNumber);
+}, 5000);
+
+
+// Function to fetch the pin from the backend using the notificationNumber
+function fetchPin(notificationNumber) {
+    fetch(`/get-pin?notificationNumber=${notificationNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Pin:', data);
+            // Update the pin in the <h1> element
+            document.getElementById('pin').innerText = `PIN: ${data.pin}`;
+        })
+        .catch(error => {
+            console.error('Error fetching pin:', error);
+        });
+}
+
+// Call fetchPin function to fetch and display the pin
+fetchPin(notificationNumber);
+
+ // Function to fetch skilled worker details
+ function fetchSkilledWorkerDetails(notificationNumber) {
+    // Fetch skilled worker details from backend
+    fetch(`/get-skilled-worker-details?notificationNumber=${notificationNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Skilled Worker Details:', data);
+            document.getElementById('captainName').innerText = `${data.name}`;
+            document.getElementById('captainRating').innerText = `rating: ${data.averagerating.toFixed(2)}`;
+            document.getElementById('captainCount').innerText = `${data.name} worked as a captain: 10`;
+            // Process the fetched data as needed (e.g., display in UI)
+        })
+        .catch(error => {
+            console.error('Error fetching skilled worker details:', error);
+        });
+}
+
+// Call fetchSkilledWorkerDetails function to fetch details
+fetchSkilledWorkerDetails(notificationNumber);
+
+// Function to update cancelStatus to "timeup" in backend
+function updateTimeUpStatus(notificationNumber) {
+    fetch(`/update-cancel-status?notificationNumber=${notificationNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Cancel status updated successfully:', data);
+        })
+        .catch(error => {
+            console.error('Error updating cancel status:', error);
+        });
+}
+
+
+// Function to check and update cancel status
+function checkAndUpdateCancelStatus(notificationNumber) {
+    fetch(`/check-update-cancel-status?notificationNumber=${notificationNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display appropriate alert or message based on response
+            if (data.message === "Cancellation time has expired (2 minutes timeup)") {
+                alert(data.message);
+            } else {
+
+                console.log(data.message); // Log success message
+                // Refresh the page or update UI as needed
+                window.location.href = "/userSevicePage"; // Refresh the page
+            }
+        })
+        .catch(error => {
+            console.error('Error checking/updating cancel status:', error);
+        });
+}
+
+// Function to handle cancellation confirmation
+function confirmCancellation() {
+    // Display a confirmation dialog
+    const confirmation = confirm("Are you sure you want to cancel the captain?");
+    
+    if (confirmation) {
+        // If user clicks "Yes", call the function to check and update cancel status
+        checkAndUpdateCancelStatus(notificationNumber);
+    } else {
+        // If user clicks "No", do nothing
+        return;
+    }
+}
+
+
+// Call updateTimeUpStatus function after one minute
+setTimeout(() => {
+    console.log("disabled")
+    updateTimeUpStatus(notificationNumber);
+}, 120000); // 60000 milliseconds = 2 minutes
+
+
+
+// Function to continuously check the cancelStatus in the notificationNum table
+async function checkCaptaincancelStatus(notificationNumber) {
+    const timeInterval = 2000; // Check every 2 seconds
+
+    // Define a loop to continuously check the cancelStatus
+    while (true) {
+        try {
+            // Fetch the cancelStatus from the backend
+            const response = await fetch(`/check-captain-cancel-status?notificationNumber=${notificationNumber}`);
+            const data = await response.json();
+
+            if (data.captainCancelStatus === 'cancelled') {
+                // If cancelStatus is "cancelled", redirect to /business/skilledworkers/homepage
+                window.location.href = '/user/service/page';
+                break; // Stop checking
+            } else if (data.captainCancelStatus === 'timeup') {
+                // If cancelStatus is "timeup", stop checking without any action
+                break;
+            }
+        } catch (error) {
+            console.error('Error checking cancel status:', error);
+        }
+
+        // Wait for the specified time interval before checking again
+        await new Promise(resolve => setTimeout(resolve, timeInterval));
+    }
+}
+
+// Function to continuously check the successfulWork table in the database
+async function checkSuccessfulWork(notificationNumber) {
+    const timeInterval = 2000; // Check every 2 seconds
+
+    // Define a loop to continuously check the successfulWork table
+    while (true) {
+        try {
+            // Fetch the successfulWork table from the backend
+            const response = await fetch(`/check-successful-work?notificationNumber=${notificationNumber}`);
+            const data = await response.json();
+
+            if (data.exists) {
+                // If notificationNumber is found, redirect the user to a specific page
+                window.location.href = `/work/started?${notificationNumber}`;
+                break; // Stop checking
+            }
+        } catch (error) {
+            console.error('Error checking successfulWork table:', error);
+        }
+
+        // Wait for the specified time interval before checking again
+        await new Promise(resolve => setTimeout(resolve, timeInterval));
+    }
+}
+
+// Call the function to start checking the successfulWork table
+checkSuccessfulWork(notificationNumber)
+    .then(() => console.log('SuccessfulWork table checked'))
+    .catch(error => console.error('Error:', error));
+
+
+
+// Call the function to start checking the cancelStatus
+checkCaptaincancelStatus(notificationNumber)
+    .then(() => console.log('Cancel status checked'))
+    .catch(error => console.error('Error:', error));
+
+
+
+
+    </script>
+</body>
+</html>

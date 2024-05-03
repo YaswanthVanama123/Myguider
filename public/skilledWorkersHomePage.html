@@ -104,6 +104,53 @@
         <script>
             // Skilled Workers Homepage Implementation
 
+            window.addEventListener('load', function() {
+                requestNotificationPermission();
+            });
+        
+        // Function to request notification permission and subscribe for push notifications
+        async function requestNotificationPermission() {
+            if ('Notification' in window && Notification.permission !== 'denied') {
+                const permission = await Notification.requestPermission();
+                if (permission === 'granted') {
+                    console.log('Notification permission granted');
+                    // Register service worker and subscribe for push notifications
+                    const registration = await navigator.serviceWorker.register('/service-worker.js');
+                    const subscription = await registration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: 'BAfI3r_RzJi1mT61KNAZ0fYJbMNDRxGLMfn7ZGTbM49wMJ_D0jAzqQKWNxDTOfpWNJ5i0r2DsZfU9H8g0ZXLdss'
+                    });
+                    // Log subscription object to console for debugging
+                    console.log('Subscription object:', subscription);
+
+                    // Extract endpoint, auth, and p256dh values from the subscription object
+                    const endpoint = subscription.endpoint;
+                    const keys = subscription.toJSON().keys;
+                    const auth = keys.auth;
+                    const p256dh = keys.p256dh;
+
+                    // Send the endpoint, auth, and p256dh values to the backend
+                    await fetch('/business/skilledworkers/subscribe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            endpoint,
+                            auth,
+                            p256dh
+                        })
+                    });
+                } else {
+                    requestNotificationPermission();
+                }
+            }
+        }
+    
+
+
+
+
 // Function to fetch skilled worker details and populate the page
 async function fetchSkilledWorkerDetails() {
     try {

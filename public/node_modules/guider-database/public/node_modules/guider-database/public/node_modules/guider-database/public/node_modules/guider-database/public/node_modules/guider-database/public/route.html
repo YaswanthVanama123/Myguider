@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing from Vijayawada to Hyderabad</title>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <style>
+        /* Add your CSS styles here */
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script>
+        const apiKey = "WCisPFGzH2pEJArskcZoBJmKFffRzIyEbG_htPyKQ1M";
+        const routingEndpoint = "https://router.hereapi.com/v8/routes";
+        const origin = "Vijayawada";
+        const destination = "Hyderabad";
+        
+        const checkApiKeyValidity = (apiKey) => {
+            const url = new URL(routingEndpoint);
+            url.searchParams.append("apiKey", apiKey);
+            url.searchParams.append("origin", origin);
+            url.searchParams.append("destination", destination);
+        
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch routing data: ${response.status} ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.routes && data.routes.length > 0) {
+                        console.log("Routing request successful!");
+                        console.log("Route details:", data.routes[0]);
+                        return true;
+                    } else {
+                        throw new Error("No routes found.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error.message);
+                    return false;
+                });
+        };
+        
+        checkApiKeyValidity(apiKey)
+            .then(valid => {
+                if (valid) {
+                    console.log("The provided API key is valid for routing purposes.");
+                } else {
+                    console.log("The provided API key is not valid for routing purposes.");
+                }
+            });
+        
+
+    </script>
+</body>
+</html>

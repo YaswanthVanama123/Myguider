@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Skilled Workers Nearby</title>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 400px;"></div>
+
+    <script>
+        // Initialize Here Maps
+        var platform = new H.service.Platform({
+            'apikey': 'Wt0nBkP_kcThUD6OQ4GzIZJycwbtzxeGl-4NOT9BLiw' // Replace with your Here Maps API key
+        });
+
+        // Obtain the default map types from the platform object:
+        var defaultLayers = platform.createDefaultLayers();
+
+        // Instantiate (and display) a map object:
+        var map = new H.Map(
+            document.getElementById('map'),
+            defaultLayers.vector.normal.map,
+            {
+                zoom: 12,
+                center: { lat: 0, lng: 0 }
+            });
+
+        // Add a resize listener to make sure that the map occupies the whole container
+        window.addEventListener('resize', () => map.getViewPort().resize());
+
+        // Get user's location and update the map
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var userLat = position.coords.latitude;
+            var userLng = position.coords.longitude;
+            console.log('User\'s current location:', userLat, userLng);
+
+            // Set the map center to the user's location
+            map.setCenter({ lat: userLat, lng: userLng });
+
+            // Add a marker for the user's location
+            var userMarker = new H.map.Marker({ lat: userLat, lng: userLng });
+            map.addObject(userMarker);
+
+            // Send user's location to backend
+            fetch('/user/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    longitude: userLng,
+                    latitude: userLat
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('User location sent to backend successfully');
+                } else {
+                    console.error('Failed to send user location to backend');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending user location to backend:', error);
+            });
+
+            // Function to update UI based on notification acceptance status
+            function updateAcceptanceStatus(accepted) {
+                const acceptButton = document.getElementById('acceptButton');
+                if (accepted) {
+                    acceptButton.disabled = true;
+                    acceptButton.textContent = 'Notification Accepted';
+                    // Optionally change the appearance of the button to indicate it's disabled
+                    acceptButton.style.backgroundColor = '#ccc'; // Example: Change background color to gray
+                }
+            }
+
+
+            // Function to continuously check notification status and redirect upon acceptance
+            function checkNotificationStatus(notificationNumber) {
+                setInterval(() => {
+                    fetch(`/check-notification-status?notificationNumber=${notificationNumber}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'accepted') {
+                                // If notification is accepted, redirect to the desired URL
+                                window.location.href = `/successfully/captain/booked?${notificationNumber}`;
+                            }
+                        })
+                        .catch(error => console.error('Error checking notification status:', error));
+                }, 1000); // Check status every 5 seconds (adjust as needed)
+            }
+
+
+
+
+            // Fetch skilled workers' locations from the backend
+            fetch(`/skilledworkersnear/count?lat=${userLat}&lng=${userLng}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Skilled workers within 2km radius:', data);
+                    // Check if any skilled worker has already accepted the notification
+                    console.log('Notification Number:', data.notificationNumber);
+                
+                    checkNotificationStatus(data.notificationNumber)
+                })
+                .catch(error => console.error('Error fetching skilled workers:', error));
+        }, function (error) {
+            console.error('Error getting user\'s location:', error.message);
+        });
+    </script>
+</body>
+</html>
